@@ -1,25 +1,28 @@
 # notion-visuals
 
-Self-contained HTML visuals for embedding in Notion pages via GitHub Pages.
+Self-contained HTML visuals for embedding in Notion via GitHub Pages.
+Folder structure mirrors the Notion Life OS hierarchy.
 
 ## Visuals
 
-| Project | Visual | Embed URL |
-|---------|--------|-----------|
-| DayTwo | HBS case overview (segments, channels, tensions, competitors) | [daytwo/](https://b1rd33.github.io/notion-visuals/daytwo/index.html) |
-| Astructr | Audit dashboard | [astructr/](https://b1rd33.github.io/notion-visuals/astructr/index.html) |
-| I2P | Brainstorming board | [i2p/](https://b1rd33.github.io/notion-visuals/i2p/index.html) |
-
-## Usage
-
-Embed in Notion: `/embed` → paste the URL from the table above.
+| Notion path | Visual | URL |
+|-------------|--------|-----|
+| Education > ESADE > Marketing > DayTwo | HBS case overview | [link](https://b1rd33.github.io/notion-visuals/education/esade/marketing/daytwo/index.html) |
+| Business > Astructr | Audit dashboard | [link](https://b1rd33.github.io/notion-visuals/business/astructr/index.html) |
+| Business > I2P | Brainstorming board | [link](https://b1rd33.github.io/notion-visuals/business/i2p/index.html) |
 
 ## Structure
 
 ```
-daytwo/index.html
-astructr/index.html
-i2p/index.html
+education/
+  esade/
+    marketing/
+      daytwo/index.html
+business/
+  astructr/index.html
+  i2p/index.html
 ```
 
-Each folder = one project. Each `index.html` = one self-contained visual (no external dependencies beyond Google Fonts CDN).
+## Usage
+
+Embed in Notion: `/embed` → paste URL from the table above.
