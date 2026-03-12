@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duolingo — HBS Case Overview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d14;
+      --bg-subtle: #10131c;
+      --surface: #151924;
+      --surface-2: #1a1f2e;
+      --surface-hover: #1f2538;
+      --border: rgba(255,255,255,0.05);
+      --border-accent: rgba(255,255,255,0.09);
+      --text: #e4e6ed;
+      --text-dim: #8b8fa3;
+      --text-muted: #555a70;
+
+      --green: #58cc02;
+      --green-dim: rgba(88,204,2,0.1);
+      --green-border: rgba(88,204,2,0.22);
+      --green-glow: rgba(88,204,2,0.06);
+
+      --orange: #ff9600;
+      --orange-dim: rgba(255,150,0,0.1);
+      --orange-border: rgba(255,150,0,0.22);
+      --orange-glow: rgba(255,150,0,0.06);
+
+      --blue: #1cb0f6;
+      --blue-dim: rgba(28,176,246,0.1);
+      --blue-border: rgba(28,176,246,0.22);
+      --blue-glow: rgba(28,176,246,0.06);
+
+      --red: #ff4b4b;
+      --red-dim: rgba(255,75,75,0.1);
+      --red-border: rgba(255,75,75,0.22);
+      --red-glow: rgba(255,75,75,0.06);
+
+      --purple: #ce82ff;
+      --purple-dim: rgba(206,130,255,0.1);
+      --purple-border: rgba(206,130,255,0.22);
+      --purple-glow: rgba(206,130,255,0.06);
+
+      --accent: #7888f8;
+      --accent-dim: rgba(120,136,248,0.1);
+      --accent-border: rgba(120,136,248,0.22);
+      --accent-glow: rgba(120,136,248,0.08);
+
+      --warn: #f0b050;
+      --warn-dim: rgba(240,176,80,0.08);
+      --warn-border: rgba(240,176,80,0.22);
+
+      --success: #58cc02;
+      --fail: #ff4b4b;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f4f4ef;
+        --bg-subtle: #ededea;
+        --surface: #ffffff;
+        --surface-2: #fafaf8;
+        --surface-hover: #f5f5f2;
+        --border: rgba(0,0,0,0.07);
+        --border-accent: rgba(0,0,0,0.11);
+        --text: #1a1a1a;
+        --text-dim: #606060;
+        --text-muted: #999;
+        --green: #3ca000; --green-dim: rgba(60,160,0,0.07); --green-border: rgba(60,160,0,0.18); --green-glow: rgba(60,160,0,0.04);
+        --orange: #c07000; --orange-dim: rgba(192,112,0,0.07); --orange-border: rgba(192,112,0,0.18); --orange-glow: rgba(192,112,0,0.04);
+        --blue: #1080b8; --blue-dim: rgba(16,128,184,0.07); --blue-border: rgba(16,128,184,0.18); --blue-glow: rgba(16,128,184,0.04);
+        --red: #c03030; --red-dim: rgba(192,48,48,0.07); --red-border: rgba(192,48,48,0.18); --red-glow: rgba(192,48,48,0.04);
+        --purple: #8050a0; --purple-dim: rgba(128,80,160,0.07); --purple-border: rgba(128,80,160,0.18); --purple-glow: rgba(128,80,160,0.04);
+        --accent: #4858c0; --accent-dim: rgba(72,88,192,0.07); --accent-border: rgba(72,88,192,0.18); --accent-glow: rgba(72,88,192,0.04);
+        --warn: #a07020; --warn-dim: rgba(160,112,32,0.05); --warn-border: rgba(160,112,32,0.18);
+        --success: #3ca000; --fail: #c03030;
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Background atmosphere */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, var(--green-glow) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 20% 60%, var(--orange-glow) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, var(--blue-glow) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle dot grid */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Sticky nav ── */
+    .nav {
+      position: fixed;
+      top: 50%;
+      right: 1.5rem;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      z-index: 100;
+    }
+    .nav a {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: 0.4;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .nav a:hover {
+      opacity: 1;
+      transform: scale(1.5);
+      background: var(--accent);
+    }
+    @media (max-width: 900px) { .nav { display: none; } }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.7s ease both;
+      padding-top: 1rem;
+    }
+    .header .tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.25rem;
+      backdrop-filter: blur(8px);
+    }
+    .header h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header .subtitle {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .header .subtitle span {
+      color: var(--text-muted);
+      margin: 0 0.3rem;
+    }
+
+    /* ── KPI row ── */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 3.5rem;
+    }
+    @media (max-width: 900px) {
+      .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 0.75rem;
+      text-align: center;
+      animation: fadeScale 0.5s ease both;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .kpi:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .kpi:hover::before { opacity: 1; }
+    .kpi:nth-child(1) { animation-delay: 0.05s; }
+    .kpi:nth-child(2) { animation-delay: 0.1s; }
+    .kpi:nth-child(3) { animation-delay: 0.15s; }
+    .kpi:nth-child(4) { animation-delay: 0.2s; }
+    .kpi:nth-child(5) { animation-delay: 0.25s; }
+    .kpi:nth-child(6) { animation-delay: 0.3s; }
+    .kpi .number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.2;
+    }
+    .kpi .label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      line-height: 1.3;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .section:nth-of-type(1) { animation-delay: 0.1s; }
+    .section:nth-of-type(2) { animation-delay: 0.15s; }
+    .section:nth-of-type(3) { animation-delay: 0.2s; }
+    .section:nth-of-type(4) { animation-delay: 0.25s; }
+    .section:nth-of-type(5) { animation-delay: 0.3s; }
+    .section:nth-of-type(6) { animation-delay: 0.35s; }
+    .section:nth-of-type(7) { animation-delay: 0.4s; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Pipeline flow ── */
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .pipe-step {
+      flex: 1;
+      min-width: 150px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .pipe-step:hover {
+      background: var(--surface-2);
+      border-color: var(--green-border);
+    }
+    .pipe-step:first-child { border-radius: 12px 0 0 12px; }
+    .pipe-step:last-child { border-radius: 0 12px 12px 0; }
+    .pipe-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid var(--green);
+      z-index: 2;
+      opacity: 0.6;
+    }
+    .pipe-step .step-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.6rem;
+      font-size: 1rem;
+    }
+    .pipe-step .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--green);
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+    .pipe-step .step-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+    .pipe-step .step-detail {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* ── Science box ── */
+    .science-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) { .science-bar { grid-template-columns: 1fr; } }
+    .science-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+    .science-item strong {
+      color: var(--text);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Grid layouts ── */
+    .tri-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .quad-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .gamify-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 768px) {
+      .tri-grid { grid-template-columns: 1fr; }
+      .quad-grid { grid-template-columns: repeat(2, 1fr); }
+      .gamify-grid { grid-template-columns: 1fr; }
+      .pipeline { flex-direction: column; }
+      .pipe-step { min-width: unset; }
+      .pipe-step:first-child { border-radius: 12px 12px 0 0; }
+      .pipe-step:last-child { border-radius: 0 0 12px 12px; }
+      .pipe-step:not(:last-child)::after {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid var(--green);
+        border-bottom: none;
+        right: 50%;
+        top: auto;
+        bottom: -10px;
+        transform: translateX(50%);
+      }
+    }
+    @media (max-width: 500px) {
+      .quad-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      border-top: 3px solid var(--border);
+      overflow-wrap: break-word;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card h3 .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px currentColor;
+    }
+    .card .stat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+    .card .stat-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .card .meta {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+    .card .meta strong { color: var(--text); font-weight: 500; }
+    .card .verdict {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .card .verdict .verdict-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    /* Card color variants */
+    .card.c-green { border-top-color: var(--green); }
+    .card.c-green:hover { border-color: var(--green-border); }
+    .card.c-green .dot { background: var(--green); color: var(--green); }
+    .card.c-green .stat { color: var(--green); }
+    .card.c-green .verdict { color: var(--green); }
+    .card.c-green .verdict .verdict-icon { background: var(--green-dim); }
+
+    .card.c-orange { border-top-color: var(--orange); }
+    .card.c-orange:hover { border-color: var(--orange-border); }
+    .card.c-orange .dot { background: var(--orange); color: var(--orange); }
+    .card.c-orange .stat { color: var(--orange); }
+    .card.c-orange .verdict { color: var(--orange); }
+    .card.c-orange .verdict .verdict-icon { background: var(--orange-dim); }
+
+    .card.c-blue { border-top-color: var(--blue); }
+    .card.c-blue:hover { border-color: var(--blue-border); }
+    .card.c-blue .dot { background: var(--blue); color: var(--blue); }
+    .card.c-blue .stat { color: var(--blue); }
+    .card.c-blue .verdict { color: var(--blue); }
+    .card.c-blue .verdict .verdict-icon { background: var(--blue-dim); }
+
+    .card.c-red { border-top-color: var(--red); }
+    .card.c-red:hover { border-color: var(--red-border); }
+    .card.c-red .dot { background: var(--red); color: var(--red); }
+    .card.c-red .stat { color: var(--red); }
+    .card.c-red .verdict { color: var(--red); }
+    .card.c-red .verdict .verdict-icon { background: var(--red-dim); }
+
+    .card.c-purple { border-top-color: var(--purple); }
+    .card.c-purple:hover { border-color: var(--purple-border); }
+    .card.c-purple .dot { background: var(--purple); color: var(--purple); }
+    .card.c-purple .stat { color: var(--purple); }
+    .card.c-purple .verdict { color: var(--purple); }
+    .card.c-purple .verdict .verdict-icon { background: var(--purple-dim); }
+
+    .card.c-accent { border-top-color: var(--accent); }
+    .card.c-accent:hover { border-color: var(--accent-border); }
+    .card.c-accent .dot { background: var(--accent); color: var(--accent); }
+    .card.c-accent .stat { color: var(--accent); }
+
+    .card .quote {
+      font-size: 0.74rem;
+      font-style: italic;
+      color: var(--text-muted);
+      border-left: 2px solid var(--border-accent);
+      padding-left: 0.75rem;
+      margin-top: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .card.span-full {
+      grid-column: 1 / -1;
+    }
+
+    /* ── Tensions ── */
+    .tension-grid {
+      display: grid;
+      gap: 0.6rem;
+    }
+    .tension {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.25rem;
+      align-items: center;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .tension:hover {
+      border-color: var(--border-accent);
+      background: var(--surface-2);
+    }
+    @media (max-width: 600px) {
+      .tension {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 0.5rem;
+      }
+    }
+    .tension .opt {
+      font-size: 0.82rem;
+    }
+    .tension .opt .opt-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .tension .vs {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--warn);
+      background: var(--warn-dim);
+      border: 1px solid var(--warn-border);
+      border-radius: 6px;
+      padding: 0.2rem 0.6rem;
+    }
+    .tension .tension-name {
+      font-size: 0.62rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      grid-column: 1 / -1;
+      margin-bottom: -0.4rem;
+    }
+
+    /* ── Competitor table ── */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .comp-table th {
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-accent);
+      background: var(--surface-2);
+    }
+    .comp-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .comp-table tr { transition: background 0.2s; }
+    .comp-table tbody tr:hover { background: var(--surface-2); }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table .name { font-weight: 600; white-space: nowrap; }
+
+    .threat {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .threat::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .threat.high { background: rgba(255,75,75,0.12); color: var(--red); }
+    .threat.high::before { background: var(--red); box-shadow: 0 0 6px var(--red); }
+    .threat.med { background: rgba(255,150,0,0.12); color: var(--orange); }
+    .threat.med::before { background: var(--orange); box-shadow: 0 0 6px var(--orange); }
+    .threat.low { background: rgba(28,176,246,0.12); color: var(--blue); }
+    .threat.low::before { background: var(--blue); box-shadow: 0 0 6px var(--blue); }
+
+    /* ── Insight box ── */
+    .insight {
+      background: var(--warn-dim);
+      border: 1px solid var(--warn-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .insight::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--orange-glow);
+      filter: blur(30px);
+    }
+    .insight h3 {
+      color: var(--warn);
+      font-size: 1.05rem;
+      margin-bottom: 0.85rem;
+      position: relative;
+    }
+    .insight p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+    .insight p:last-child { margin-bottom: 0; }
+    .insight strong { color: var(--text); }
+
+    .circular-trap {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .trap-step {
+      background: var(--surface);
+      border: 1px solid var(--warn-border);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .trap-arrow {
+      color: var(--warn);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Epilogue ── */
+    .epilogue {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.6s ease both;
+      animation-delay: 0.45s;
+    }
+    .epilogue .section-label { margin-bottom: 0.75rem; }
+    .epilogue h2 { margin-bottom: 1rem; }
+    .timeline {
+      display: grid;
+      gap: 0;
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--green), var(--accent));
+      border-radius: 1px;
+    }
+    .tl-item {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 1rem;
+      font-size: 0.82rem;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -1.55rem;
+      top: 0.75rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: var(--bg);
+    }
+    .tl-item:last-child::before { border-color: var(--accent); }
+    .tl-item .tl-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--green);
+      font-weight: 500;
+    }
+    .tl-item:last-child .tl-year { color: var(--accent); }
+    .tl-item .tl-text {
+      color: var(--text-dim);
+    }
+    .tl-item .tl-text strong { color: var(--text); font-weight: 500; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeScale {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Side nav dots -->
+  <nav class="nav">
+    <a href="#mechanics" title="Product Mechanics"></a>
+    <a href="#gamification" title="Gamification"></a>
+    <a href="#revenue" title="Revenue"></a>
+    <a href="#competition" title="Competition"></a>
+    <a href="#tensions" title="Tensions"></a>
+    <a href="#insight" title="Key Insight"></a>
+    <a href="#timeline" title="Timeline"></a>
+  </nav>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="tag">HBS 9-323-016 &mdash; Case reading aid</div>
+      <h1>Duolingo: Teaching Languages<br>to the Masses</h1>
+      <div class="subtitle">Pittsburgh (est. 2012) <span>&middot;</span> CEO Luis von Ahn <span>&middot;</span> 500+ employees <span>&middot;</span> IPO 2021</div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="number" style="color:var(--green)">40.5M</div>
+        <div class="label">Monthly active users</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--orange)">9.6M</div>
+        <div class="label">Daily active users</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--accent)">$250.8M</div>
+        <div class="label">Revenue (2021)</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--blue)">500M+</div>
+        <div class="label">Total downloads</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--purple)">40+</div>
+        <div class="label">Languages offered</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--text-dim)">6%</div>
+        <div class="label">Paid subscribers</div>
+      </div>
+    </div>
+
+    <!-- Product Mechanics Pipeline -->
+    <div class="section" id="mechanics">
+      <div class="section-label">01 &mdash; Product mechanics</div>
+      <h2>User journey</h2>
+      <div class="pipeline">
+        <div class="pipe-step">
+          <div class="step-icon">&#128242;</div>
+          <div class="step-num">Step 1</div>
+          <div class="step-title">Download app</div>
+          <div class="step-detail">Free on iOS &amp; Android</div>
+        </div>
+        <div class="pipe-step">
+          <div class="step-icon">&#127760;</div>
+          <div class="step-num">Step 2</div>
+          <div class="step-title">Pick language</div>
+          <div class="step-detail">40+ languages, placement test</div>
+        </div>
+        <div class="pipe-step">
+          <div class="step-icon">&#128218;</div>
+          <div class="step-num">Step 3</div>
+          <div class="step-title">Complete lessons</div>
+          <div class="step-detail">3&ndash;5 min bite-sized sessions</div>
+        </div>
+        <div class="pipe-step">
+          <div class="step-icon">&#9889;</div>
+          <div class="step-num">Step 4</div>
+          <div class="step-title">Earn XP &amp; streaks</div>
+          <div class="step-detail">Daily habit loop reinforcement</div>
+        </div>
+        <div class="pipe-step">
+          <div class="step-icon">&#127942;</div>
+          <div class="step-num">Step 5</div>
+          <div class="step-title">Compete on leaderboards</div>
+          <div class="step-detail">Weekly leagues, Diamond tier</div>
+        </div>
+      </div>
+      <div class="science-bar">
+        <div class="science-item">
+          <strong>A/B testing culture</strong>
+          Hundreds of A/B tests running at any given time. Every feature data-validated before rollout.
+        </div>
+        <div class="science-item">
+          <strong>ML personalization</strong>
+          Machine learning adapts difficulty and content to individual learner patterns and weaknesses.
+        </div>
+        <div class="science-item">
+          <strong>In-house experts</strong>
+          Dedicated team of language scientists and curriculum designers. No outsourced content.
+        </div>
+      </div>
+    </div>
+
+    <!-- Gamification Features -->
+    <div class="section" id="gamification">
+      <div class="section-label">02 &mdash; Gamification</div>
+      <h2>Engagement mechanics</h2>
+      <div class="gamify-grid">
+        <div class="card c-orange">
+          <h3><span class="dot"></span> Streaks</h3>
+          <div class="meta">
+            Daily flame counter tracks consecutive days of practice. Users post <strong>1,000-day streaks</strong> on social media as badges of honor. Missing one day resets to zero &mdash; creating powerful loss aversion.
+          </div>
+          <div class="quote">"Streak is the most powerful retention feature we have." &mdash; von Ahn</div>
+        </div>
+        <div class="card c-blue">
+          <h3><span class="dot"></span> Leaderboards</h3>
+          <div class="meta">
+            Weekly competitions in tiered leagues (Bronze to Diamond). Users who joined leaderboards spent <strong>+20% more time</strong> learning. Creates social pressure without requiring friends.
+          </div>
+          <div class="quote">"People learn more when they feel like they're competing." &mdash; von Ahn</div>
+        </div>
+        <div class="card c-red">
+          <h3><span class="dot"></span> Hearts</h3>
+          <div class="meta">
+            Limited lives system &mdash; make too many mistakes and you must wait or practice to earn hearts back. Forces <strong>focused attention</strong> on each question. Also creates friction that drives subscription upgrades (unlimited hearts in Plus).
+          </div>
+        </div>
+        <div class="card c-accent">
+          <h3><span class="dot"></span> Notifications</h3>
+          <div class="meta">
+            Persistent, personality-driven push notifications from the Duo owl mascot. Users created <strong>memes about the aggressive reminders</strong> &mdash; free viral marketing. "Turn it into a habit" philosophy drives the notification design.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue Breakdown -->
+    <div class="section" id="revenue">
+      <div class="section-label">03 &mdash; Revenue</div>
+      <h2>Revenue breakdown (2021)</h2>
+      <div class="quad-grid">
+        <div class="card c-purple">
+          <h3><span class="dot"></span> Subscriptions</h3>
+          <div class="stat">$180.7M</div>
+          <div class="stat-label">72% of revenue</div>
+          <div class="meta">
+            Duolingo Plus / Super at <strong>$7/mo</strong>. Unlimited hearts, no ads, offline access, progress quizzes.
+          </div>
+        </div>
+        <div class="card c-orange">
+          <h3><span class="dot"></span> Advertising</h3>
+          <div class="stat">$38.5M</div>
+          <div class="stat-label">15% of revenue</div>
+          <div class="meta">
+            Native in-app ads between lessons. Kept non-intrusive to protect <strong>retention and DAU metrics</strong>.
+          </div>
+        </div>
+        <div class="card c-blue">
+          <h3><span class="dot"></span> Duolingo English Test</h3>
+          <div class="stat">$24.7M</div>
+          <div class="stat-label">10% of revenue</div>
+          <div class="meta">
+            $49 proctored test accepted at <strong>3,000+ institutions</strong>. COVID accelerated adoption vs. TOEFL ($200+).
+          </div>
+        </div>
+        <div class="card c-green">
+          <h3><span class="dot"></span> Other</h3>
+          <div class="stat">$6.9M</div>
+          <div class="stat-label">3% of revenue</div>
+          <div class="meta">
+            Virtual goods, in-app purchases (streak freezes, heart refills), and Duolingo for Schools.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Competitive Landscape -->
+    <div class="section" id="competition">
+      <div class="section-label">04 &mdash; Competition</div>
+      <h2>Competitive landscape</h2>
+      <div class="table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Founded</th>
+              <th>Price</th>
+              <th>Threat</th>
+              <th>Key difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">Rosetta Stone</td>
+              <td>1992</td>
+              <td>$8&ndash;12/mo</td>
+              <td><span class="threat med">Medium</span></td>
+              <td>Formal 30-min lessons, ~500K subscribers. Legacy brand but lost mobile-first generation.</td>
+            </tr>
+            <tr>
+              <td class="name">Babbel</td>
+              <td>2007</td>
+              <td>$7&ndash;13/mo</td>
+              <td><span class="threat med">Medium</span></td>
+              <td>Conversation-focused curriculum. Forbes "best overall" language app. No free tier.</td>
+            </tr>
+            <tr>
+              <td class="name">Busuu</td>
+              <td>2008</td>
+              <td>Freemium</td>
+              <td><span class="threat low">Low</span></td>
+              <td>Community-based feedback from native speakers. Smaller user base.</td>
+            </tr>
+            <tr>
+              <td class="name">Memrise</td>
+              <td>2010</td>
+              <td>Freemium</td>
+              <td><span class="threat low">Low</span></td>
+              <td>Video-based learning with real native speakers. Spaced repetition focus.</td>
+            </tr>
+            <tr>
+              <td class="name">Pimsleur</td>
+              <td>1963</td>
+              <td>$15&ndash;20/mo</td>
+              <td><span class="threat low">Low</span></td>
+              <td>Audio-based spaced repetition method. Premium positioning, niche audience.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Strategic Tensions -->
+    <div class="section" id="tensions">
+      <div class="section-label">05 &mdash; Dilemmas</div>
+      <h2>Strategic tensions</h2>
+      <div class="tension-grid">
+        <div class="tension">
+          <div class="tension-name">Free vs Monetize</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            Keep core product free &mdash; maximize reach, user growth, and organic virality
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            Push paid conversion beyond 6% with harder paywalls and premium-only features
+          </div>
+        </div>
+        <div class="tension">
+          <div class="tension-name">Engagement vs Learning</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            Optimize for gamification metrics (DAUs, streaks, time spent)
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            Optimize for actual language proficiency and real-world fluency outcomes
+          </div>
+        </div>
+        <div class="tension">
+          <div class="tension-name">Ads vs Experience</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            Increase ad load to grow the $38.5M advertising revenue stream
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            Protect user experience, retention, and daily active user metrics
+          </div>
+        </div>
+        <div class="tension">
+          <div class="tension-name">Organic vs Paid Growth</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            Rely on word-of-mouth model that built 500M downloads with minimal spend
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            Invest in performance marketing to accelerate growth for public market expectations
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Insight -->
+    <div class="section" id="insight">
+      <div class="section-label">06 &mdash; Key insight</div>
+      <h2>The engagement-learning paradox</h2>
+      <div class="insight">
+        <h3>Gamification drives metrics, not fluency</h3>
+        <p>Duolingo's gamification drives engagement metrics but course completion equals <strong>advanced beginner</strong> at best. NYT: "Language apps are not other humans." The company optimizes for what it can measure (DAUs, streaks, time spent) but what users actually want &mdash; fluency &mdash; may require <strong>human interaction that no app provides</strong>.</p>
+        <p>This creates a ceiling: great at getting people started, uncertain at getting them fluent. The product excels at <strong>habit formation</strong> and <strong>vocabulary acquisition</strong>, but struggles with conversation, nuance, and cultural context.</p>
+        <div class="circular-trap">
+          <span class="trap-step">Gamify to engage</span>
+          <span class="trap-arrow">&rarr;</span>
+          <span class="trap-step">Users stay for the game</span>
+          <span class="trap-arrow">&rarr;</span>
+          <span class="trap-step">Learning plateaus</span>
+          <span class="trap-arrow">&rarr;</span>
+          <span class="trap-step">Need more gamification</span>
+          <span class="trap-arrow">&#8635;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Epilogue Timeline -->
+    <div class="epilogue" id="timeline">
+      <div class="section-label">07 &mdash; Timeline</div>
+      <h2>Key milestones</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-year">2011</span>
+          <div class="tl-text"><strong>Founded</strong> by Luis von Ahn &amp; Severin Hacker at Carnegie Mellon University</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2012</span>
+          <div class="tl-text"><strong>App launches</strong>, starts with English-only courses for Spanish speakers</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2013</span>
+          <div class="tl-text">Named <strong>Apple iPhone App of the Year</strong></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2016</span>
+          <div class="tl-text"><strong>Monetization begins</strong> &mdash; ads, Duolingo English Test, subscription tier</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2019</span>
+          <div class="tl-text">First marketing spend. <strong>MAUs hit 27.3M</strong></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2021</span>
+          <div class="tl-text"><strong>IPO on NASDAQ.</strong> 40.5M MAUs, $250.8M revenue</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2022</span>
+          <div class="tl-text"><strong>Case written.</strong> 500+ employees, 94/6 free/paid split</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2023+</span>
+          <div class="tl-text"><strong>GPT-4 integration</strong>, Duolingo Max tier launched, surpasses <strong>100M+ MAUs</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Duolingo Case Overview &middot; HBS 9-323-016 &middot; Moon (2022) &middot; ESADE Marketing for Entrepreneurs
+    </div>
+
+  </div>
+</body>
+</html>
