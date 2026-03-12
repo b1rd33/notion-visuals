@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DayTwo — HBS Case Overview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d14;
+      --bg-subtle: #10131c;
+      --surface: #151924;
+      --surface-2: #1a1f2e;
+      --surface-hover: #1f2538;
+      --border: rgba(255,255,255,0.05);
+      --border-accent: rgba(255,255,255,0.09);
+      --text: #e4e6ed;
+      --text-dim: #8b8fa3;
+      --text-muted: #555a70;
+
+      --diabetes: #f07068;
+      --diabetes-dim: rgba(240,112,104,0.1);
+      --diabetes-border: rgba(240,112,104,0.22);
+      --diabetes-glow: rgba(240,112,104,0.06);
+
+      --overweight: #f0b050;
+      --overweight-dim: rgba(240,176,80,0.1);
+      --overweight-border: rgba(240,176,80,0.22);
+      --overweight-glow: rgba(240,176,80,0.06);
+
+      --athletes: #50c8f0;
+      --athletes-dim: rgba(80,200,240,0.1);
+      --athletes-border: rgba(80,200,240,0.22);
+      --athletes-glow: rgba(80,200,240,0.06);
+
+      --dtc: #c888f0;
+      --dtc-dim: rgba(200,136,240,0.1);
+      --dtc-border: rgba(200,136,240,0.22);
+
+      --b2b: #58d898;
+      --b2b-dim: rgba(88,216,152,0.1);
+      --b2b-border: rgba(88,216,152,0.22);
+
+      --b2b2c: #f08888;
+      --b2b2c-dim: rgba(240,136,136,0.1);
+      --b2b2c-border: rgba(240,136,136,0.22);
+
+      --accent: #7888f8;
+      --accent-dim: rgba(120,136,248,0.1);
+      --accent-border: rgba(120,136,248,0.22);
+      --accent-glow: rgba(120,136,248,0.08);
+
+      --warn: #f0b050;
+      --warn-dim: rgba(240,176,80,0.08);
+
+      --success: #58d898;
+      --fail: #f07068;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f4f4ef;
+        --bg-subtle: #ededea;
+        --surface: #ffffff;
+        --surface-2: #fafaf8;
+        --surface-hover: #f5f5f2;
+        --border: rgba(0,0,0,0.07);
+        --border-accent: rgba(0,0,0,0.11);
+        --text: #1a1a1a;
+        --text-dim: #606060;
+        --text-muted: #999;
+        --diabetes: #c04038; --diabetes-dim: rgba(192,64,56,0.07); --diabetes-border: rgba(192,64,56,0.18); --diabetes-glow: rgba(192,64,56,0.04);
+        --overweight: #a07020; --overweight-dim: rgba(160,112,32,0.07); --overweight-border: rgba(160,112,32,0.18); --overweight-glow: rgba(160,112,32,0.04);
+        --athletes: #2888a8; --athletes-dim: rgba(40,136,168,0.07); --athletes-border: rgba(40,136,168,0.18); --athletes-glow: rgba(40,136,168,0.04);
+        --dtc: #8050a0; --dtc-dim: rgba(128,80,160,0.07); --dtc-border: rgba(128,80,160,0.18);
+        --b2b: #308860; --b2b-dim: rgba(48,136,96,0.07); --b2b-border: rgba(48,136,96,0.18);
+        --b2b2c: #a04040; --b2b2c-dim: rgba(160,64,64,0.07); --b2b2c-border: rgba(160,64,64,0.18);
+        --accent: #4858c0; --accent-dim: rgba(72,88,192,0.07); --accent-border: rgba(72,88,192,0.18); --accent-glow: rgba(72,88,192,0.04);
+        --warn: #a07020; --warn-dim: rgba(160,112,32,0.05);
+        --success: #308860; --fail: #c04038;
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Background atmosphere */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, var(--accent-glow) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 20% 60%, var(--diabetes-glow) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, var(--athletes-glow) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle dot grid */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Sticky nav ── */
+    .nav {
+      position: fixed;
+      top: 50%;
+      right: 1.5rem;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      z-index: 100;
+    }
+    .nav a {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: 0.4;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .nav a:hover {
+      opacity: 1;
+      transform: scale(1.5);
+      background: var(--accent);
+    }
+    @media (max-width: 900px) { .nav { display: none; } }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.7s ease both;
+      padding-top: 1rem;
+    }
+    .header .tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.25rem;
+      backdrop-filter: blur(8px);
+    }
+    .header h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header .subtitle {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .header .subtitle span {
+      color: var(--text-muted);
+      margin: 0 0.3rem;
+    }
+
+    /* ── KPI row ── */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 3.5rem;
+    }
+    @media (max-width: 900px) {
+      .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 0.75rem;
+      text-align: center;
+      animation: fadeScale 0.5s ease both;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .kpi:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .kpi:hover::before { opacity: 1; }
+    .kpi:nth-child(1) { animation-delay: 0.05s; }
+    .kpi:nth-child(2) { animation-delay: 0.1s; }
+    .kpi:nth-child(3) { animation-delay: 0.15s; }
+    .kpi:nth-child(4) { animation-delay: 0.2s; }
+    .kpi:nth-child(5) { animation-delay: 0.25s; }
+    .kpi:nth-child(6) { animation-delay: 0.3s; }
+    .kpi .number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.2;
+    }
+    .kpi .label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      line-height: 1.3;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .section:nth-of-type(1) { animation-delay: 0.1s; }
+    .section:nth-of-type(2) { animation-delay: 0.15s; }
+    .section:nth-of-type(3) { animation-delay: 0.2s; }
+    .section:nth-of-type(4) { animation-delay: 0.25s; }
+    .section:nth-of-type(5) { animation-delay: 0.3s; }
+    .section:nth-of-type(6) { animation-delay: 0.35s; }
+    .section:nth-of-type(7) { animation-delay: 0.4s; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Pipeline flow ── */
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .pipe-step {
+      flex: 1;
+      min-width: 150px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .pipe-step:hover {
+      background: var(--surface-2);
+      border-color: var(--accent-border);
+    }
+    .pipe-step:first-child { border-radius: 12px 0 0 12px; }
+    .pipe-step:last-child { border-radius: 0 12px 12px 0; }
+    .pipe-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid var(--accent);
+      z-index: 2;
+      opacity: 0.6;
+    }
+    .pipe-step .step-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.6rem;
+      font-size: 1rem;
+    }
+    .pipe-step .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+    .pipe-step .step-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+    .pipe-step .step-detail {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* ── Science box ── */
+    .science-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) { .science-bar { grid-template-columns: 1fr; } }
+    .science-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+    .science-item strong {
+      color: var(--text);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Three-column cards ── */
+    .tri-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 768px) {
+      .tri-grid { grid-template-columns: 1fr; }
+      .pipeline { flex-direction: column; }
+      .pipe-step { min-width: unset; }
+      .pipe-step:first-child { border-radius: 12px 12px 0 0; }
+      .pipe-step:last-child { border-radius: 0 0 12px 12px; }
+      .pipe-step:not(:last-child)::after {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid var(--accent);
+        border-bottom: none;
+        right: 50%;
+        top: auto;
+        bottom: -10px;
+        transform: translateX(50%);
+      }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      border-top: 3px solid var(--border);
+      overflow-wrap: break-word;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card h3 .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px currentColor;
+    }
+    .card .stat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+    .card .stat-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .card .meta {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+    .card .meta strong { color: var(--text); font-weight: 500; }
+    .card .verdict {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .card .verdict .verdict-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .card.diabetes { border-top-color: var(--diabetes); }
+    .card.diabetes:hover { border-color: var(--diabetes-border); }
+    .card.diabetes .dot { background: var(--diabetes); color: var(--diabetes); }
+    .card.diabetes .stat { color: var(--diabetes); }
+    .card.diabetes .verdict { color: var(--diabetes); }
+    .card.diabetes .verdict .verdict-icon { background: var(--diabetes-dim); }
+
+    .card.overweight { border-top-color: var(--overweight); }
+    .card.overweight:hover { border-color: var(--overweight-border); }
+    .card.overweight .dot { background: var(--overweight); color: var(--overweight); }
+    .card.overweight .stat { color: var(--overweight); }
+    .card.overweight .verdict { color: var(--overweight); }
+    .card.overweight .verdict .verdict-icon { background: var(--overweight-dim); }
+
+    .card.athletes { border-top-color: var(--athletes); }
+    .card.athletes:hover { border-color: var(--athletes-border); }
+    .card.athletes .dot { background: var(--athletes); color: var(--athletes); }
+    .card.athletes .stat { color: var(--athletes); }
+    .card.athletes .verdict { color: var(--athletes); }
+    .card.athletes .verdict .verdict-icon { background: var(--athletes-dim); }
+
+    .card.dtc { border-top-color: var(--dtc); }
+    .card.dtc:hover { border-color: var(--dtc-border); }
+    .card.dtc .dot { background: var(--dtc); color: var(--dtc); }
+    .card.dtc .verdict { color: var(--dtc); }
+
+    .card.b2b { border-top-color: var(--b2b); }
+    .card.b2b:hover { border-color: var(--b2b-border); }
+    .card.b2b .dot { background: var(--b2b); color: var(--b2b); }
+    .card.b2b .verdict { color: var(--b2b); }
+
+    .card.b2b2c { border-top-color: var(--b2b2c); }
+    .card.b2b2c:hover { border-color: var(--b2b2c-border); }
+    .card.b2b2c .dot { background: var(--b2b2c); color: var(--b2b2c); }
+    .card.b2b2c .verdict { color: var(--b2b2c); }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .card li {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      padding: 0.35rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.4;
+    }
+    .card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .card li.pro::before { background: var(--success); box-shadow: 0 0 4px var(--success); }
+    .card li.con::before { background: var(--fail); box-shadow: 0 0 4px var(--fail); }
+
+    .card .quote {
+      font-size: 0.74rem;
+      font-style: italic;
+      color: var(--text-muted);
+      border-left: 2px solid var(--border-accent);
+      padding-left: 0.75rem;
+      margin-top: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* ── Tensions ── */
+    .tension-grid {
+      display: grid;
+      gap: 0.6rem;
+    }
+    .tension {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.25rem;
+      align-items: center;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .tension:hover {
+      border-color: var(--border-accent);
+      background: var(--surface-2);
+    }
+    @media (max-width: 600px) {
+      .tension {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 0.5rem;
+      }
+    }
+    .tension .opt {
+      font-size: 0.82rem;
+    }
+    .tension .opt .opt-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .tension .vs {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--warn);
+      background: var(--warn-dim);
+      border: 1px solid var(--overweight-border);
+      border-radius: 6px;
+      padding: 0.2rem 0.6rem;
+    }
+    .tension .tension-name {
+      font-size: 0.62rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      grid-column: 1 / -1;
+      margin-bottom: -0.4rem;
+    }
+
+    /* ── Competitor table ── */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .comp-table th {
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-accent);
+      background: var(--surface-2);
+    }
+    .comp-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .comp-table tr { transition: background 0.2s; }
+    .comp-table tbody tr:hover { background: var(--surface-2); }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table .name { font-weight: 600; white-space: nowrap; }
+
+    .threat {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .threat::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .threat.high { background: rgba(240,112,104,0.12); color: var(--diabetes); }
+    .threat.high::before { background: var(--diabetes); box-shadow: 0 0 6px var(--diabetes); }
+    .threat.med { background: rgba(240,176,80,0.12); color: var(--overweight); }
+    .threat.med::before { background: var(--overweight); box-shadow: 0 0 6px var(--overweight); }
+    .threat.low { background: rgba(80,200,240,0.12); color: var(--athletes); }
+    .threat.low::before { background: var(--athletes); box-shadow: 0 0 6px var(--athletes); }
+    .threat.dead { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+    .threat.dead::before { background: var(--text-muted); }
+
+    /* ── Insight box ── */
+    .insight {
+      background: var(--warn-dim);
+      border: 1px solid var(--overweight-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .insight::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--overweight-glow);
+      filter: blur(30px);
+    }
+    .insight h3 {
+      color: var(--warn);
+      font-size: 1.05rem;
+      margin-bottom: 0.85rem;
+      position: relative;
+    }
+    .insight p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+    .insight p:last-child { margin-bottom: 0; }
+    .insight strong { color: var(--text); }
+
+    .circular-trap {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .trap-step {
+      background: var(--surface);
+      border: 1px solid var(--overweight-border);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .trap-arrow {
+      color: var(--warn);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Epilogue ── */
+    .epilogue {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.6s ease both;
+      animation-delay: 0.45s;
+    }
+    .epilogue .section-label { margin-bottom: 0.75rem; }
+    .epilogue h2 { margin-bottom: 1rem; }
+    .timeline {
+      display: grid;
+      gap: 0;
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--fail));
+      border-radius: 1px;
+    }
+    .tl-item {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 1rem;
+      font-size: 0.82rem;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -1.55rem;
+      top: 0.75rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: var(--bg);
+    }
+    .tl-item:last-child::before { border-color: var(--fail); }
+    .tl-item .tl-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .tl-item:last-child .tl-year { color: var(--fail); }
+    .tl-item .tl-text {
+      color: var(--text-dim);
+    }
+    .tl-item .tl-text strong { color: var(--text); font-weight: 500; }
+
+    /* ── Hidden market callout ── */
+    .hidden-market {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .hidden-market .hm-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .hidden-market .hm-text {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .hidden-market .hm-text strong { color: var(--text); font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeScale {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Side nav dots -->
+  <nav class="nav">
+    <a href="#product" title="Product"></a>
+    <a href="#segments" title="Segments"></a>
+    <a href="#channels" title="Channels"></a>
+    <a href="#dilemmas" title="Dilemmas"></a>
+    <a href="#competition" title="Competition"></a>
+    <a href="#paradox" title="Paradox"></a>
+    <a href="#outcome" title="Outcome"></a>
+  </nav>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="tag">HBS 9-519-010 &mdash; Case reading aid</div>
+      <h1>DayTwo: Going to Market<br>with Gut Microbiome</h1>
+      <div class="subtitle">Israeli startup (est. 2015) <span>&middot;</span> CEO Lihi Segal <span>&middot;</span> Weizmann Institute algorithm <span>&middot;</span> ~30 people</div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="number" style="color:var(--accent)">$17M</div>
+        <div class="label">Funding raised</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--accent)">$329</div>
+        <div class="label">U.S. kit price</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--diabetes)">114M</div>
+        <div class="label">Diabetics + pre-diabetics</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--overweight)">$9,600</div>
+        <div class="label">Avg yearly diabetes cost</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--b2b)">68K</div>
+        <div class="label">U.S. nutritionists</div>
+      </div>
+      <div class="kpi">
+        <div class="number" style="color:var(--text-dim)">~2 wk</div>
+        <div class="label">Kit to app delivery</div>
+      </div>
+    </div>
+
+    <!-- Product Pipeline -->
+    <div class="section" id="product">
+      <div class="section-label">01 &mdash; Product</div>
+      <h2>How it works</h2>
+      <div class="pipeline">
+        <div class="pipe-step">
+          <div class="step-icon">&#128230;</div>
+          <div class="step-num">Step 1</div>
+          <div class="step-title">Order kit</div>
+          <div class="step-detail">$329 online or via provider</div>
+        </div>
+        <div class="pipe-step">
+          <div class="step-icon">&#129516;</div>
+          <div class="step-num">Step 2</div>
+          <div class="step-title">Stool sample</div>
+          <div class="step-detail">Customer mails sample to lab</div>
+        </div>
+        <div class="pipe-step">
+          <div class="step-icon">&#128300;</div>
+          <div class="step-num">Step 3</div>
+          <div class="step-title">Sequencing</div>
+          <div class="step-detail">Shotgun method (full genome)</div>
+        </div>
+        <div class="pipe-step">
+          <div class="step-icon">&#129504;</div>
+          <div class="step-num">Step 4</div>
+          <div class="step-title">ML analysis</div>
+          <div class="step-detail">Weizmann algorithm predicts glycemic response</div>
+        </div>
+        <div class="pipe-step">
+          <div class="step-icon">&#128241;</div>
+          <div class="step-num">Step 5</div>
+          <div class="step-title">App scores</div>
+          <div class="step-detail">Foods rated 1.0&ndash;9.9 for your body</div>
+        </div>
+      </div>
+      <div class="science-bar">
+        <div class="science-item">
+          <strong>Science basis</strong>
+          Zeevi et al. (2015) Cell paper, tested on 800 people in Israel
+        </div>
+        <div class="science-item">
+          <strong>Key claim</strong>
+          Predicts individual glycemic response, not generic dietary advice
+        </div>
+        <div class="science-item">
+          <strong>Database</strong>
+          "Largest whole shotgun microbiome database in the world" &mdash; Bachrach
+        </div>
+      </div>
+    </div>
+
+    <!-- Target Segments -->
+    <div class="section" id="segments">
+      <div class="section-label">02 &mdash; Segments</div>
+      <h2>Three target markets</h2>
+      <div class="tri-grid">
+        <div class="card diabetes">
+          <h3><span class="dot"></span> Diabetes / Pre-diabetes</h3>
+          <div class="stat">114.4M</div>
+          <div class="stat-label">U.S. patients</div>
+          <div class="meta">
+            30.3M diabetics + 84.1M pre-diabetics. Spend <strong>$9,600/yr</strong> on treatment. Highest motivation &mdash; blood sugar is life-or-death. Already doing medical tests, stool sample friction is low.
+          </div>
+          <div class="quote">"We want the user population that brings the most bang for the buck: those who want it, those who are most motivated to use it." &mdash; Bachrach</div>
+          <div class="verdict"><span class="verdict-icon">&#10003;</span> Best fit</div>
+        </div>
+        <div class="card overweight">
+          <h3><span class="dot"></span> Overweight / Obese</h3>
+          <div class="stat">70.7%</div>
+          <div class="stat-label">of U.S. adults</div>
+          <div class="meta">
+            Massive TAM but DayTwo <strong>can't promise weight loss</strong>. The weight-loss services market was actually shrinking (Exhibit 5). High friction for a non-medical audience.
+          </div>
+          <div class="quote">Product helps manage blood sugar, not shed pounds. Value prop doesn't match what this segment is buying.</div>
+          <div class="verdict"><span class="verdict-icon">&#9888;</span> Tempting but misaligned</div>
+        </div>
+        <div class="card athletes">
+          <h3><span class="dot"></span> Athletes / Wellness</h3>
+          <div class="stat">11,800</div>
+          <div class="stat-label">U.S. pro athletes</div>
+          <div class="meta">
+            Highly motivated, used to body tracking, good for PR and credibility. But <strong>not a business at scale</strong>. Total addressable market is tiny.
+          </div>
+          <div class="quote">Good influencer/ambassador channel. Bad primary segment.</div>
+          <div class="verdict"><span class="verdict-icon">&#8594;</span> Marketing asset only</div>
+        </div>
+      </div>
+      <div class="hidden-market">
+        <div class="hm-icon">&#128161;</div>
+        <div class="hm-text">
+          <strong>Hidden market: IBS</strong> &mdash; Over 1,000 existing users reported IBS symptoms unprompted. Real pull without DayTwo pushing. Could be a natural expansion once diabetes is established.
+        </div>
+      </div>
+    </div>
+
+    <!-- GTM Channels -->
+    <div class="section" id="channels">
+      <div class="section-label">03 &mdash; Channels</div>
+      <h2>Go-to-market options</h2>
+      <div class="tri-grid">
+        <div class="card dtc">
+          <h3><span class="dot"></span> DTC (direct to consumer)</h3>
+          <ul>
+            <li class="pro">Fast to launch, own the brand</li>
+            <li class="pro">Direct customer data</li>
+            <li class="con">Product takes 15 min to explain</li>
+            <li class="con">High CAC, stool sample friction</li>
+            <li class="con">No brand awareness in U.S.</li>
+          </ul>
+          <div class="quote">"DayTwo products require almost 15 minutes to explain." &mdash; Segal</div>
+          <div class="verdict">Not viable as primary</div>
+        </div>
+        <div class="card b2b">
+          <h3><span class="dot"></span> B2B (employers / insurers)</h3>
+          <ul>
+            <li class="pro">Large contracts, recurring revenue</li>
+            <li class="pro">J&J + Mayo Clinic connections</li>
+            <li class="pro">151M employer-insured workers</li>
+            <li class="con">Each deal takes ~1 year</li>
+            <li class="con">Needs FDA for insurer coverage</li>
+            <li class="con">Slow bureaucracy</li>
+          </ul>
+          <div class="quote">This is where DayTwo eventually pivoted &mdash; and it wasn't enough.</div>
+          <div class="verdict">Long-term play</div>
+        </div>
+        <div class="card b2b2c">
+          <h3><span class="dot"></span> B2B2C (dietitians / providers)</h3>
+          <ul>
+            <li class="pro">Trust transfer from provider</li>
+            <li class="pro">Higher conversion rates</li>
+            <li class="pro">Proven model in Israel</li>
+            <li class="pro">68K nutritionists + 7K endocrinologists</li>
+            <li class="con">Harder to scale quickly</li>
+            <li class="con">Dietitians initially feared replacement</li>
+          </ul>
+          <div class="quote">"Customers have more success when DayTwo is handed off to them by a dietitian or their doctor." &mdash; Stevens</div>
+          <div class="verdict"><span class="verdict-icon">&#10003;</span> Best near-term channel</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strategic Tensions -->
+    <div class="section" id="dilemmas">
+      <div class="section-label">04 &mdash; Dilemmas</div>
+      <h2>Strategic tensions</h2>
+      <div class="tension-grid">
+        <div class="tension">
+          <div class="tension-name">Timing</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            Sell now as wellness product, build revenue and data
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            Wait for FDA clearance + clinical trials for credibility
+          </div>
+        </div>
+        <div class="tension">
+          <div class="tension-name">Revenue model</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            One-time $329 kit purchase
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            Add subscription for ongoing coaching + data
+          </div>
+        </div>
+        <div class="tension">
+          <div class="tension-name">Brand</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            Keep DayTwo brand, build consumer recognition
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            White-label for health systems and employers
+          </div>
+        </div>
+        <div class="tension">
+          <div class="tension-name">Geography</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            Deepen Israel (8.4M people, known market)
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            Prioritize U.S. ($3T healthcare market, investor expectations)
+          </div>
+        </div>
+        <div class="tension">
+          <div class="tension-name">Infrastructure</div>
+          <div class="opt">
+            <div class="opt-label">Option A</div>
+            Build own labs ($5M for 100K units/yr capacity)
+          </div>
+          <div class="vs">vs</div>
+          <div class="opt">
+            <div class="opt-label">Option B</div>
+            Use partner labs (less control, variable quality)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Competitors -->
+    <div class="section" id="competition">
+      <div class="section-label">05 &mdash; Competition</div>
+      <h2>Competitive landscape</h2>
+      <div class="table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Method</th>
+              <th>Price</th>
+              <th>Threat</th>
+              <th>Key difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">Viome</td>
+              <td>RNA sequencing (metatranscriptomics)</td>
+              <td>$400/yr</td>
+              <td><span class="threat high">High</span></td>
+              <td>Captures more microbial types, looks identical to consumers, but no peer review</td>
+            </tr>
+            <tr>
+              <td class="name">Thryve</td>
+              <td>16S rRNA</td>
+              <td>~$100</td>
+              <td><span class="threat med">Medium</span></td>
+              <td>Cheaper but less precise sequencing</td>
+            </tr>
+            <tr>
+              <td class="name">uBiome</td>
+              <td>16S rRNA</td>
+              <td>~$89</td>
+              <td><span class="threat dead">Collapsed</span></td>
+              <td>FDA raided offices 2019, shut down &mdash; cautionary tale on compliance</td>
+            </tr>
+            <tr>
+              <td class="name">23andMe</td>
+              <td>DNA (not microbiome)</td>
+              <td>$199</td>
+              <td><span class="threat low">Low-med</span></td>
+              <td>Different product, competes for "personalized health" mindshare</td>
+            </tr>
+            <tr>
+              <td class="name">ZOE <span style="font-size:0.65rem;color:var(--text-muted);font-weight:400">(post-case)</span></td>
+              <td>Gut microbiome + CGM sensor</td>
+              <td>~$354</td>
+              <td><span class="threat high">Highest</span></td>
+              <td>Raised $100M+, built strong consumer brand &mdash; what DayTwo could have been</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Exhibit 8 Insight -->
+    <div class="section" id="paradox">
+      <div class="section-label">06 &mdash; Key insight</div>
+      <h2>The income-diabetes paradox</h2>
+      <div class="insight">
+        <h3>Exhibit 8: The people who need it most can't afford it</h3>
+        <p>Diabetes prevalence is <strong>highest in low-income populations</strong>. DayTwo costs $329 out of pocket. Without insurance coverage (which needs FDA approval they don't have), the core target faces a price barrier.</p>
+        <p>This is why B2B through employers/insurers matters &mdash; it removes the individual cost. But B2B requires FDA or clinical proof, which circles back to the timing dilemma.</p>
+        <div class="circular-trap">
+          <span class="trap-step">Need FDA for insurance</span>
+          <span class="trap-arrow">&rarr;</span>
+          <span class="trap-step">Need insurance for affordability</span>
+          <span class="trap-arrow">&rarr;</span>
+          <span class="trap-step">Need affordability for target segment</span>
+          <span class="trap-arrow">&rarr;</span>
+          <span class="trap-step">Need target segment for FDA trial data</span>
+          <span class="trap-arrow">&#8635;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Epilogue: What actually happened -->
+    <div class="epilogue" id="outcome">
+      <div class="section-label">07 &mdash; Epilogue</div>
+      <h2>What actually happened (post-case)</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-year">2015</span>
+          <div class="tl-text"><strong>Founded</strong> in Israel, Weizmann Institute spin-off</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2017</span>
+          <div class="tl-text">Seed + Series A: <strong>$17M</strong> (J&J Innovation lead)</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2019</span>
+          <div class="tl-text">Series B: <strong>$31M</strong> &mdash; pivoted to B2B employer health plans for U.S.</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2020</span>
+          <div class="tl-text"><strong>Mayo Clinic</strong> validation published in JAMA Network Open</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2021</span>
+          <div class="tl-text">Series C: <strong>$37M</strong> &mdash; total raised ~$85M</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2023</span>
+          <div class="tl-text">Laid off most employees. <strong>GLP-1 drugs</strong> (Ozempic, Wegovy) emerged as simpler alternatives for the same population.</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">Aug 2024</span>
+          <div class="tl-text"><strong>Shut down operations.</strong> $85M over 9 years, never reached profitability. Gap between clinical validation and commercial viability was too wide.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      DayTwo Case Overview &middot; HBS 9-519-010 &middot; Israeli & Lane (2019) &middot; ESADE Marketing for Entrepreneurs
+    </div>
+
+  </div>
+</body>
+</html>
