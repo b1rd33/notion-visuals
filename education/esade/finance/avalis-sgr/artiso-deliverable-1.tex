@@ -1,0 +1,107 @@
+\documentclass[11pt,a4paper]{article}
+
+% Encoding & fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx} % Times New Roman — looks like Word
+
+% Layout — tight margins for 1-page constraint
+\usepackage[top=1.5cm, bottom=1.2cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage{microtype}
+\usepackage{parskip}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=1.2em}
+
+% Suppress page number
+\pagestyle{empty}
+
+% Section formatting — compact
+\usepackage{titlesec}
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+
+% Euro symbol
+\usepackage{eurosym}
+
+% Hyperlinks (invisible)
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\begin{document}
+
+% ── HEADER ──────────────────────────────────────────────────
+\noindent
+\begin{minipage}[c]{0.25\textwidth}
+    \includegraphics[width=3.5cm]{artiso-logo.pdf}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.72\textwidth}
+    \raggedleft
+    \small
+    ESADE Entrepreneurial Finance --- CFO of a New Venture\\[1pt]
+    {\small Roxane Balsh\"usemann, Christian Nikolov, Mart\'i Lombarte, Leonor Ascen\c{c}\~ao, Tam\'as Fenyvesi}\\[1pt]
+    {\small March 17, 2026 --- 1st Deliverable}
+\end{minipage}
+
+\vspace{4pt}
+\noindent\rule{\linewidth}{0.4pt}
+
+% ── SECTION 1 ───────────────────────────────────────────────
+\section{Company's 3-Year Goal}
+
+\textbf{Qualitative.}
+Become the vertical operating system for fashion design---expanding from AI-powered design tools to a full product development platform orchestrating the entire creative workflow for fashion brands globally.
+
+\textbf{Quantitative.}
+\begin{itemize}
+    \item \textbf{18-month target} (end of runway): \textasciitilde20 design-led brands on platform, \euro{}250--500\,k MRR
+    \item \textbf{3-year target}: 100+ brands across Europe and the US, full creative workflow platform with PLM integration, team of 10--15 senior staff
+    \item \textbf{Growth path}: Land-and-expand---ACV \euro{}7--40\,k (SME) to \euro{}40--300\,k (Enterprise) as teams scale credit usage
+\end{itemize}
+
+% ── SECTION 2 ───────────────────────────────────────────────
+\section{Executive Summary}
+
+Fashion design workflows today are fragmented across disconnected tools, making them slow, expensive, and hard to scale. Existing AI tools are generic and do not understand brand-specific design language or workflows, which limits adoption inside companies.
+
+ARTISO addresses this by building an AI operating system that learns a brand's visual DNA---silhouettes, colors, materials, style rules---and applies it across the entire creative workflow, from moodboards to production-ready CAD drawings. The platform is built on a proprietary four-layer fashion ontology and brand memory system, which creates switching costs that compound over time. The target customers are design and creative teams at fashion brands, from mid-size companies to large global groups. The company was founded in May 2024 by a team from Mango with deep fashion and AI expertise.
+
+ARTISO has secured paid pilots with Deichmann, TATA Group, and NF\&TA, generating over \euro{}60\,k in pilot revenue to date. More than 200 brands are on the waitlist for platform access. Early pilots show approximately 2 hours saved per design, 20--30\% sampling cost reduction, and 15--25\% fewer revision cycles.
+
+The business model is a seatless B2B SaaS combining an annual platform fee, a one-off setup fee, and usage-based AI credits. Annual contract values range from \euro{}7--40\,k for SMEs to \euro{}40--300\,k for enterprise clients. The company is raising a \euro{}3\,M pre-seed round to fund product development (60\%), sales scaling (25\%), and operations (15\%) over 18 months. The financial model projects ARR growing from \euro{}1.8\,M in FY2027 to \euro{}29.3\,M by FY2030, with EBITDA breakeven expected in Q2 2028.
+
+% ── SECTION 3 ───────────────────────────────────────────────
+\section{Previous Rounds of Financing}
+
+No prior external funding. ARTISO has been bootstrapped by the founders, generating early revenue through paid enterprise pilots. The current \euro{}3\,M pre-seed is the company's first institutional raise, targeting a lead VC plus strategic angels with an 18-month runway.
+
+% ── SECTION 4 ───────────────────────────────────────────────
+\section{Current Shareholders}
+
+Three co-founders hold 100\% of equity pre-raise. No external investors to date.
+
+\vspace{2pt}
+\begin{tabularx}{\textwidth}{@{} l l l X @{}}
+    \toprule
+    \textbf{Name} & \textbf{Role} & \textbf{Pre-Raise} & \textbf{Background} \\
+    \midrule
+    Sarah Iglesias Hiller & CEO & 33.3\% & Ex-Mango; led first AI-powered fashion campaign \\
+    Matthias Brenninkmeijer & CTO & 33.3\% & AI/ML at Mango and C\&A since 2015 \\
+    Lucas Pastur & CPO & 33.3\% & PhD in AI; 100+ enterprise AI projects at Grifols \\
+    \bottomrule
+\end{tabularx}
+
+\vspace{2pt}
+{\small\textit{No ESOP exists yet; an employee option pool will be created as part of the \euro{}3\,M pre-seed round (\euro{}27\,M pre-money, \euro{}30\,M post-money). Seed investors would receive 10\%. Full dilution analysis in Deliverable~2.}}
+
+% ── FOOTER ──────────────────────────────────────────────────
+\vfill
+
+\end{document}
