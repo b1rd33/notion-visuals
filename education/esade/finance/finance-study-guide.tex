@@ -1,0 +1,582 @@
+\documentclass[a4paper,11pt]{article}
+
+% Font and encoding
+\usepackage{mathptmx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Page geometry
+\usepackage[margin=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+% Compact spacing
+\usepackage{setspace}
+\setstretch{1.05}
+\usepackage{parskip}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+
+% Section formatting
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\vspace{-4pt}\rule{\textwidth}{0.5pt}]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{12pt}{4pt}
+\titlespacing*{\subsection}{0pt}{8pt}{2pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{2pt}
+
+% Lists
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.5em,topsep=2pt}
+\setlist[itemize]{label=\textbullet}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{array}
+
+% Hyperlinks and TOC
+\usepackage[hidelinks]{hyperref}
+
+% Math
+\usepackage{amsmath}
+
+% Header/footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{ESADE Entrepreneurial Finance --- Study Guide}}
+\fancyhead[R]{\small\textit{Sessions 00--04}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+\vspace*{4cm}
+\begin{center}
+{\LARGE\bfseries ESADE Entrepreneurial Finance}\\[0.8cm]
+{\Large Study Guide}\\[0.5cm]
+{\large Sessions 00--04 + Quiz Prep}\\[2cm]
+
+\begin{tabular}{rl}
+\textbf{Course:} & Entrepreneurial Finance \& Venture Capital \\[4pt]
+\textbf{Professors:} & Carles Florensa, Teresa Corrales, Benjamin Ullrich \\[4pt]
+\textbf{Term:} & Term 2 --- March 2026 \\
+\end{tabular}
+\end{center}
+\vfill
+\end{titlepage}
+
+% ============================================================
+% TABLE OF CONTENTS
+% ============================================================
+\tableofcontents
+\newpage
+
+% ============================================================
+% SESSION 00
+% ============================================================
+\section{Session 00 --- Introduction (Feb 17)}
+\textbf{Instructors:} Teresa Corrales, Carles Florensa \hfill \textbf{Case:} Too Good To Go
+
+\subsection{Financial Statements Fundamentals}
+
+\textbf{Balance Sheet} --- financial position at a moment in time. Assets = Liabilities + Owner's Equity.
+
+\textbf{Income Statement (P\&L)} --- tracks revenue and expenses over a period. Net profit flows to equity on the balance sheet.
+
+\textbf{Cash Flow Statement} --- tracks every cash movement in/out; reconciles with balance sheet.
+
+\textbf{Key principle:} Profit does NOT equal Cash --- timing differences (AR, AP) and working capital changes create the gap.
+
+\textbf{CapEx vs OpEx} --- CapEx = investment in assets with $>$1 year lifespan, depreciated over useful life. OpEx = recurring expenses, hit P\&L immediately.
+
+\textbf{Working Capital} = Inventories + Accounts Receivable $-$ Accounts Payable --- an increase = financial need (reduces operating cash flow).
+
+\textbf{Depreciation} --- reduces fixed asset value and earnings over time, but does NOT affect cash.
+
+\textbf{Accrual vs Cash accounting} --- 100\% legal to show accrual to investors and cash for tax filing.
+
+\textbf{FIFO vs LIFO} --- LIFO reduces taxable income; at scale the difference is significant.
+
+\subsection{Core Formulas}
+
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Formula} & \textbf{Definition} \\
+\midrule
+Assets & $=$ Liabilities $+$ Equity \\
+COGS & $=$ Units Sold $\times$ Unit Cost \\
+Gross Profit & $=$ Sales $-$ COGS \\
+Net Profit & $=$ Gross Profit $-$ Expenses \\
+Ending Inventory & $=$ Beginning $+$ Purchases $-$ COGS \\
+Working Capital & $=$ Inventories $+$ AR $-$ AP \\
+\bottomrule
+\end{tabular}
+
+\subsection{Financial Modeling (Too Good To Go Case)}
+
+Four pillars:
+\begin{enumerate}
+\item Business model / CapEx needs
+\item Operations --- revenues, expenses, margins
+\item Growth projections
+\item Working capital policies
+\end{enumerate}
+
+\textbf{Key learnings:} Always use formulas, never hardcode. Sensitivity analysis identifies critical variables. Supplier payment terms have massive impact on cash flow. Ending cash must always be positive.
+
+\subsection{Assessment}
+
+\begin{tabular}{@{}lr@{}}
+\toprule
+\textbf{Component} & \textbf{Weight} \\
+\midrule
+Class Participation & 30\% \\
+Group Assignments (Midterm 12\% + Final 28\%) & 40\% \\
+Individual Test (MCQ, Session 9) & 30\% \\
+\bottomrule
+\end{tabular}
+
+\newpage
+
+% ============================================================
+% SESSION 01
+% ============================================================
+\section{Session 01 --- VC, PE \& Business Angels (Mar 3)}
+\textbf{Instructor:} Carles Florensa \hfill \textbf{Case:} AB-Biotics
+
+\subsection{Venture Capital Fundamentals}
+
+VC main objective: Make profit by selling stake in medium term (NOT lending money or running companies).
+
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Management fee & 2--2.5\% of fund size \\
+Expected return per investment & 40\% IRR over 7--8 years ($\approx$10x multiple) \\
+Average fund return & 13--15\% IRR \\
+Hurdle rate for LPs & 6--10\% \\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\textbf{Business angels vs VCs:} Angels invest own money, often for enjoyment and learning, not just returns.
+
+\textbf{Convertible notes:} Debt that converts to equity later. Includes cap (max valuation) and discount. Delays valuation decision until milestones. Faster/simpler than equity rounds.
+
+\subsection{VC vs PE vs CVC}
+
+\begin{tabular}{@{}p{0.15\textwidth}p{0.75\textwidth}@{}}
+\toprule
+\textbf{Type} & \textbf{Characteristics} \\
+\midrule
+VC & Early-stage, minority stakes, high-growth tech/innovation, targeting 10x+ returns \\
+PE & Later-stage/buyouts, majority control, mature businesses, targeting 2--3x returns \\
+CVC & Corporate venture arms, strategic alignment with parent company, may accept lower financial returns for strategic value, risk of conflicts of interest \\
+\bottomrule
+\end{tabular}
+
+\subsection{VC Fund Structure \& Lifecycle}
+
+\begin{itemize}
+\item \textbf{LPs} (limited partners) provide capital; \textbf{GPs} (general partners) manage the fund
+\item Management company handles operations
+\item \textbf{Capital calls:} LPs commit but money is drawn down over time
+\item 5-year investment period + 5-year divestment period = \textbf{10-year fund life}
+\item Management fees (2--2.5\%) reduce investable capital --- a \texteuro100M fund may only deploy \texteuro80M
+\item \textbf{Carry} (20\% of profits above hurdle) is the GP's real upside
+\item GP typically invests 1--2\% as ``skin in the game''
+\end{itemize}
+
+\subsection{Business Angel Framework}
+
+\begin{itemize}
+\item \textbf{3Fs:} Friends, Family, Fools --- earliest non-institutional capital
+\item \textbf{Valley of Death:} gap between initial funding and revenue generation where most startups fail
+\item \textbf{Smart Money:} capital that comes with expertise, network, and operational support
+\item \textbf{Angel types:} active, latent, virgin, founder angel, super angel
+\item \textbf{Harvest events:} IPO, M\&A, secondary sale
+\end{itemize}
+
+\subsection{Venture-Stage Financing Map}
+
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Stage} & \textbf{Typical Sources} \\
+\midrule
+Pre-seed / Seed & Grants, 3Fs, angels, accelerators \\
+Startup & Angels, seed VCs, convertible notes \\
+Growth & Series A/B VCs, venture debt \\
+Maturity & PE, mezzanine, bank loans, factoring \\
+Exit & IPO, M\&A, secondary \\
+\bottomrule
+\end{tabular}
+
+\subsection{Fundraising Strategies}
+
+\begin{itemize}
+\item \textbf{Bootstrapping:} Maximum control, minimal dilution, but risk of irrelevance if competitors raise big.
+\item \textbf{Seed strapping:} Single round to reach profitability, limited dilution, ideal for capital-efficient models.
+\item \textbf{Traditional VC:} Necessary when competitors raise significant funds.
+\end{itemize}
+
+\subsection{AI and Market Dynamics}
+
+Europe: 35\% of VC to AI; US: 65\%. Traditional later-stage VCs moving to seed/pre-seed. Creates upward pressure on valuations.
+
+\subsection{Case: AB-Biotics}
+
+Founded 2008, needed EUR 1M. Chose business angel (Lafuente) over VCs because of higher valuation (EUR 4M pre-money vs EUR 2M). Exit 2019: acquired by Kaneka for EUR 64M (14.4x multiple). Founders retained 6\% with full autonomy.
+
+\textbf{Decision framework:} Angel (Lafuente) offered biotech expertise, easier governance, less exit pressure. VCs offered signaling, more capital, fundraising/exit support. Angel followed with another EUR 1M; company raised EUR 4.3M at IPO in 2010.
+
+\subsection{Guest Speaker: Ramiro (Keon)}
+
+Founded Keon 15 years ago --- intelligent retail with RFID. EUR 31M revenue, 96\% exports. Sold for EUR 65M (14.4x, 20x with earnout).
+
+\textbf{Key tips:}
+\begin{itemize}
+\item Delay first round as long as possible. Use public grants with zero interest.
+\item Have EUR 200K in sales before first round. Start fundraising 12 months early.
+\item Never overvalue early --- creates down round problems.
+\item Investors invest in people. Be transparent with financials.
+\item Venture debt available near positive EBITDA (9--10\%, $\sim$1\% equity).
+\item For exit: hire M\&A banker (3\% fee); industrial buyers pay more.
+\item Hardware + software = stronger moat but requires more capital (prototypes, manufacturing, warehouse, working capital).
+\item Investor selection should match company's time horizon; angels/family offices may fit better than VC/PE for longer-build businesses.
+\item Transparency with investors, decision-focused board meetings.
+\item Vendor due diligence before exit; run a competitive M\&A process.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+% SESSION 02
+% ============================================================
+\section{Session 02 --- Deal Flow \& Screening (Mar 6)}
+\textbf{Instructor:} Carles Florensa \hfill \textbf{Case:} Skilfill
+
+\subsection{Deal Flow Framework}
+
+Sourcing $\rightarrow$ Screening $\rightarrow$ Partner Review $\rightarrow$ Due Diligence $\rightarrow$ Investment Committee $\rightarrow$ Capital Deployment
+
+\textbf{Screening criteria:} team, market, product, business model, traction, fund fit.
+
+\subsection{Pitch Framework}
+
+A strong pitch must: (1) signal legitimacy, (2) reduce uncertainty, (3) tell a compelling narrative.
+
+\subsection{Investment Evaluation}
+
+Investors prioritize \textbf{TEAM} over market, technology, or ideas. Serial entrepreneurs get more support.
+
+\textbf{Four evaluation buckets:} Competence, Complementarity, Psychological traits, Commitment.
+
+\textbf{Biases:} Pedigree, education, pattern matching.
+
+\subsection{Case: Skilfill}
+
+Skills-based hiring AI. Seeking EUR 600K at EUR 4.8M pre-money. Well-structured pitch but critical weaknesses:
+\begin{itemize}
+\item Inconsistent customer claims (5 in pitch vs 2 in Q\&A)
+\item Missing moat
+\item Unrealistic LTV/CAC (\$2,887)
+\item No infrastructure costs for 2 years
+\item No sales budget despite growth targets
+\item Revenue based on growth rate not funnel
+\item Incomplete P\&L
+\end{itemize}
+\textbf{Verdict:} Do NOT invest, come back in 6 months with traction.
+
+\textbf{Additional weaknesses:}
+\begin{itemize}
+\item Pricing inconsistency: pitched EUR 50 vs model EUR 80--96
+\item Hidden ``Connect'' product driving large share of projected revenue
+\item TestGorilla as competitive threat (scale, funding, customer base) makes moat much thinner
+\item \textbf{Investor takeaway:} convertible note with milestones would have fit the risk better than straight equity at EUR 4.8M pre-money
+\end{itemize}
+
+\subsection{Guest Speaker: Jose Antonio Gonzalez (Business Angel)}
+
+Deloitte partner 31 years. Best Spanish Business Angel 2025. 85 startups invested, $\sim$10/year at EUR 10--25K. Expects 60+ of 85 to fail. 10--12 year horizon.
+
+\textbf{Philosophy:}
+\begin{itemize}
+\item Team is critical. Never rush due diligence.
+\item Founders must understand numbers. Work 5+ years in industry first.
+\item Asks for 5-year org chart. Looks for realistic projections.
+\item Must have month-by-month Excel. Don't blackmail family into investing.
+\item Know worst case scenario.
+\item Pre-seed valuation discipline --- max EUR 2M valuation.
+\item Uses 5-year org chart as a founder test --- reveals whether founders think long-term and understand scaling.
+\item Validate with customers AND competitors before fundraising.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+% SESSION 03
+% ============================================================
+\section{Session 03 --- The Financial Plan (Mar 10)}
+\textbf{Instructor:} Carles Florensa \hfill \textbf{Case:} Fuertes Vientos Wind Farm
+
+\subsection{Operating Cash Flow}
+
+\begin{center}
+\fbox{\parbox{0.7\textwidth}{\centering
+\textbf{OCF = EBIT $-$ Taxes + D\&A $-$ Increase in Working Capital}\\[4pt]
+\small If working capital decreases, it is added (not subtracted).
+}}
+\end{center}
+
+\subsection{Bottom-Up Forecasting Sub-Frameworks}
+
+\begin{itemize}
+\item \textbf{CAC-based:} Marketing budget / CAC = acquirable customers
+\item \textbf{Funnel/conversion:} Traffic $\rightarrow$ qualified leads $\rightarrow$ opportunities $\rightarrow$ closed deals
+\item \textbf{Cohort retention:} Track how many customers from each cohort remain over time
+\item \textbf{Cohort-based cash flow:} Different cohorts may have different payment terms
+\end{itemize}
+
+\subsection{Revenue Quality Framework}
+
+\begin{itemize}
+\item Churn-adjusted growth is more meaningful than topline growth alone
+\item 50\% growth with 0\% churn vs 25\% churn = completely different businesses
+\item CAC usually rises as firms scale (organic $\rightarrow$ paid channels)
+\end{itemize}
+
+\subsection{``Dying of Success'' Problem}
+
+Companies can be profitable but face bankruptcy if working capital grows too quickly. Cash tied up in inventory and AR even as revenue increases.
+
+\subsection{Working Capital Formulas}
+
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Item} & \textbf{Formula} \\
+\midrule
+Inventory & $= (\text{COGS} \times \text{Number of Days}) \;/\; 360$ \\
+Accounts Receivable & $= (\text{Sales Revenue} \times \text{Credit Days}) \;/\; 360$ \\
+Accounts Payable & $= (\text{COGS} \times \text{Payment Days}) \;/\; 360$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\textbf{Note:} 360 days is the financial convention.
+
+\subsection{Negative Working Capital (Ideal)}
+
+\textbf{Supermarkets:} Paid immediately, pay suppliers 120+ days.\\
+\textbf{SaaS:} No inventory, prepaid subscriptions.\\
+Both: working capital finances the business.
+
+\subsection{Free Cash Flow}
+
+The number banks look at for loans. Calculated before financial decisions. If WC increases, FCF decreases.
+
+\subsection{Tax Credit / Loss Carry-Forward}
+
+When companies have losses, they accumulate the right to offset future taxes. Apply this to startup financial models.
+
+\subsection{Balance Sheet Rules}
+
+Assets must ALWAYS equal Equity + Liabilities. Never present unbalanced. Never use a ``hammer'' to force balance.
+
+\subsection{Case: Fuertes Vientos}
+
+Wind energy, operations 2007. 90\% regulated revenue. No inventory. AR 45 days, AP 30 days, Tax 30\%. Depreciation: intangible 5yr, tangible 20yr. Cannot depreciate before operations begin. Loan EUR 30M at 7\%, 10yr linear, 2yr grace period.
+
+\textbf{Operating mechanics:} 42.5 MW $\times$ 2,510 hours capacity. Regulated-rate step-down after year 5. Reinvestment from 2011 onward equal to annual depreciation after warranty expiry.
+
+\textbf{Core strategic takeaway:} Could staged financing have preserved more founder control instead of selling 80\% too early?
+
+\subsection{Guest Speaker: Adria Roca (Inverrere VC)}
+
+Manages EUR 2.2B, VC team $\sim$EUR 200M. Series A focus, EUR 1--5M revenue. Reviewed 17,000 companies, invested in 17 (0.1\%). 50\% of portfolio fails; need one 30x return. 50\% of VC funds don't return capital to LPs.
+
+\textbf{Forecasting:} BIGGEST MISTAKE = top-down approaches. Correct = bottom-up (capacity, conversion rates, sales cycles). CAC is NOT stable --- increases as companies scale. Revenue quality matters more than growth rate.
+
+\textbf{Fundraising:} Avoid premature dilution. Maintain safety buffers. Combine equity + debt. VCs limit dilution to 20--25\%/round. VCs need $>$10\% at exit.
+
+European exits tend to be earlier and lower than US due to smaller markets, limited growth capital, founder fatigue.
+
+\textbf{AI moats:} Increasingly come from proprietary data, embedded enterprise relationships, and compliance/security --- not generic AI features. Growth quality $>$ raw growth, especially when churn and rising CAC are factored in.
+
+\newpage
+
+% ============================================================
+% SESSION 04
+% ============================================================
+\section{Session 04 --- Valuation of Start-ups (Mar 12)}
+\textbf{Instructor:} Carles Florensa \hfill \textbf{Cases:} SUN Microsystems, Crypto A \& B
+
+\subsection{VC Method --- The Core Logic}
+
+Start from expected exit value. Work backwards using target return multiple. Result: implied post-money valuation today.
+
+\subsection{Key Definitions}
+
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Term} & \textbf{Formula} \\
+\midrule
+Post-money & $=$ Investment $+$ Pre-money \\
+Pre-money & $=$ Post-money $-$ Investment \\
+Ownership \% & $=$ Investment $/$ Post-money \\
+\bottomrule
+\end{tabular}
+
+\subsection{Share-Based Valuation Formulas}
+
+\begin{itemize}
+\item Pre-money $=$ pre-existing shares $\times$ new round price per share
+\item Post-money $=$ total shares (pre-existing $+$ new) $\times$ price per share
+\item \textbf{These are very testable on the exam.}
+\end{itemize}
+
+\subsection{5-Step VC Method}
+
+\begin{enumerate}
+\item \textbf{Enterprise Value at Exit:} Calculate EV at Year N (e.g., using P/E multiples).
+\item \textbf{Investment Value at Exit:} Investment $\times (1 + \text{IRR})^{\text{years}}$
+\item \textbf{Required Ownership:} Investment at exit $/$ EV at exit
+\item \textbf{Calculate Shares:} $(\text{Fraction} \times \text{pre-existing shares}) \;/\; (1 - \text{Fraction})$
+\item \textbf{Price per Share:} Investment $/$ Shares
+\end{enumerate}
+
+\subsection{Quick Valuation (for Entrepreneurs)}
+
+\begin{align*}
+\text{Post-money} &= \frac{\text{Future Enterprise Value}}{(1 + \text{IRR})^{\text{years}}} \\[4pt]
+\text{Pre-money} &= \text{Post-money} - \text{Investment} \\[4pt]
+\text{Post-money} &= \text{Investment} \;/\; \text{Dilution\%}
+\end{align*}
+
+\subsection{IRR Formula}
+
+\[
+\text{IRR} = \left(\frac{\text{Value at exit}}{\text{Investment}}\right)^{1/\text{years}} - 1
+\]
+
+\subsection{Price vs Value}
+
+Price can exceed valuation (hype, competing investors). Price can fall below valuation (low liquidity, desperation).
+
+\subsection{Case: SUN Microsystems}
+
+Series A investors: 87.2x multiple at IPO. Founders: $\sim$4,800x. Series H investors (1.5yr pre-IPO): only 14\% IRR.
+
+\textbf{Timing and return dispersion lesson:} founders/early investors made extraordinary returns, late investors earned weak returns. Valuation collapse: \$12.8B (Jan 2008) $\rightarrow$ \$7.4B Oracle acquisition (Apr 2009).
+
+\subsection{Case: Crypto A (No Dilution)}
+
+Sales \$3M, 55\% growth, 30\% margin, 15x P/E. Year 3 EV: \$50.25M. \$2M investment at 40\% IRR = \$5.49M at exit. Ownership: 10.92\%. Shares: 134,845 at \$14.83/share. Pre-money: \$16.31M.
+
+\subsection{Case: Crypto B (With Dilution)}
+
+Accounts for second round. Shares increase, price per share drops to \$13.47.
+
+\textbf{Key lesson:} Future rounds should be modeled upfront because anticipated dilution lowers the max acceptable price/share even if target ownership is unchanged.
+
+\subsection{OpenAI Valuation (Real-World)}
+
+\$110B raised at \$730B pre-money = \$840B post-money. Dilution: 13\%. Revenue multiple: 24x on 2026 forecast of \$30B. AI companies: 20--30x sales. US valuations 2--3x higher than European.
+
+\subsection{Valuation Triangulation}
+
+VC method is one tool, not the only one. Also use: comparable company multiples, comparable transactions, and DCF (when forecasts are credible).
+
+\subsection{Stock Option Pool}
+
+Should dilute ALL shareholders proportionally, not just founders.
+
+\newpage
+
+% ============================================================
+% QUIZ PREP
+% ============================================================
+\section{Quiz Prep --- Practice Questions}
+
+\subsection{VC Investment Process}
+
+\begin{tabular}{@{}p{0.65\textwidth}p{0.3\textwidth}@{}}
+\toprule
+\textbf{Question} & \textbf{Answer} \\
+\midrule
+Q1: Final step of VC process & Exit \\
+Q2: Key element of investment thesis & Sector and go-to-market approach \\
+Q3: NOT part of thesis & Percentage of stake proposed \\
+Q4: NOT critical for team evaluation & Money they invested \\
+\bottomrule
+\end{tabular}
+
+\subsection{Deal Flow}
+
+\begin{tabular}{@{}p{0.65\textwidth}p{0.3\textwidth}@{}}
+\toprule
+\textbf{Question} & \textbf{Answer} \\
+\midrule
+Q5: Primary rejection reason & Lack of fit with strategy \\
+Q6: Soft screening factor & Trust and culture \\
+Q7: Unit economics & Very relevant if you can verify calculations \\
+\bottomrule
+\end{tabular}
+
+\subsection{Financial Plan}
+
+\begin{tabular}{@{}p{0.65\textwidth}p{0.3\textwidth}@{}}
+\toprule
+\textbf{Question} & \textbf{Answer} \\
+\midrule
+Q8: OCF formula & Beginning Cash + EBIT $-$ Taxes + D\&A $-$ Investment in WC \\
+Q9: WC Investment (Y1$=$110, Y2$=$140) & Investment $=$ 30 \\
+Q10: Days in AP: $(50/360) \times 365$ & 50 days \\
+Q11: AR end of year: $(500/365) \times 30$ & EUR 41 \\
+Q12: OCF requires\ldots & Taking away the investment in WC \\
+Q13: CF impact of AR growth & EUR 275,000 increase \\
+Q14: Retained earnings reflected in\ldots & Balance Sheet \\
+\bottomrule
+\end{tabular}
+
+\subsection{Quiz Convention Note}
+
+Some practice questions use 365-day calculations while the in-class convention uses 360 days. Watch for this in exam wording.
+
+\subsection{Additional Quiz Concepts}
+
+\begin{itemize}
+\item \textbf{3Fs, valley of death, smart money} --- exam-friendly definitions (see Session 01)
+\item \textbf{VC vs PE vs CVC distinctions} --- know the key differences in stage, control, and return targets
+\item \textbf{Share-count based pre/post-money formulas} --- Pre-money $=$ pre-existing shares $\times$ price/share; Post-money $=$ total shares $\times$ price/share
+\item \textbf{Statement connections:} retained earnings on balance sheet, CapEx as asset swap (cash $\rightarrow$ fixed asset), cash-flow sign treatment of AR (increase $=$ negative), inventory (increase $=$ negative), AP (increase $=$ positive)
+\end{itemize}
+
+\newpage
+
+% ============================================================
+% KEY EXAM THEMES
+% ============================================================
+\section{Key Exam Themes (Cross-Session)}
+
+\begin{enumerate}
+\item \textbf{Profit does NOT equal Cash} (Sessions 00, 03, quiz)
+\item \textbf{Working Capital formulas and impact on cash flow} (Sessions 00, 03, quiz)
+\item \textbf{Operating Cash Flow} = EBIT $-$ Taxes + D\&A $-$ Increase in WC (Session 03, quiz)
+\item \textbf{VC Method 5-step process} (Session 04)
+\item \textbf{Pre-money / Post-money / Dilution calculations} (Session 04)
+\item \textbf{IRR formula and compounding} (Session 04)
+\item \textbf{Team $>$ Market $>$ Technology} in investment decisions (Sessions 01, 02)
+\item \textbf{Bottom-up financial forecasting}, never top-down (Session 03)
+\item \textbf{Business Angel vs VC differences} (Session 01)
+\item \textbf{Convertible notes} --- cap, discount, when to use (Session 01)
+\item \textbf{Balance sheet must always balance} (Sessions 00, 03)
+\item \textbf{Tax credit / loss carry-forward} (Session 03)
+\item \textbf{VC fund economics} --- 2\% fee, 20\% carry, hurdle rate, lifecycle (Sessions 01, 03)
+\end{enumerate}
+
+\end{document}
