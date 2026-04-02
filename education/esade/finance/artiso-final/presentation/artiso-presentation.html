@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>ARTISO — CFO Board Presentation</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ARTISO Brand Palette — from pitch deck */
+  --purple-deep: #3d3575;
+  --purple-mid: #5B6ABF;
+  --purple-soft: #8B9DC3;
+  --lavender: #C4C9E8;
+  --lavender-light: #E6E6FA;
+  --lavender-wash: #F2F0FF;
+  --white: #ffffff;
+  --off-white: #FAFAFF;
+  --black: #1a1a1a;
+  --text: #2c2c3a;
+  --text-muted: #6B7280;
+  --text-light: #9CA3AF;
+  --accent: #667eea;
+  --accent-light: #a5b4fc;
+  --positive: #059669;
+  --negative: #dc2626;
+  --warning: #d97706;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Slide dimensions */
+  --slide-w: 1280px;
+  --slide-h: 720px;
+  --pad-x: 80px;
+  --pad-y: 60px;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: #f0eef5;
+  color: var(--text);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Slide System ── */
+.deck {
+  position: relative;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(59,53,117,0.15), 0 8px 24px rgba(0,0,0,0.08);
+  border-radius: 2px;
+}
+.slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Slide Types ── */
+.slide--white {
+  background: var(--white);
+  padding: var(--pad-y) var(--pad-x);
+}
+.slide--gradient {
+  background: linear-gradient(135deg, #e8e4f0 0%, #c7cce8 30%, #a5b0d8 60%, #8b9dc3 100%);
+  padding: var(--pad-y) var(--pad-x);
+  color: var(--black);
+}
+.slide--gradient-deep {
+  background: linear-gradient(135deg, #4a4280 0%, #5B6ABF 40%, #8B9DC3 80%, #C4C9E8 100%);
+  padding: var(--pad-y) var(--pad-x);
+  color: var(--white);
+}
+.slide--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+.slide--split .split-left {
+  padding: var(--pad-y) 40px var(--pad-y) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.slide--split .split-right {
+  padding: var(--pad-y) var(--pad-x) var(--pad-y) 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%);
+}
+
+/* ── ARTISO Logo (SVG inline) ── */
+.logo-artiso { height: 32px; width: auto; }
+.logo-artiso-large { height: 72px; width: auto; }
+
+/* ── Typography ── */
+.slide-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--purple-mid);
+  margin-bottom: 12px;
+}
+.slide--gradient-deep .slide-label { color: var(--lavender-light); }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+h2 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+p, li {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.text-muted { color: var(--text-muted); }
+.text-small { font-size: 15px; }
+.text-xs { font-size: 13px; color: var(--text-light); }
+
+/* ── Hero Numbers ── */
+.hero-number {
+  font-family: var(--font-display);
+  font-size: 84px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--purple-deep);
+}
+.hero-unit {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Metric Cards ── */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  flex: 1;
+  align-content: center;
+}
+.metric-card {
+  background: var(--lavender-wash);
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #e8e6f0;
+}
+.metric-card .metric-value {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--purple-deep);
+  line-height: 1.1;
+}
+.metric-card .metric-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+.metric-card .metric-target {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 17px;
+}
+thead th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  border-bottom: 2px solid #e5e7eb;
+}
+thead th.right { text-align: right; }
+tbody td {
+  padding: 13px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+tbody tr:nth-child(even) { background: var(--off-white); }
+tbody tr:last-child td { border-bottom: none; }
+td.right { text-align: right; font-variant-numeric: tabular-nums; }
+td.bold { font-weight: 600; }
+tr.highlight td { background: #ede9fe; font-weight: 600; }
+
+/* ── Numbered Questions ── */
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+  justify-content: center;
+}
+.question-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.question-num {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  background: var(--lavender-wash);
+  border: 2px solid var(--lavender);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--purple-deep);
+}
+.question-text {
+  font-size: 22px;
+  line-height: 1.4;
+  padding-top: 8px;
+}
+
+/* ── Recommendation Box ── */
+.reco-box {
+  margin-top: auto;
+  background: var(--lavender-wash);
+  border-left: 4px solid var(--purple-mid);
+  padding: 18px 24px;
+  border-radius: 0 8px 8px 0;
+}
+.reco-box p { font-size: 17px; color: var(--text); }
+.reco-box strong { color: var(--purple-deep); }
+
+/* ── Cash Bar Chart ── */
+.cash-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 320px;
+  padding-top: 20px;
+  flex: 1;
+}
+.cash-bar-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  position: relative;
+}
+.cash-bar {
+  width: 100%;
+  max-width: 52px;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: all 0.3s;
+}
+.cash-bar.positive { background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%); }
+.cash-bar.negative { background: linear-gradient(180deg, #fca5a5 0%, var(--negative) 100%); border-radius: 0 0 4px 4px; }
+.cash-bar-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 6px;
+  text-align: center;
+  white-space: nowrap;
+}
+.cash-bar-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.cash-zero-line {
+  position: absolute;
+  bottom: 40%;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed var(--text-light);
+}
+.alert-marker {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--warning);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* ── Resolution Cards ── */
+.resolution-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  flex: 1;
+  align-content: center;
+}
+.resolution-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+}
+.resolution-card .res-num {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 700;
+  opacity: 0.3;
+  margin-bottom: 12px;
+}
+.resolution-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.resolution-card p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.4;
+}
+
+/* ── Risk List ── */
+.risk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 40px;
+}
+.risk-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.risk-num {
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--lavender-wash);
+  border: 1px solid var(--lavender);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--purple-deep);
+}
+.risk-text h4 { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+.risk-text p { font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+
+/* ── Flow Diagram ── */
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.flow-arrow {
+  color: var(--purple-mid);
+  font-size: 18px;
+  min-width: 20px;
+  text-align: center;
+}
+.flow-box {
+  background: var(--lavender-wash);
+  border: 1px solid var(--lavender);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  flex: 1;
+}
+
+/* ── Pricing Tiers ── */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.tier-card {
+  background: rgba(255,255,255,0.6);
+  border-radius: 10px;
+  padding: 20px 16px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.8);
+}
+.tier-card .tier-name {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple-deep);
+  margin-bottom: 6px;
+}
+.tier-card .tier-acv {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--black);
+}
+.tier-card .tier-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── Comparison Box ── */
+.compare-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-top: auto;
+  padding: 28px 0;
+}
+.compare-item { text-align: center; }
+.compare-value {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+}
+.compare-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.compare-vs {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+/* ── Contingency Box ── */
+.contingency-box {
+  margin-top: auto;
+  background: #fef3c7;
+  border-left: 4px solid var(--warning);
+  padding: 16px 24px;
+  border-radius: 0 8px 8px 0;
+}
+.contingency-box p { font-size: 15px; color: #92400e; }
+
+/* ── Slide Footer ── */
+.slide-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  padding-top: 16px;
+}
+.slide-footer .framework {
+  font-size: 11px;
+  color: var(--text-light);
+  font-style: italic;
+}
+.slide--gradient-deep .slide-footer .framework { color: rgba(255,255,255,0.5); }
+.slide--gradient .slide-footer .framework { color: rgba(0,0,0,0.35); }
+.slide-footer .slide-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-light);
+  min-width: 24px;
+  text-align: right;
+}
+.slide--gradient-deep .slide-footer .slide-num { color: rgba(255,255,255,0.5); }
+.slide--gradient .slide-footer .slide-num { color: rgba(0,0,0,0.35); }
+
+/* ── Traction Pills ── */
+.traction-row {
+  display: flex;
+  gap: 16px;
+  margin: 24px 0;
+}
+.traction-pill {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 100px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.slide--gradient .traction-pill {
+  background: rgba(255,255,255,0.5);
+  border-color: rgba(255,255,255,0.7);
+  color: var(--black);
+}
+
+/* ── VC Steps ── */
+.vc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.vc-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.vc-step-num {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--lavender-wash);
+  border: 1px solid var(--lavender);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--purple-deep);
+}
+.vc-step-content h4 { font-size: 15px; font-weight: 600; }
+.vc-step-content p { font-size: 14px; color: var(--text-muted); }
+
+/* ── Spacer ── */
+.spacer { flex: 1; }
+.gap-sm { height: 12px; }
+.gap-md { height: 20px; }
+.gap-lg { height: 32px; }
+
+/* ── Utilities ── */
+.flex-col { display: flex; flex-direction: column; }
+.flex-1 { flex: 1; }
+.justify-center { justify-content: center; }
+.items-center { align-items: center; }
+.text-center { text-align: center; }
+
+/* ── Print ── */
+@media print {
+  body { overflow: visible; background: white; height: auto; }
+  .deck { box-shadow: none; }
+  .slide { position: relative !important; opacity: 1 !important; pointer-events: auto !important; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 1: ARTISO at a Glance
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--gradient active" id="s1">
+  <!-- Speaker notes: Brief overview — 45 seconds. Establish who ARTISO is, traction proof, and what we're asking for. -->
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+    <svg viewBox="0 8.87 219.78 53.3" style="height:36px;width:auto;"><path d="M39.35,52.67c2.12,5.87,3.58,8.44,6.64,8.73v.43h-18.69v-.43c4.09-.29,5.48-3.01,4.09-6.8l-3.8-10.52H11.32l-1.46,3.94c-3.07,8.44-2.56,12.81,2.41,13.38v.43H0v-.43c3.5-.43,5.33-5.22,8.47-13.81L22.71,8.87h.58l16.06,43.8ZM11.9,42.36h15.11l-7.52-20.9-7.59,20.9Z" fill="#1a1a1a"/><path d="M86.74,61.4v.43c-1.17.14-4.82.29-7.01.29-5.26,0-6.57-2.29-15.62-21.75-1.24-2.58-2.48-3.15-4.82-3.15h-2.99v15.31c0,5.3.29,8.87,5.26,8.87v.43h-18.69v-.43c4.96,0,5.26-3.58,5.26-8.87V19.03c0-5.3-.29-8.87-5.26-8.87v-.43h19.71c11.68,0,18.11,5.3,18.11,13.6,0,7.01-5.33,11.45-11.9,13.17v.14c2.12,1.22,3.94,4.08,5.69,7.37,7.3,13.74,8.76,16.25,12.27,17.39ZM56.29,36.06h4.96c7.23,0,10.95-4.37,10.95-12.17s-3.43-13.02-10.88-13.02h-2.26c-1.75,0-2.77.86-2.77,2.58v22.61Z" fill="#1a1a1a"/><path d="M120.77,21.04h-.44c-4.02-8.37-6.57-10.16-13.58-10.16h-2.26v41.65c0,5.3.29,8.87,5.26,8.87v.43h-18.69v-.43c4.96,0,5.26-3.58,5.26-8.87V10.87h-2.26c-6.94,0-9.56,1.79-13.58,10.16h-.44l1.02-11.31h38.7l1.02,11.31Z" fill="#1a1a1a"/><path d="M119.45,61.83v-.43c4.96,0,5.26-3.58,5.26-8.87V19.03c0-5.3-.29-8.87-5.26-8.87v-.43h18.69v.43c-4.96,0-5.26,3.58-5.26,8.87v33.49c0,5.3.29,8.87,5.26,8.87v.43h-18.69Z" fill="#1a1a1a"/><path d="M138.44,59.75l-.44-11.81h.44c3.21,9.02,8.25,13.74,15.04,13.74,5.77,0,10.88-3.79,10.88-10.3s-5.26-9.23-11.39-12.17l-3.72-1.79c-4.89-2.36-10.15-5.72-10.15-13.74,0-8.52,6.28-14.81,15.26-14.81,4.02,0,9.64,1.29,13.14,2.86v9.3h-.44c-3.29-7.73-7.59-11.16-13.14-11.16-5.91,0-9.71,3.86-9.71,9.66s4.67,8.23,9.13,10.38l3.72,1.79c6.35,3.08,12.41,6.44,12.41,15.24s-6.86,15.74-17.08,15.74c-4.24,0-10.51-1.22-13.95-2.93Z" fill="#1a1a1a"/><path d="M169.69,35.92c0-16.03,9.64-27.05,24.09-27.05s23.95,10.45,23.95,26.76-9.64,27.05-24.09,27.05-23.95-10.45-23.95-26.76ZM208.68,35.78c0-14.46-5.11-25.91-15.04-25.91s-14.9,11.02-14.9,25.91,5.11,25.91,15.04,25.91,14.89-11.02,14.89-25.91Z" fill="#1a1a1a"/></svg>
+    <span style="font-size:14px;font-weight:500;color:var(--text-muted);letter-spacing:0.04em;">04/2026 — CONFIDENTIAL</span>
+  </div>
+
+  <div class="spacer"></div>
+
+  <h1 style="font-size:52px;max-width:700px;">Build the agentic OS<br>for fashion.</h1>
+  <p style="font-size:20px;color:var(--text);max-width:600px;margin-bottom:28px;">A design ontology that orchestrates the full creative lifecycle — from concept to production — learning each brand's visual DNA.</p>
+
+  <div class="traction-row">
+    <div class="traction-pill"><strong>7</strong> paying logos</div>
+    <div class="traction-pill"><strong>>€60K</strong> pilot revenue</div>
+    <div class="traction-pill"><strong>200+</strong> brands waitlist</div>
+    <div class="traction-pill"><strong>€3M</strong> pre-seed round</div>
+  </div>
+
+  <p class="text-small text-muted" style="margin-top:4px;">Named customers: Deichmann · TATA Group · NF&TA · Nude Project · Natura</p>
+
+  <div class="slide-footer">
+    <span class="framework">ESADE CFO Advisory — Roxane · Christian · Martí · Leonor · Tamás</span>
+    <span class="slide-num">1 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 2: Board Decisions
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--white" id="s2">
+  <!-- Speaker notes: Frame the 3 decisions — 45 seconds. This is what the board needs to decide today. -->
+  <div class="slide-label">Agenda</div>
+  <h2>What the Board Needs to Decide</h2>
+
+  <div class="question-list">
+    <div class="question-item">
+      <div class="question-num">1</div>
+      <div class="question-text">How much capital does ARTISO actually need to reach Series A from strength?</div>
+    </div>
+    <div class="question-item">
+      <div class="question-num">2</div>
+      <div class="question-text">What financing mix minimizes cost of capital while preserving founder control?</div>
+    </div>
+    <div class="question-item">
+      <div class="question-num">3</div>
+      <div class="question-text">Is €27M pre-money defensible — and what does the valuation triangulation show?</div>
+    </div>
+  </div>
+
+  <div class="reco-box">
+    <p><strong>Recommendation:</strong> Raise €3M now using a blended equity + non-dilutive stack at ~4.5% blended cost of capital — 60% cheaper than pure equity.</p>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">Session 02 — Pitch Framework: Signal legitimacy, reduce uncertainty, compelling narrative</span>
+    <span class="slide-num">2 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 3: 5-Year Financial Plan
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--white" id="s3">
+  <!-- Speaker notes: Walk through the J-curve — 45 seconds. Revenue scales, losses deepen in Y2 from hiring, then operating leverage kicks in. -->
+  <div class="slide-label">Financial Plan</div>
+  <h2>5-Year P&L Summary</h2>
+
+  <table style="margin-top:12px;">
+    <thead>
+      <tr>
+        <th style="width:22%;">Metric</th>
+        <th class="right">FY2024</th>
+        <th class="right">FY2025</th>
+        <th class="right">FY2026</th>
+        <th class="right">FY2027</th>
+        <th class="right">FY2028</th>
+        <th class="right">FY2029</th>
+        <th class="right">FY2030</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="bold">Total Revenue</td><td class="right">€0</td><td class="right">€15K</td><td class="right">€645K</td><td class="right">€5.4M</td><td class="right">€14.2M</td><td class="right">€26.0M</td><td class="right">€36.8M</td></tr>
+      <tr><td>Gross Margin</td><td class="right">—</td><td class="right">86.7%</td><td class="right">82.3%</td><td class="right">82.0%</td><td class="right">82.1%</td><td class="right">82.2%</td><td class="right">82.3%</td></tr>
+      <tr class="highlight"><td class="bold">EBITDA</td><td class="right">(€120K)</td><td class="right">(€267K)</td><td class="right">(€565K)</td><td class="right">(€1.27M)</td><td class="right">(€351K)</td><td class="right">+€2.86M</td><td class="right">+€6.21M</td></tr>
+      <tr><td>EBITDA Margin</td><td class="right">—</td><td class="right">—</td><td class="right">-87.5%</td><td class="right">-23.7%</td><td class="right">-2.5%</td><td class="right">+11.0%</td><td class="right">+16.9%</td></tr>
+      <tr><td>Installed Base</td><td class="right">0</td><td class="right">3</td><td class="right">27</td><td class="right">104</td><td class="right">209</td><td class="right">304</td><td class="right">363</td></tr>
+      <tr><td class="bold">ARR (End of Year)</td><td class="right">€0</td><td class="right">€0</td><td class="right">€1.3M</td><td class="right">€6.8M</td><td class="right">€16.2M</td><td class="right">€27.7M</td><td class="right">€35.8M</td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:flex;gap:40px;margin-top:auto;padding-top:16px;">
+    <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
+      <div style="font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">EBITDA Breakeven</div>
+      <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--purple-deep);">Q4 2028</div>
+    </div>
+    <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
+      <div style="font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">Revenue CAGR (FY26-30)</div>
+      <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--purple-deep);">175%</div>
+    </div>
+    <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
+      <div style="font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">Tax Loss Carry-Forward</div>
+      <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--purple-deep);">€2.19M shielded</div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">Session 03 — The Financial Plan: Bottom-up forecasting, three interconnected statements</span>
+    <span class="slide-num">3 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 4: Revenue Engine (Split)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--split" id="s4">
+  <!-- Speaker notes: This is NOT a top-down model — 45 seconds. Built from sales capacity constraints, exactly as Adria Roca insisted. -->
+  <div class="split-left">
+    <div class="slide-label">Revenue Engine</div>
+    <h2>Bottom-Up Revenue Model</h2>
+    <p class="text-muted" style="font-size:16px;margin-bottom:20px;">Not a top-down TAM capture model — built from sales capacity constraints.</p>
+
+    <div class="flow-steps">
+      <div class="flow-step"><div class="flow-box">Founder FTEs (0.85) + Hired AEs (→7)</div></div>
+      <div class="flow-step"><div class="flow-arrow">↓</div><div class="flow-box">Deal Capacity: 2 deals/AE/month × (1 - cross-sell %)</div></div>
+      <div class="flow-step"><div class="flow-arrow">↓</div><div class="flow-box">Funnel Split: SME 56% · Large 31% · Enterprise 13%</div></div>
+      <div class="flow-step"><div class="flow-arrow">↓</div><div class="flow-box">Module Penetration: M1→M2→M3→M4→M5 cross-sell</div></div>
+      <div class="flow-step"><div class="flow-arrow">↓</div><div class="flow-box">Revenue = Setup + Subscription + Credits + PS</div></div>
+    </div>
+  </div>
+  <div class="split-right" style="justify-content:center;align-items:center;">
+    <div class="slide-label" style="text-align:center;">Annual Contract Value by Tier</div>
+    <div class="tier-grid" style="margin-top:20px;">
+      <div class="tier-card">
+        <div class="tier-name">SME</div>
+        <div class="tier-acv">€17K</div>
+        <div class="tier-label">1-10 users</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Large</div>
+        <div class="tier-acv">€67K</div>
+        <div class="tier-label">11-50 users</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Enterprise</div>
+        <div class="tier-acv">€155K</div>
+        <div class="tier-label">51+ users</div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:14px;color:var(--text-muted);margin-top:24px;">Credit-based pricing with usage expansion upside.<br>5 modules × 3 tiers × 4 revenue streams.</p>
+
+    <div style="margin-top:auto;text-align:center;">
+      <span class="framework" style="font-size:11px;color:rgba(0,0,0,0.35);font-style:italic;">Session 03 — Adria Roca: "Biggest mistake = top-down. Correct = bottom-up"</span>
+      <span style="float:right;font-size:12px;font-weight:600;color:rgba(0,0,0,0.35);">4 / 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 5: Unit Economics
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--white" id="s5">
+  <!-- Speaker notes: Honest unit economics — 45 seconds. We fixed LTV/CAC from 64x to 5.3x. CAC rises as we scale. -->
+  <div class="slide-label">Unit Economics</div>
+  <h2>Key Metrics — FY2030 Base Case</h2>
+
+  <div class="metric-grid" style="margin-top:16px;">
+    <div class="metric-card">
+      <div class="metric-value">€74K</div>
+      <div class="metric-label">Blended CAC</div>
+      <div class="metric-target">↑ from €17K — rises with scale</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">5.3x</div>
+      <div class="metric-label">LTV / CAC</div>
+      <div class="metric-target">Target: 3-5x</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">11 mo</div>
+      <div class="metric-label">CAC Payback</div>
+      <div class="metric-target">Target: < 18 months</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">53%</div>
+      <div class="metric-label">Rule of 40</div>
+      <div class="metric-target">Rev Growth + EBITDA Margin</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value" style="color:var(--positive);">0.0x</div>
+      <div class="metric-label">Burn Multiple</div>
+      <div class="metric-target">Cash-flow positive by FY2030</div>
+    </div>
+  </div>
+
+  <div class="reco-box" style="margin-top:20px;">
+    <p style="font-size:15px;"><strong>Note:</strong> CAC increases from €17K to €74K as the company scales — exactly as taught in Session 03. This is realistic, not the $2,887 LTV/CAC from the Skilfill case.</p>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">Session 02 — Skilfill Case: Realistic unit economics, validated assumptions, no fantasy metrics</span>
+    <span class="slide-num">5 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 6: Funding Need & Timing
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--white" id="s6">
+  <!-- Speaker notes: Cash waterfall — 45 seconds. We need the money because cash hits -477K in Q4 2028 without follow-on. -->
+  <div class="slide-label">Cash Runway</div>
+  <h2>Funding Need & Timing</h2>
+
+  <div style="display:flex;gap:24px;flex:1;align-items:stretch;margin-top:8px;">
+    <div style="flex:2;position:relative;">
+      <div class="cash-chart" style="height:100%;position:relative;">
+        <div style="position:absolute;bottom:40%;left:0;right:0;border-top:1.5px dashed #d1d5db;z-index:0;"></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:60%;"><div class="cash-bar-value">€3.0M</div></div><div class="cash-bar-label">Q2'26</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:47%;"><div class="cash-bar-value">€2.3M</div></div><div class="cash-bar-label">Q4'26</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:30%;"><div class="cash-bar-value">€1.5M</div></div><div class="cash-bar-label">Q2'27</div><div class="alert-marker">Start fundraising</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:13%;"><div class="cash-bar-value">€607K</div></div><div class="cash-bar-label">Q4'27</div><div class="alert-marker">RAISE NOW</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:5%;"><div class="cash-bar-value">€227K</div></div><div class="cash-bar-label">Q1'28</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar negative" style="height:4%;margin-top:auto;"><div class="cash-bar-value" style="top:auto;bottom:-18px;color:var(--negative);">-€139K</div></div><div class="cash-bar-label" style="position:absolute;bottom:36%;">Q2'28</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar negative" style="height:10%;margin-top:auto;"><div class="cash-bar-value" style="top:auto;bottom:-18px;color:var(--negative);">-€477K</div></div><div class="cash-bar-label" style="position:absolute;bottom:36%;">Q4'28</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:4%;"><div class="cash-bar-value">€108K</div></div><div class="cash-bar-label">Q2'29</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:33%;"><div class="cash-bar-value">€1.6M</div></div><div class="cash-bar-label">Q4'29</div></div>
+        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:55%;"><div class="cash-bar-value" style="font-weight:700;">€7.1M</div></div><div class="cash-bar-label">Q4'30</div></div>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center;">
+      <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
+        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Lowest Point</div>
+        <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--negative);">-€477K</div>
+        <div style="font-size:13px;color:var(--text-muted);">Q4 2028 — pre-Series A gap</div>
+      </div>
+      <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
+        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Series A Prep</div>
+        <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--purple-deep);">Q2 2027</div>
+        <div style="font-size:13px;color:var(--text-muted);">15 months after pre-seed close</div>
+      </div>
+      <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
+        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Venture Debt Window</div>
+        <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--purple-deep);">H2 2028</div>
+        <div style="font-size:13px;color:var(--text-muted);">Near EBITDA breakeven — 9-10% + 1% warrants</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">Session 03 — "Dying of Success": Cash consumed by growth before profitability</span>
+    <span class="slide-num">6 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 7: Blended Financing Stack
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--gradient-deep" id="s7">
+  <!-- Speaker notes: This is the unique angle — 45 seconds. Not pure equity. Blended stack saves 60% on cost of capital. -->
+  <div class="slide-label">Financing Strategy</div>
+  <h2 style="color:var(--white);">Why Blended Financing Beats Pure Equity</h2>
+
+  <table style="margin-top:20px;color:var(--white);">
+    <thead>
+      <tr>
+        <th style="color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.2);width:30%;">Source</th>
+        <th class="right" style="color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.2);">Amount</th>
+        <th class="right" style="color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.2);">Dilution</th>
+        <th style="color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.2);">Key Terms</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-color:rgba(255,255,255,0.1);"><td class="bold" style="color:var(--white);">Lead VC</td><td class="right" style="color:var(--white);">€1.5-2.0M</td><td class="right" style="color:var(--white);">5-7%</td><td style="color:rgba(255,255,255,0.7);">Nauta / Inveready / Samaipata</td></tr>
+      <tr style="border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);"><td class="bold" style="color:var(--white);">Angels / SAFEs</td><td class="right" style="color:var(--white);">€0.3-0.5M</td><td class="right" style="color:var(--white);">1-2%</td><td style="color:rgba(255,255,255,0.7);">ESADE BAN, fashion execs</td></tr>
+      <tr style="border-color:rgba(255,255,255,0.1);"><td class="bold" style="color:var(--white);">ENISA</td><td class="right" style="color:var(--white);">€300K</td><td class="right" style="color:var(--white);">0%</td><td style="color:rgba(255,255,255,0.7);">Participative loan, no collateral</td></tr>
+      <tr style="border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);"><td class="bold" style="color:var(--white);">CDTI / NEOTEC</td><td class="right" style="color:var(--white);">€250-400K</td><td class="right" style="color:var(--white);">0%</td><td style="color:rgba(255,255,255,0.7);">R&D grant, 70% co-funding</td></tr>
+      <tr><td class="bold" style="color:var(--white);">ICF / ACCIO</td><td class="right" style="color:var(--white);">€200-300K</td><td class="right" style="color:var(--white);">0%</td><td style="color:rgba(255,255,255,0.7);">Catalan innovation grants</td></tr>
+      <tr style="border-top:2px solid rgba(255,255,255,0.3);"><td class="bold" style="color:var(--white);font-size:18px;">Total</td><td class="right bold" style="color:var(--white);font-size:18px;">~€3.0M</td><td class="right bold" style="color:var(--white);font-size:18px;">8-12%</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="compare-box" style="padding-bottom:0;">
+    <div class="compare-item">
+      <div class="compare-value" style="color:var(--white);">~4.5%</div>
+      <div class="compare-label" style="color:rgba(255,255,255,0.6);">Blended Cost of Capital</div>
+    </div>
+    <div class="compare-vs" style="color:rgba(255,255,255,0.4);">vs</div>
+    <div class="compare-item">
+      <div class="compare-value" style="color:rgba(255,255,255,0.4);text-decoration:line-through;">~11%</div>
+      <div class="compare-label" style="color:rgba(255,255,255,0.4);">Pure Equity Alternative</div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">Session 01 — Ramiro (Keon): "Use public grants. Delay equity. Combine sources."</span>
+    <span class="slide-num">7 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 8: Cap Table & Dilution
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--white" id="s8">
+  <!-- Speaker notes: Clear dilution path — 45 seconds. Founders retain 26.7% each. ESOP uses VC pre-money carve-out. -->
+  <div class="slide-label">Cap Table</div>
+  <h2>Ownership & Dilution Path</h2>
+
+  <table style="margin-top:16px;">
+    <thead>
+      <tr>
+        <th style="width:28%;">Shareholder</th>
+        <th class="right">Pre-Seed</th>
+        <th class="right">Post-Seed</th>
+        <th class="right">Post-Series A</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="bold">Sarah Iglesias (CEO)</td><td class="right">33.3%</td><td class="right">26.7%</td><td class="right">26.1%</td></tr>
+      <tr><td class="bold">Matthias Brenninkmeijer (CTO)</td><td class="right">33.3%</td><td class="right">26.7%</td><td class="right">26.1%</td></tr>
+      <tr><td class="bold">Lucas Pastur (CPO)</td><td class="right">33.3%</td><td class="right">26.7%</td><td class="right">26.1%</td></tr>
+      <tr><td>ESOP (allocated + reserved)</td><td class="right">0%</td><td class="right">10.0%</td><td class="right">9.8%</td></tr>
+      <tr class="highlight"><td class="bold">Seed Investors</td><td class="right">0%</td><td class="right">10.0%</td><td class="right">9.8%</td></tr>
+      <tr><td>Series A Investors</td><td class="right">0%</td><td class="right">0%</td><td class="right">2.0%</td></tr>
+      <tr style="border-top:2px solid #e5e7eb;"><td class="bold">Total</td><td class="right bold">100%</td><td class="right bold">100%</td><td class="right bold">100%</td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:flex;gap:24px;margin-top:auto;">
+    <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Price Per Share</div>
+      <div style="font-size:20px;font-weight:700;color:var(--purple-deep);">€2.40 → €19.33 <span style="font-size:14px;color:var(--positive);font-weight:500;">(8.1x step-up)</span></div>
+    </div>
+    <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">ESOP Method</div>
+      <div style="font-size:16px;font-weight:500;color:var(--text);">Pre-money carve-out (VC standard) — course teaches pro-rata is fairer</div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">Session 04 — Share-Based Valuation: Stock option pool dilutes all shareholders proportionally</span>
+    <span class="slide-num">8 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 9: Valuation (Split)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--split" id="s9">
+  <!-- Speaker notes: Valuation is defensible not aggressive — 1 minute. Show both the VC method and triangulation. -->
+  <div class="split-left">
+    <div class="slide-label">Valuation</div>
+    <h2>5-Step VC Method</h2>
+
+    <div class="vc-steps" style="margin-top:16px;">
+      <div class="vc-step">
+        <div class="vc-step-num">1</div>
+        <div class="vc-step-content"><h4>EV at Exit</h4><p>FY2030 ARR €35.8M × 10x = <strong>€358M</strong></p></div>
+      </div>
+      <div class="vc-step">
+        <div class="vc-step-num">2</div>
+        <div class="vc-step-content"><h4>Required Value at Exit</h4><p>€3M × (1.4)⁴ = <strong>€11.5M</strong></p></div>
+      </div>
+      <div class="vc-step">
+        <div class="vc-step-num">3</div>
+        <div class="vc-step-content"><h4>Required Ownership</h4><p>€11.5M / €358M = <strong>3.2%</strong></p></div>
+      </div>
+      <div class="vc-step">
+        <div class="vc-step-num">4</div>
+        <div class="vc-step-content"><h4>Shares Issued</h4><p>~415K on 12.5M FD base</p></div>
+      </div>
+      <div class="vc-step">
+        <div class="vc-step-num">5</div>
+        <div class="vc-step-content"><h4>Implied Pre-Money</h4><p><strong>€90.3M</strong> — €27M is conservative</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:auto;">
+      <span class="framework" style="font-size:11px;color:var(--text-light);font-style:italic;">Session 04 — 5-Step VC Method + Valuation Triangulation</span>
+      <span style="float:right;font-size:12px;font-weight:600;color:var(--text-light);">9 / 12</span>
+    </div>
+  </div>
+  <div class="split-right" style="align-items:stretch;">
+    <div style="text-align:center;margin-bottom:24px;">
+      <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:8px;">Seed Investor IRR</div>
+      <div style="font-family:var(--font-display);font-size:72px;font-weight:700;color:var(--purple-deep);line-height:1;">85.9%</div>
+      <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">Far exceeds 40% hurdle · 11.9x return</div>
+    </div>
+
+    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:8px;">Valuation Triangulation</div>
+    <table style="font-size:15px;">
+      <thead><tr><th>Method</th><th class="right">Implied Pre-Money</th></tr></thead>
+      <tbody>
+        <tr><td>FY2026 Revenue × 40x</td><td class="right">€25.8M</td></tr>
+        <tr><td>FY2026 ARR × 20x</td><td class="right">€26.5M</td></tr>
+        <tr><td>FY2027 Forward Rev × 5x</td><td class="right">€26.8M</td></tr>
+        <tr><td>VC Method (backward)</td><td class="right">€90.3M</td></tr>
+        <tr class="highlight"><td class="bold">Comparable Transactions</td><td class="right bold">€27.0M</td></tr>
+      </tbody>
+    </table>
+    <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:12px 16px;margin-top:auto;text-align:center;">
+      <p style="font-size:14px;color:var(--text);">Range: €25.8M – €90.3M · <strong>€27M is at the conservative end</strong><br><span style="color:var(--text-muted);">Acceptable: €22-25M if it secures a strong lead</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 10: Scenarios & Sensitivity
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--white" id="s10">
+  <!-- Speaker notes: We don't present fantasy upside — 45 seconds. Scenarios inform financing decisions. -->
+  <div class="slide-label">Scenario Analysis</div>
+  <h2>Base · Upside · Downside</h2>
+
+  <table style="margin-top:16px;">
+    <thead>
+      <tr><th style="width:28%;">Metric</th><th class="right">Base</th><th class="right">Upside</th><th class="right">Downside</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="bold">FY2030 Revenue</td><td class="right">€36.8M</td><td class="right">Higher</td><td class="right">Significantly lower</td></tr>
+      <tr><td>Cash Floor</td><td class="right" style="color:var(--negative);">-€477K</td><td class="right" style="color:var(--positive);">Positive</td><td class="right" style="color:var(--negative);">Much worse</td></tr>
+      <tr><td>Series A Timing</td><td class="right">Q2 2027</td><td class="right">Earlier / larger</td><td class="right">Urgent — bridge needed</td></tr>
+      <tr><td class="bold">Management Action</td><td class="right">Execute plan</td><td class="right">Accelerate GTM</td><td class="right">Cut burn + bridge</td></tr>
+    </tbody>
+  </table>
+
+  <div class="gap-lg"></div>
+
+  <div style="display:flex;gap:24px;">
+    <div style="flex:1;">
+      <h3>Top Sensitivity Levers</h3>
+      <p style="font-size:15px;color:var(--text-muted);margin-top:8px;">±20% swing on FY2030 ARR and cash:</p>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:240px;height:24px;background:linear-gradient(90deg,var(--accent-light),var(--accent));border-radius:4px;"></div>
+          <span style="font-size:14px;font-weight:600;">Enterprise NRR</span>
+          <span style="font-size:13px;color:var(--text-muted);">Dominant lever</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:200px;height:24px;background:linear-gradient(90deg,var(--lavender),var(--purple-soft));border-radius:4px;"></div>
+          <span style="font-size:14px;font-weight:600;">Lead Growth Rate</span>
+          <span style="font-size:13px;color:var(--text-muted);">Second lever</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:80px;height:24px;background:linear-gradient(90deg,#e8e6f0,var(--lavender));border-radius:4px;"></div>
+          <span style="font-size:14px;">Credit Pricing · SME Churn</span>
+          <span style="font-size:13px;color:var(--text-muted);">Minor</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1;">
+      <div class="reco-box">
+        <p style="font-size:15px;"><strong>Key insight:</strong> The model is volume-driven, not price-driven. Enterprise NRR and lead growth rate are the two variables that determine whether ARTISO reaches €35M ARR or stalls at €10M. All other inputs are secondary.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">Session 00 — "Sensitivity analysis identifies critical variables"</span>
+    <span class="slide-num">10 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 11: Risks & Contingency
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--white" id="s11">
+  <!-- Speaker notes: Honest about risks — 45 seconds. We have a contingency plan that extends runway 5 months. -->
+  <div class="slide-label">Risk Analysis</div>
+  <h2>Key Risks & Mitigation</h2>
+
+  <div class="risk-grid" style="margin-top:16px;">
+    <div class="risk-item">
+      <div class="risk-num">1</div>
+      <div class="risk-text"><h4>Customer Concentration</h4><p>7 logos, top 3 = 60%+ of Y1 ARR. Mitigate: diversify across tiers, cluster GTM via MODACC.</p></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-num">2</div>
+      <div class="risk-text"><h4>Technology Moat Erosion</h4><p>Adobe/OpenAI entering vertical AI. Mitigate: deepen proprietary fashion ontology + PLM integrations.</p></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-num">3</div>
+      <div class="risk-text"><h4>Extended Sales Cycles</h4><p>Enterprise brands: 6-9 months. Mitigate: parallel SME pipeline (1-month cycle), founder-led first 15 logos.</p></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-num">4</div>
+      <div class="risk-text"><h4>Cash Runway Timing</h4><p>Series A must close by Q1 2028. Mitigate: begin process Q2 2027, €500K internal trigger.</p></div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-num">5</div>
+      <div class="risk-text"><h4>Model Sensitivity</h4><p>Enterprise NRR + lead growth dominate. Mitigate: monthly recalibration vs actuals.</p></div>
+    </div>
+  </div>
+
+  <div class="contingency-box">
+    <p><strong>Contingency:</strong> Defer 3 hires + cut S&M by 30% → burn drops from €120K/mo to €80K/mo → extends runway by ~5 months to Q2 2028. <strong>Venture debt option:</strong> €1-2M facility at H2 2028 near EBITDA breakeven (9-10% + 1% warrants).</p>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">Session 01 — Jose Antonio Gonzalez (Business Angel): "Know your worst case scenario"</span>
+    <span class="slide-num">11 / 12</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 12: Board Ask
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide slide--gradient-deep" id="s12">
+  <!-- Speaker notes: Clear ask — 30 seconds. Three resolutions. Close with discipline message. -->
+  <div class="slide-label">Board Resolution</div>
+  <h2 style="color:var(--white);">What We Ask the Board to Approve</h2>
+
+  <div class="resolution-grid" style="margin-top:20px;">
+    <div class="resolution-card">
+      <div class="res-num">1</div>
+      <h3>Approve the Raise</h3>
+      <p>€3M pre-seed at €27M pre-money with blended equity + non-dilutive structure</p>
+    </div>
+    <div class="resolution-card">
+      <div class="res-num">2</div>
+      <h3>Approve the Strategy</h3>
+      <p>Parallel VC process + ENISA/CDTI/ACCIO applications starting immediately</p>
+    </div>
+    <div class="resolution-card">
+      <div class="res-num">3</div>
+      <h3>Approve Series A Prep</h3>
+      <p>Begin investor relationship building Q2 2027 — 15 months before needed</p>
+    </div>
+  </div>
+
+  <div style="margin-top:auto;text-align:center;padding-bottom:8px;">
+    <p style="font-size:20px;color:rgba(255,255,255,0.85);font-style:italic;max-width:700px;margin:0 auto;line-height:1.5;">"The discipline is not just raising this round. It is ensuring the company reaches the next round with evidence, optionality, and negotiating leverage."</p>
+  </div>
+
+  <div class="slide-footer">
+    <span class="framework">ARTISO — CFO Advisory Team — April 9, 2026</span>
+    <span class="slide-num">12 / 12</span>
+  </div>
+</section>
+
+</div><!-- /deck -->
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+function show(n) {
+  slides.forEach((s, i) => s.classList.toggle('active', i === n));
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); current = Math.min(current + 1, slides.length - 1); show(current); }
+  if (e.key === 'ArrowLeft') { current = Math.max(current - 1, 0); show(current); }
+  if (e.key === 'Home') { current = 0; show(current); }
+  if (e.key === 'End') { current = slides.length - 1; show(current); }
+});
+document.querySelector('.deck').addEventListener('click', e => {
+  const x = e.clientX - e.currentTarget.getBoundingClientRect().left;
+  if (x < e.currentTarget.offsetWidth * 0.33) { current = Math.max(current - 1, 0); }
+  else { current = Math.min(current + 1, slides.length - 1); }
+  show(current);
+});
+</script>
+</body>
+</html>
