@@ -1,0 +1,262 @@
+\documentclass[11pt,a4paper]{article}
+
+% Encoding & fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx} % Times New Roman — matches Deliverable 1
+
+% Layout — tight margins for 3-page constraint
+\usepackage[top=1.5cm, bottom=1.2cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage{microtype}
+\usepackage{parskip}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+
+% Graphics & tables
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=1.2em}
+
+% Section formatting — compact (matches Deliverable 1)
+\usepackage{titlesec}
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+\titleformat{\subsection}{\small\bfseries}{}{0em}{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+
+% Euro symbol
+\usepackage{eurosym}
+
+% Hyperlinks (invisible)
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% Header/Footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+
+% ── HEADER (matches Deliverable 1) ────────────────────────
+\noindent
+\begin{minipage}[c]{0.25\textwidth}
+    \includegraphics[width=3.5cm]{../../avalis-sgr/artiso-logo.pdf}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.72\textwidth}
+    \raggedleft
+    \small
+    ESADE Entrepreneurial Finance --- CFO of a New Venture\\[1pt]
+    {\small Roxane Balsh\"usemann, Christian Nikolov, Mart\'i Lombarte, Leonor Ascen\c{c}\~ao, Tam\'as Fenyvesi}\\[1pt]
+    {\small April 2, 2026 --- Final Deliverable}
+\end{minipage}
+
+\vspace{4pt}
+\noindent\rule{\linewidth}{0.4pt}
+
+% ══════════════════════════════════════════════════════════
+% 1. EXECUTIVE RECOMMENDATION
+% ══════════════════════════════════════════════════════════
+\section{Executive Recommendation}
+
+ARTISO should raise \textbf{\euro{}3.0\,M pre-seed now} using a blended funding stack: \euro{}1.5--2.0\,M VC + \euro{}0.3--0.5\,M angels/SAFEs + \euro{}0.7--1.2\,M non-dilutive (ENISA/CDTI/ACCI\'O). We recommend anchoring at \textbf{\euro{}27\,M pre-money / \euro{}30\,M post-money}, supported by a 5-method valuation triangulation (range: \euro{}25.8--90.3\,M). The blended structure reduces cost of capital from \textasciitilde11\% (pure equity) to \textasciitilde4.5\%, while preserving founder ownership at 26.7\% each post-round. Total dilution: 8--12\% vs.\ 10\%+ under a pure equity raise. This is the fastest path to Series~A from a position of strength, with ARTISO's pilot revenue (\euro{}60\,K+ from Deichmann, TATA, NF\&TA), 200+ brand waitlist, 82\% gross margins, and 7 paying logos providing credible traction for investor conversations.
+
+% ══════════════════════════════════════════════════════════
+% 2. FINANCIAL NEEDS BY SCENARIO
+% ══════════════════════════════════════════════════════════
+\section{Financial Needs by Scenario}
+
+\vspace{-2pt}
+\begin{table}[h!]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{p{2.6cm}XXX}
+\toprule
+\textbf{Metric} & \textbf{Base Case} & \textbf{Upside} & \textbf{Downside} \\
+\midrule
+Funding sufficiency & \euro{}3\,M sufficient & \euro{}3\,M adequate & \euro{}3\,M + contingency needed \\
+Cash floor & $-$\euro{}477\,K at Q4 2028 & Positive throughout & Negative earlier \\
+Series~A prep & Q2 2027 & Pull forward to Q1 2027 & Delay; prepare bridge \\
+EBITDA breakeven & Q4 2028 & Q2 2028 & FY2029+ \\
+Key action & Execute plan as modeled & Accelerate hiring \& GTM & Activate cost cuts early \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\vspace{-4pt}
+
+\textbf{Revenue trajectory (Base Case):} \euro{}645\,K (2026) $\rightarrow$ \euro{}5.4\,M (2027) $\rightarrow$ \euro{}14.2\,M (2028) $\rightarrow$ \euro{}26.0\,M (2029) $\rightarrow$ \euro{}36.8\,M (2030). Gross margins stable at 82\%. EBITDA turns positive FY2029. Tax loss carry-forward shields \euro{}2.19\,M in cumulative losses through the pre-profitability period.
+
+In the \textbf{downside scenario} (conversion rates halved, churn doubled), cash approaches zero earlier, requiring activation of the contingency plan at the \euro{}500\,K cash trigger: defer 3 planned hires, cut S\&M spend by 30\%, and reduce monthly burn from \textasciitilde\euro{}120\,K to \textasciitilde\euro{}80\,K---extending runway by \textasciitilde5 months. In the \textbf{upside scenario} (faster enterprise adoption, NRR above 115\%), accelerated traction enables an earlier and larger Series~A at a higher valuation. The model's sensitivity analysis identifies Enterprise NRR and lead growth rate as the two dominant levers: $\pm$20\% on Enterprise NRR swings FY2030 ARR by \euro{}27.9\,M.
+
+% ══════════════════════════════════════════════════════════
+% 3. FINANCING ALTERNATIVES
+% ══════════════════════════════════════════════════════════
+\section{Financing Alternatives}
+
+\subsection{A. Venture Capital (Primary --- \euro{}1.5--2.0\,M)}
+
+Target European B2B SaaS/AI specialists with pre-seed/seed mandates: \textit{Nauta Capital} (Barcelona, B2B SaaS/AI focus, \euro{}1--3\,M tickets), \textit{Inveready} (Barcelona, deep tech), \textit{Samaipata} (Madrid, digital platforms). At \euro{}27\,M pre-money, the lead VC takes 5--7\% for \euro{}1.5--2.0\,M. ARTISO's pilot revenue, 200+ brand waitlist, 82\% gross margins, and cluster GTM model (MODACC, NF\&TA) align with these investors' thesis. Fashion-strategic options include \textit{C4 Ventures} (Milan) and LVMH \textit{La Maison des Startups}, though corporate processes typically add 3--6 months.
+
+\subsection{B. Angels \& SAFEs (\euro{}300--500\,K)}
+
+ESADE BAN, Keiretsu Forum Europe, and fashion executives (Mango/Inditex alumni) as domain-specific angels. Tickets of \euro{}25--250\,K via SAFEs with a valuation cap at \euro{}27\,M to bridge while the VC process runs. Total dilution: 1--2\%. Deployment timeline: weeks, not months. Angels provide warm introductions to VC leads, accelerating the fundraise.
+
+\subsection{C. Non-Dilutive (\euro{}700\,K--1.2\,M)}
+
+\begin{itemize}
+\item \textbf{ENISA Emprendedores} --- Participative loans up to \euro{}300\,K. No collateral, performance-linked repayment, 2--4 month approval. \textit{Highest priority}: approval signals credibility and de-risks the round for VCs.
+\item \textbf{CDTI NEOTEC} --- Non-repayable R\&D grants \euro{}250--400\,K (70\% co-funding for tech startups $<$3 years). Fits ARTISO's AI ontology and fashion-domain model development. Annual call Q1.
+\item \textbf{ICF/ACCI\'O} (Catalonia) --- ICF Pime Innova loans \euro{}100\,K--2.2\,M at Euribor + spread. ACCI\'O Startup Capital direct aid up to \euro{}100\,K (non-repayable). Instruments are combinable and stackable with ENISA/CDTI.
+\end{itemize}
+
+\subsection{D. Revenue-Based Financing \& Venture Debt (Not Now)}
+
+Revenue-based financing (Capchase, Re:cap, Uncapped): viable post-\euro{}50\,K MRR (est.\ Q1 2027). Non-dilutive but expensive at 15--25\% APR equivalent; suitable as bridge capital only. Venture debt (Kreos Capital, Bootstrap Europe): available near EBITDA breakeven (H2 2028), typically sized at 20--30\% of the last equity round. Both instruments are premature today but become relevant as the company approaches Series~A milestones.
+
+% ══════════════════════════════════════════════════════════
+% 4. FUNDING STRATEGY + VALUATION
+% ══════════════════════════════════════════════════════════
+\section{Funding Strategy \& Valuation}
+
+\subsection{Recommended Capital Stack}
+
+\vspace{-2pt}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{Xrrp{5.2cm}}
+\toprule
+\textbf{Source} & \textbf{Amount} & \textbf{Dilution} & \textbf{Rationale} \\
+\midrule
+Lead VC & \euro{}1.5--2.0\,M & 5--7\% & Anchor round, board seat, follow-on \\
+Angels / SAFEs & \euro{}0.3--0.5\,M & 1--2\% & Bridge speed; domain expertise \\
+Non-dilutive & \euro{}0.7--1.2\,M & 0\% & ENISA + CDTI + ACCI\'O \\
+\midrule
+\textbf{Total} & \textbf{\textasciitilde\euro{}3.0\,M} & \textbf{8--12\%} & Blended CoC \textasciitilde4.5\% vs.\ \textasciitilde11\% pure equity \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\vspace{-4pt}
+
+\textbf{Cost-of-capital advantage:} Blended CoC of \textasciitilde4.5\% (weighted: ENISA at 3--5\% participative rate, grants at 0\%, equity at \textasciitilde15\% IRR hurdle) vs.\ \textasciitilde11\% for a pure equity raise---making the stacked structure \textasciitilde60\% cheaper on a dilution-adjusted basis. The non-dilutive tranche (\euro{}0.7--1.2\,M) saves founders 2--5 percentage points of ownership that would otherwise be given up to investors.
+
+\textbf{Sequencing logic:} (1)~File ENISA in Month~1---fast approval signals institutional credibility and de-risks the round for VCs. (2)~Deploy angel SAFEs in Month~1--2 as immediate bridge capital. (3)~Run the VC process in Month~2--4 with ENISA approval in hand. (4)~Layer CDTI NEOTEC and ACCI\'O grants in Month~2--6 in parallel. This order maximizes non-dilutive coverage before the equity tranche prices.
+
+\subsection{Valuation: \euro{}27\,M Pre-Money / \euro{}30\,M Post-Money}
+
+Justified via 5-method triangulation:
+
+\vspace{-2pt}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{Xr}
+\toprule
+\textbf{Method} & \textbf{Implied Valuation} \\
+\midrule
+FY2026 Revenue (\euro{}645\,K) $\times$ 40x multiple & \euro{}25.8\,M \\
+FY2026 ARR (\euro{}1.325\,M) $\times$ 20x multiple & \euro{}26.5\,M \\
+FY2027 Forward Revenue (\euro{}5.4\,M) $\times$ 5x multiple & \euro{}26.8\,M \\
+5-Step VC Method (backward from \euro{}368\,M exit) & \euro{}90.3\,M \\
+Comparable transactions (European AI/SaaS pre-seed) & \euro{}27.0\,M \\
+\midrule
+\textbf{Range} & \textbf{\euro{}25.8--90.3\,M} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\vspace{-4pt}
+
+\euro{}27\,M is defensible at the conservative end of the range, anchored by three convergent methods (revenue, ARR, and comps) clustering tightly around \euro{}25.8--27.0\,M. The VC method yields \euro{}90.3\,M but assumes ideal exit conditions and no dilution from subsequent rounds; we deliberately anchor to the lower bound as the negotiation starting point. Multiples are calibrated against European AI/SaaS pre-seed comparables with pilot revenue and $>$80\% gross margins (Dealroom 2025 data). \textbf{Acceptable negotiation floor: \euro{}22--25\,M} if needed for closing speed or syndicate quality---below \euro{}22\,M, dilution exceeds the value of the capital and founders lose strategic control.
+
+\textbf{Investor returns:} Seed investors earn an implied IRR of \textbf{85.9\%}, far exceeding the typical 40\% hurdle rate for European pre-seed funds. Return multiple: \textbf{11.9$\times$} at a 10$\times$ ARR exit multiple, assuming FY2030 ARR of \euro{}36.8\,M and a \euro{}368\,M exit valuation. Even at a more conservative 6$\times$ ARR exit, the return is 7.1$\times$---well above the 3--5$\times$ threshold that defines a successful pre-seed outcome.
+
+\textbf{Cap table post-seed:} Founders retain 26.7\% each (53.3\% combined), preserving operational and strategic control. ESOP pool: 10\% (4.5\% allocated to early engineering and sales hires, 5.5\% reserved for Series~A grants). Seed investors: 10\% (111,111 new shares at \euro{}27/share). Two non-founding shareholders hold the remaining 26.7\% from pre-round allocation. The 10\% ESOP is sized to cover 8--10 key hires through Series~A without requiring a top-up that would dilute existing shareholders.
+
+% ══════════════════════════════════════════════════════════
+% 5. NEXT STEPS
+% ══════════════════════════════════════════════════════════
+\section{Next Steps}
+
+\begin{enumerate}
+\item \textbf{Launch VC process immediately} with a focused target list (Nauta Capital, Inveready, Samaipata). Run a structured 8-week outreach with parallel term-sheet timelines to create competitive tension. Prepare a data room including the financial model, pitch deck, product demo access, and pilot case studies (Deichmann, TATA).
+\item \textbf{Apply for ENISA/CDTI/ACCI\'O in parallel.} Do not wait for grant outcomes before starting the VC process---non-dilutive capital is additive, not sequential. ENISA approval strengthens the VC pitch by signaling institutional validation. Assign one founder to own the grant pipeline full-time during Months~1--3.
+\item \textbf{Internal cash trigger at \euro{}500\,K.} If cash balance approaches this threshold, activate contingency: defer 3 planned hires (saving \textasciitilde\euro{}25\,K/mo), cut S\&M by 30\%, and reduce monthly burn from \textasciitilde\euro{}120\,K to \textasciitilde\euro{}80\,K. This extends runway by \textasciitilde5 months---sufficient to close a bridge or accelerate Series~A. The board should review cash position monthly and trigger the plan automatically.
+\item \textbf{Begin Series~A preparation Q2 2027.} Target \euro{}10\,M round at 10--15$\times$ ARR. The \euro{}1\,M ARR milestone (est.\ Q3 2027) is the key gate for Series~A readiness. Engage investment bankers or advisors 6 months ahead. Key metrics to present: NRR $>$110\%, LTV/CAC $>$5$\times$, payback $<$12 months, and 30+ installed logos.
+\item \textbf{Explore venture debt bridge H2 2028} if Series~A timeline extends beyond plan. Kreos Capital and Bootstrap Europe are relevant lenders at that stage, with facilities typically sized at 20--30\% of the last equity round. Venture debt becomes attractive near EBITDA breakeven when debt serviceability is demonstrable.
+\item \textbf{Monthly model recalibration vs.\ actuals.} Revenue, burn, and cash projections must be updated against real data each month. If actuals deviate $>$15\% from the base case, recalibrate scenario thresholds (cash trigger, breakeven timing, hiring pace) and brief the board. Enterprise NRR and lead growth rate are the two variables that most affect outcomes---monitor weekly.
+\end{enumerate}
+
+% ══════════════════════════════════════════════════════════
+% APPENDIX
+% ══════════════════════════════════════════════════════════
+\newpage
+\section*{Appendix A --- Deliverable 1: Knowing the Venture (Mar 17)}
+
+\subsection*{Company Overview}
+\textbf{ARTISO} --- Agentic AI for Creative Workflows. An AI operating system that learns a brand's visual DNA (silhouettes, colours, materials, style rules) and applies it across the entire creative workflow: concept $\rightarrow$ design $\rightarrow$ tech packs $\rightarrow$ campaign assets. 4-layer proprietary fashion intelligence: Brand DNA, User Memory, Project Context, AI Knowledge.
+
+\textbf{Website:} artiso.ai \quad \textbf{Fundraising target:} \euro{}3\,M pre-seed \quad \textbf{Timeline:} Q1 2026 fundraising
+
+\subsection*{3-Year Goals}
+\begin{itemize}
+\item \textbf{Revenue:} MRR target \euro{}250--500\,K within $\sim$18 months
+\item \textbf{Customers:} Short-term $\sim$20 design-led brands (pilots + early SaaS); medium-term 100+ brands across Europe and US
+\item \textbf{Team:} 10--15 people, small and senior --- product, AI systems, enterprise delivery
+\item \textbf{Product:} Brand DNA knowledge layer $\rightarrow$ full creative workflow $\rightarrow$ PLM integration
+\item \textbf{Geography:} Europe first, then US
+\end{itemize}
+
+\subsection*{Traction}
+Paid pilots with Deichmann (\euro{}8.7\,B revenue), TATA Group (\euro{}1.9\,B), NF\&TA, Nude Project, Natura. $>$\euro{}60\,K revenue from pilots. 200+ brands on waitlist. 10+ enterprise NDAs signed.
+
+\subsection*{Previous Rounds \& Current Shareholders}
+No external funding. Bootstrapped by founders. Early revenue from pilot projects. \\
+\textbf{3 co-founders, equal split (33.3\% each):} Sarah Iglesias Hiller (CEO), Matthias Brenninkmeijer (CTO), Lucas Pastur (CPO). Employee option pool planned for future rounds.
+
+\vspace{6pt}
+\section*{Appendix B --- Deliverable 2: Financial Analysis (Mar 26)}
+
+\subsection*{Capital Allocation (Q2 2026 -- H1 2028)}
+
+\begin{tabularx}{\textwidth}{l *{3}{>{\raggedleft\arraybackslash}X} >{\raggedleft\arraybackslash}X}
+\toprule
+\textbf{Category} & \textbf{Q2--Q4 2026} & \textbf{FY2027} & \textbf{H1 2028} & \textbf{Total} \\
+\midrule
+Product \& Engineering & \euro{}380\,K & \euro{}890\,K & \euro{}640\,K & \euro{}1.91\,M \\
+Sales \& Marketing & \euro{}250\,K & \euro{}710\,K & \euro{}480\,K & \euro{}1.44\,M \\
+G\&A incl.\ founder salaries & \euro{}190\,K & \euro{}440\,K & \euro{}330\,K & \euro{}960\,K \\
+Infrastructure (cloud/GPU) & \euro{}100\,K & \euro{}130\,K & \euro{}100\,K & \euro{}330\,K \\
+\midrule
+\textbf{Total Outflows} & \textbf{\euro{}920\,K} & \textbf{\euro{}2.17\,M} & \textbf{\euro{}1.55\,M} & \textbf{\euro{}4.64\,M} \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Competitive Landscape}
+
+AI-in-fashion market: $\sim$\euro{}1\,B (2024), projected \euro{}4--6\,B by 2030 (CAGR $\sim$25\%). Key competitors: Refabric/Resleeve (\$1--2\,M, single-user design), CALA ($\sim$\$7\,M, design-to-production), Heuritech ($\sim$\euro{}5\,M, trend prediction), Vue.ai (\$47\,M+, retail e-commerce), Adobe Firefly (general creative), Midjourney (text-to-image). ARTISO's moat: proprietary 4-layer fashion intelligence, self-trained models, seatless credit pricing, compounding switching costs.
+
+\subsection*{Financing Sources Considered}
+
+\textbf{Equity:} Nauta Capital, Inveready, Samaipata (lead VC \euro{}1.5--2\,M); ESADE BAN, Keiretsu Forum (angels \euro{}300--500\,K); Mango/Inditex/PVH (strategic). \textbf{Non-dilutive:} ENISA Emprendedores \euro{}300\,K; CDTI NEOTEC \euro{}250--400\,K; ICF/ACCI\'O \euro{}200--300\,K; EIC Accelerator for Series~A phase. \textbf{Debt:} Revenue-based financing post-\euro{}50\,K MRR; venture debt post-Series~A.
+
+\subsection*{Key Risks Identified}
+Customer concentration (7 logos); technology moat erosion (Adobe/OpenAI); extended enterprise sales cycles (6--9 months); cash runway timing (lowest \euro{}$-$477\,K at Q4 2028); key-person dependency (first-time founders); model sensitivity (Enterprise NRR and lead growth rate are dominant levers).
+
+\vspace{6pt}
+\section*{Appendix C --- Financial Model Summary}
+
+\textbf{9 sheets, 4,282 formulas, 0 errors.} Covers: Assumptions (150 parameters, 3 scenarios), Projections (P\&L monthly Y1, quarterly Y2--5), Cash Flow, Balance Sheet (balanced all periods), Headcount (23 roles), Unit Economics (CAC, LTV, churn, payback, burn multiple, magic number, Rule of 40), Cap Table (pre-seed $\rightarrow$ post-seed $\rightarrow$ Series~A), Valuation (5-Step VC Method, triangulation, IRR 85.9\%).
+
+\subsection*{Key Assumptions \& Limitations}
+
+Bottom-up revenue model: founder FTEs + AEs $\rightarrow$ deal capacity $\rightarrow$ funnel split $\rightarrow$ module penetration $\rightarrow$ 4 revenue streams. 3-tier pricing (SME \euro{}17\,K / Large \euro{}67\,K / Enterprise \euro{}155\,K ACV). Employer cost 1.30$\times$ (Spanish social security). Tax rate 25\% with loss carry-forward (shields \euro{}2.19\,M cumulative losses). Known simplifications: deferred revenue not modelled separately (40\% annual billing); sales cycle parameters defined but not wired into pipeline lag; headcount frozen at 23 from Q4 2028 (would need scaling in practice).
+
+The blended funding strategy---anchored by \euro{}0.7--1.2\,M in non-dilutive capital and disciplined VC pricing at \euro{}27\,M pre-money---positions ARTISO to execute its product roadmap, scale the team from 4 to 23, and reach Series~A readiness by Q3 2027. The recommended next step is immediate: launch the VC process and ENISA application in parallel this month.
+
+\end{document}
