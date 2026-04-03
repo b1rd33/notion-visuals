@@ -788,7 +788,39 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
         <div class="tier-label">51+ users</div>
       </div>
     </div>
-    <p style="text-align:center;font-size:14px;color:var(--text-muted);margin-top:24px;">Credit-based pricing with usage expansion upside.<br>5 modules × 3 tiers × 4 revenue streams.</p>
+    <p style="text-align:center;font-size:14px;color:var(--text-muted);margin-top:18px;">Credit-based pricing with usage expansion upside.<br>5 modules × 3 tiers × 4 revenue streams.</p>
+
+    <div style="margin-top:auto;padding-top:16px;">
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:10px;">How ACV Expands After Landing</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:8px;padding:10px;">
+          <div style="font-size:13px;font-weight:600;color:var(--purple-deep);">Setup Fee</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">One-off onboarding at contract</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:8px;padding:10px;">
+          <div style="font-size:13px;font-weight:600;color:var(--purple-deep);">Subscription</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Recurring platform fee (baseline)</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:8px;padding:10px;">
+          <div style="font-size:13px;font-weight:600;color:var(--purple-deep);">Usage Credits</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Grows 1.5-4.5%/qtr per customer</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:8px;padding:10px;">
+          <div style="font-size:13px;font-weight:600;color:var(--purple-deep);">Prof. Services</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Integrations + customization</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+        <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:8px 10px;">
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Land Motion</div>
+          <div style="font-size:13px;font-weight:600;color:var(--purple-deep);">1 module + core sub</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:8px 10px;">
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Expand Motion</div>
+          <div style="font-size:13px;font-weight:600;color:var(--purple-deep);">+modules +credits over time</div>
+        </div>
+      </div>
+    </div>
   </div>
   </div><!-- end inner grid -->
 
@@ -855,70 +887,67 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   <div style="display:flex;gap:24px;flex:1;align-items:stretch;margin-top:8px;">
     <!-- Cash Waterfall — inline SVG for pixel-perfect rendering -->
     <!-- Zero line at y=280. Positive bars UP, negative DOWN. Max=€7.1M→230px. 10 bars, 60px each + 6px gap -->
-    <div style="flex:2;display:flex;align-items:center;justify-content:center;">
-    <svg viewBox="0 0 660 380" width="660" height="380" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+    <div style="flex:2;display:flex;align-items:stretch;min-height:0;">
+    <svg viewBox="0 0 660 460" style="width:100%;height:100%;display:block;" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#667eea"/><stop offset="100%" stop-color="#a5b4fc"/></linearGradient>
         <linearGradient id="gn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fca5a5"/><stop offset="100%" stop-color="#dc2626"/></linearGradient>
       </defs>
-      <!-- Zero line at y=270 -->
-      <line x1="10" y1="270" x2="650" y2="270" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="6,4"/>
-      <text x="4" y="266" font-size="9" fill="#9CA3AF" font-weight="600" font-family="DM Sans,sans-serif">€0</text>
+      <!-- Zero line at y=340. Max positive = 290px (€7.1M). Scale: 1px = €24.5K -->
+      <line x1="10" y1="340" x2="650" y2="340" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="4" y="336" font-size="9" fill="#9CA3AF" font-weight="600" font-family="DM Sans,sans-serif">€0</text>
 
-      <!-- Scale: €7.1M = 230px above zero. 1px = €30.9K. Bar width=44, gap between centers=66 -->
-      <!-- Pos bars: y = 270 - height. Neg bars: y = 270 -->
+      <!-- Q2'26: €3.0M → 122px -->
+      <rect x="22" y="218" width="44" height="122" rx="3" fill="url(#gp)"/>
+      <text x="44" y="210" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€3.0M</text>
+      <text x="44" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'26</text>
 
-      <!-- Q2'26: €3.0M → 97px -->
-      <rect x="22" y="173" width="44" height="97" rx="3" fill="url(#gp)"/>
-      <text x="44" y="165" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€3.0M</text>
-      <text x="44" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'26</text>
+      <!-- Q4'26: €2.3M → 94px -->
+      <rect x="88" y="246" width="44" height="94" rx="3" fill="url(#gp)"/>
+      <text x="110" y="238" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€2.3M</text>
+      <text x="110" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'26</text>
 
-      <!-- Q4'26: €2.3M → 74px -->
-      <rect x="88" y="196" width="44" height="74" rx="3" fill="url(#gp)"/>
-      <text x="110" y="188" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€2.3M</text>
-      <text x="110" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'26</text>
+      <!-- Q2'27: €1.5M → 61px -->
+      <rect x="154" y="279" width="44" height="61" rx="3" fill="url(#gp)"/>
+      <text x="176" y="271" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€1.5M</text>
+      <text x="176" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'27</text>
+      <text x="176" y="372" text-anchor="middle" font-size="8" fill="#d97706" font-weight="700" font-family="DM Sans,sans-serif">FUNDRAISE</text>
 
-      <!-- Q2'27: €1.5M → 49px -->
-      <rect x="154" y="221" width="44" height="49" rx="3" fill="url(#gp)"/>
-      <text x="176" y="213" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€1.5M</text>
-      <text x="176" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'27</text>
-      <text x="176" y="302" text-anchor="middle" font-size="8" fill="#d97706" font-weight="700" font-family="DM Sans,sans-serif">FUNDRAISE</text>
+      <!-- Q4'27: €607K → 25px -->
+      <rect x="220" y="315" width="44" height="25" rx="3" fill="url(#gp)"/>
+      <text x="242" y="307" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€607K</text>
+      <text x="242" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'27</text>
+      <text x="242" y="372" text-anchor="middle" font-size="8" fill="#dc2626" font-weight="700" font-family="DM Sans,sans-serif">RAISE NOW</text>
 
-      <!-- Q4'27: €607K → 20px -->
-      <rect x="220" y="250" width="44" height="20" rx="3" fill="url(#gp)"/>
-      <text x="242" y="243" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€607K</text>
-      <text x="242" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'27</text>
-      <text x="242" y="302" text-anchor="middle" font-size="8" fill="#dc2626" font-weight="700" font-family="DM Sans,sans-serif">RAISE NOW</text>
+      <!-- Q1'28: €227K → 9px -->
+      <rect x="286" y="331" width="44" height="9" rx="2" fill="url(#gp)"/>
+      <text x="308" y="323" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€227K</text>
+      <text x="308" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q1'28</text>
 
-      <!-- Q1'28: €227K → 7px -->
-      <rect x="286" y="263" width="44" height="7" rx="2" fill="url(#gp)"/>
-      <text x="308" y="256" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€227K</text>
-      <text x="308" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q1'28</text>
+      <!-- Q2'28: -€139K → 6px BELOW zero -->
+      <rect x="352" y="340" width="44" height="6" rx="2" fill="url(#gn)"/>
+      <text x="374" y="360" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="600" font-family="DM Sans,sans-serif">-€139K</text>
+      <text x="374" y="374" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'28</text>
 
-      <!-- Q2'28: -€139K → 5px BELOW zero -->
-      <rect x="352" y="270" width="44" height="5" rx="2" fill="url(#gn)"/>
-      <text x="374" y="290" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="600" font-family="DM Sans,sans-serif">-€139K</text>
-      <text x="374" y="304" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'28</text>
-
-      <!-- Q4'28: -€477K → 15px BELOW zero -->
-      <rect x="418" y="270" width="44" height="15" rx="2" fill="url(#gn)"/>
-      <text x="440" y="300" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="600" font-family="DM Sans,sans-serif">-€477K</text>
-      <text x="440" y="314" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'28</text>
+      <!-- Q4'28: -€477K → 19px BELOW zero -->
+      <rect x="418" y="340" width="44" height="19" rx="2" fill="url(#gn)"/>
+      <text x="440" y="374" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="600" font-family="DM Sans,sans-serif">-€477K</text>
+      <text x="440" y="388" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'28</text>
 
       <!-- Q2'29: €108K → 4px -->
-      <rect x="484" y="266" width="44" height="4" rx="2" fill="url(#gp)"/>
-      <text x="506" y="258" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€108K</text>
-      <text x="506" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'29</text>
+      <rect x="484" y="336" width="44" height="4" rx="2" fill="url(#gp)"/>
+      <text x="506" y="328" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€108K</text>
+      <text x="506" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'29</text>
 
-      <!-- Q4'29: €1.6M → 52px -->
-      <rect x="550" y="218" width="44" height="52" rx="3" fill="url(#gp)"/>
-      <text x="572" y="210" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€1.6M</text>
-      <text x="572" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'29</text>
+      <!-- Q4'29: €1.6M → 65px -->
+      <rect x="550" y="275" width="44" height="65" rx="3" fill="url(#gp)"/>
+      <text x="572" y="267" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€1.6M</text>
+      <text x="572" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'29</text>
 
-      <!-- Q4'30: €7.1M → 230px (full height) -->
-      <rect x="616" y="40" width="44" height="230" rx="3" fill="url(#gp)"/>
-      <text x="638" y="32" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="700" font-family="DM Sans,sans-serif">€7.1M</text>
-      <text x="638" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'30</text>
+      <!-- Q4'30: €7.1M → 290px (full height) -->
+      <rect x="616" y="50" width="44" height="290" rx="3" fill="url(#gp)"/>
+      <text x="638" y="42" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="700" font-family="DM Sans,sans-serif">€7.1M</text>
+      <text x="638" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'30</text>
     </svg>
     </div>
 
@@ -1070,7 +1099,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
       </div>
     </div>
   </div>
-  <div class="split-right" style="align-items:stretch;">
+  <div class="split-right" style="align-items:stretch;background:linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%);">
     <div style="text-align:center;margin-bottom:24px;">
       <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:8px;">Seed Investor IRR</div>
       <div style="font-family:var(--font-display);font-size:72px;font-weight:700;color:var(--purple-deep);line-height:1;">85.9%</div>
