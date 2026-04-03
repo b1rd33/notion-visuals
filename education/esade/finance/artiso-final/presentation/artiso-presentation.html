@@ -97,12 +97,14 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0;
+  position: relative;
 }
 .slide--split .split-left {
   padding: var(--pad-y) 40px var(--pad-y) var(--pad-x);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-bottom: 56px;
 }
 .slide--split .split-right {
   padding: var(--pad-y) var(--pad-x) var(--pad-y) 40px;
@@ -110,6 +112,7 @@ body {
   flex-direction: column;
   justify-content: center;
   background: linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%);
+  padding-bottom: 56px;
 }
 
 /* ── ARTISO Logo (SVG inline) ── */
@@ -244,7 +247,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 .question-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 36px;
   flex: 1;
   justify-content: center;
 }
@@ -263,13 +266,12 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
   font-size: 22px;
   font-weight: 700;
   color: var(--purple-deep);
 }
 .question-text {
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.4;
   padding-top: 8px;
 }
@@ -285,65 +287,77 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 .reco-box p { font-size: 17px; color: var(--text); }
 .reco-box strong { color: var(--purple-deep); }
 
-/* ── Cash Bar Chart ── */
-.cash-chart {
-  display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  height: 320px;
-  padding-top: 20px;
-  flex: 1;
+/* ── Cash Waterfall Chart (Slide 6) ── */
+.cash-waterfall {
+  position: relative;
+  height: 340px;
+  flex: 2;
 }
-.cash-bar-wrapper {
-  flex: 1;
+.cash-waterfall .zero-line {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  border-top: 1.5px dashed #d1d5db;
+  z-index: 0;
+}
+.cash-waterfall .zero-label {
+  position: absolute;
+  top: 55%;
+  left: -4px;
+  transform: translateY(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-light);
+}
+.cash-waterfall .bar-col {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  justify-content: flex-end;
-  position: relative;
+  width: 56px;
 }
-.cash-bar {
-  width: 100%;
-  max-width: 52px;
+.cash-waterfall .bar-col .bar {
+  width: 44px;
+  border-radius: 4px;
+  position: absolute;
+}
+.cash-waterfall .bar-col .bar.positive {
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%);
   border-radius: 4px 4px 0 0;
-  position: relative;
-  transition: all 0.3s;
 }
-.cash-bar.positive { background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%); }
-.cash-bar.negative { background: linear-gradient(180deg, #fca5a5 0%, var(--negative) 100%); border-radius: 0 0 4px 4px; }
-.cash-bar-label {
+.cash-waterfall .bar-col .bar.negative {
+  background: linear-gradient(180deg, #fca5a5 0%, var(--negative) 100%);
+  border-radius: 0 0 4px 4px;
+}
+.cash-waterfall .bar-col .bar-value {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.cash-waterfall .bar-col .bar-value.above { bottom: 100%; margin-bottom: 4px; color: var(--text); }
+.cash-waterfall .bar-col .bar-value.below { top: 100%; margin-top: 4px; color: var(--negative); }
+.cash-waterfall .bar-col .period-label {
+  position: absolute;
   font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
-  margin-top: 6px;
-  text-align: center;
   white-space: nowrap;
 }
-.cash-bar-value {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text);
+.cash-waterfall .bar-col .alert-badge {
   position: absolute;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
-.cash-zero-line {
-  position: absolute;
-  bottom: 40%;
-  left: 0;
-  right: 0;
-  border-top: 1px dashed var(--text-light);
-}
-.alert-marker {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   color: var(--warning);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 2px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: #fef3c7;
+  padding: 1px 6px;
+  border-radius: 3px;
 }
 
 /* ── Resolution Cards ── */
@@ -363,7 +377,6 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   text-align: center;
 }
 .resolution-card .res-num {
-  font-family: var(--font-display);
   font-size: 48px;
   font-weight: 700;
   opacity: 0.3;
@@ -385,7 +398,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 .risk-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px 40px;
+  gap: 20px 48px;
 }
 .risk-item {
   display: flex;
@@ -406,7 +419,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   color: var(--purple-deep);
 }
 .risk-text h4 { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
-.risk-text p { font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+.risk-text p { font-size: 15px; color: var(--text-muted); line-height: 1.4; }
 
 /* ── Flow Diagram ── */
 .flow-steps {
@@ -507,11 +520,13 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 
 /* ── Slide Footer ── */
 .slide-footer {
+  position: absolute;
+  bottom: 16px;
+  left: 80px;
+  right: 80px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: auto;
-  padding-top: 16px;
 }
 .slide-footer .framework {
   font-size: 11px;
@@ -619,7 +634,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 
   <div class="traction-row">
     <div class="traction-pill"><strong>7</strong> paying logos</div>
-    <div class="traction-pill"><strong>>€60K</strong> pilot revenue</div>
+    <div class="traction-pill"><strong>&gt;€60K</strong> pilot revenue</div>
     <div class="traction-pill"><strong>200+</strong> brands waitlist</div>
     <div class="traction-pill"><strong>€3M</strong> pre-seed round</div>
   </div>
@@ -689,7 +704,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     <tbody>
       <tr><td class="bold">Total Revenue</td><td class="right">€0</td><td class="right">€15K</td><td class="right">€645K</td><td class="right">€5.4M</td><td class="right">€14.2M</td><td class="right">€26.0M</td><td class="right">€36.8M</td></tr>
       <tr><td>Gross Margin</td><td class="right">—</td><td class="right">86.7%</td><td class="right">82.3%</td><td class="right">82.0%</td><td class="right">82.1%</td><td class="right">82.2%</td><td class="right">82.3%</td></tr>
-      <tr class="highlight"><td class="bold">EBITDA</td><td class="right">(€120K)</td><td class="right">(€267K)</td><td class="right">(€565K)</td><td class="right">(€1.27M)</td><td class="right">(€351K)</td><td class="right">+€2.86M</td><td class="right">+€6.21M</td></tr>
+      <tr class="highlight"><td class="bold">EBITDA</td><td class="right">(€120K)</td><td class="right">(€267K)</td><td class="right">(€565K)</td><td class="right">(€1.3M)</td><td class="right">(€351K)</td><td class="right">+€2.9M</td><td class="right">+€6.2M</td></tr>
       <tr><td>EBITDA Margin</td><td class="right">—</td><td class="right">—</td><td class="right">-87.5%</td><td class="right">-23.7%</td><td class="right">-2.5%</td><td class="right">+11.0%</td><td class="right">+16.9%</td></tr>
       <tr><td>Installed Base</td><td class="right">0</td><td class="right">3</td><td class="right">27</td><td class="right">104</td><td class="right">209</td><td class="right">304</td><td class="right">363</td></tr>
       <tr><td class="bold">ARR (End of Year)</td><td class="right">€0</td><td class="right">€0</td><td class="right">€1.3M</td><td class="right">€6.8M</td><td class="right">€16.2M</td><td class="right">€27.7M</td><td class="right">€35.8M</td></tr>
@@ -707,7 +722,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     </div>
     <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
       <div style="font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">Tax Loss Carry-Forward</div>
-      <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--purple-deep);">€2.19M shielded</div>
+      <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--purple-deep);">€2.2M shielded</div>
     </div>
   </div>
 
@@ -755,11 +770,11 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
       </div>
     </div>
     <p style="text-align:center;font-size:14px;color:var(--text-muted);margin-top:24px;">Credit-based pricing with usage expansion upside.<br>5 modules × 3 tiers × 4 revenue streams.</p>
+  </div>
 
-    <div style="margin-top:auto;text-align:center;">
-      <span class="framework" style="font-size:11px;color:rgba(0,0,0,0.35);font-style:italic;">Session 03 — Adria Roca: "Biggest mistake = top-down. Correct = bottom-up"</span>
-      <span style="float:right;font-size:12px;font-weight:600;color:rgba(0,0,0,0.35);">4 / 12</span>
-    </div>
+  <div class="slide-footer" style="left:0;right:0;padding:0 80px;">
+    <span class="framework" style="color:rgba(0,0,0,0.35);">Session 03 — Adria Roca: "Biggest mistake = top-down. Correct = bottom-up"</span>
+    <span class="slide-num" style="color:rgba(0,0,0,0.35);">4 / 12</span>
   </div>
 </section>
 
@@ -785,7 +800,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     <div class="metric-card">
       <div class="metric-value">11 mo</div>
       <div class="metric-label">CAC Payback</div>
-      <div class="metric-target">Target: < 18 months</div>
+      <div class="metric-target">Target: &lt; 18 months</div>
     </div>
     <div class="metric-card">
       <div class="metric-value">53%</div>
@@ -813,26 +828,84 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
      SLIDE 6: Funding Need & Timing
      ═══════════════════════════════════════════════════════════ -->
 <section class="slide slide--white" id="s6">
-  <!-- Speaker notes: Cash waterfall — 45 seconds. We need the money because cash hits -477K in Q4 2028 without follow-on. -->
+  <!-- Speaker notes: Cash waterfall — 45 seconds. We need the money because cash hits -€477K in Q4 2028 without follow-on. -->
   <div class="slide-label">Cash Runway</div>
   <h2>Funding Need & Timing</h2>
 
   <div style="display:flex;gap:24px;flex:1;align-items:stretch;margin-top:8px;">
-    <div style="flex:2;position:relative;">
-      <div class="cash-chart" style="height:100%;position:relative;">
-        <div style="position:absolute;bottom:40%;left:0;right:0;border-top:1.5px dashed #d1d5db;z-index:0;"></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:60%;"><div class="cash-bar-value">€3.0M</div></div><div class="cash-bar-label">Q2'26</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:47%;"><div class="cash-bar-value">€2.3M</div></div><div class="cash-bar-label">Q4'26</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:30%;"><div class="cash-bar-value">€1.5M</div></div><div class="cash-bar-label">Q2'27</div><div class="alert-marker">Start fundraising</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:13%;"><div class="cash-bar-value">€607K</div></div><div class="cash-bar-label">Q4'27</div><div class="alert-marker">RAISE NOW</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:5%;"><div class="cash-bar-value">€227K</div></div><div class="cash-bar-label">Q1'28</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar negative" style="height:4%;margin-top:auto;"><div class="cash-bar-value" style="top:auto;bottom:-18px;color:var(--negative);">-€139K</div></div><div class="cash-bar-label" style="position:absolute;bottom:36%;">Q2'28</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar negative" style="height:10%;margin-top:auto;"><div class="cash-bar-value" style="top:auto;bottom:-18px;color:var(--negative);">-€477K</div></div><div class="cash-bar-label" style="position:absolute;bottom:36%;">Q4'28</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:4%;"><div class="cash-bar-value">€108K</div></div><div class="cash-bar-label">Q2'29</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:33%;"><div class="cash-bar-value">€1.6M</div></div><div class="cash-bar-label">Q4'29</div></div>
-        <div class="cash-bar-wrapper"><div class="cash-bar positive" style="height:55%;"><div class="cash-bar-value" style="font-weight:700;">€7.1M</div></div><div class="cash-bar-label">Q4'30</div></div>
+    <!-- Cash Waterfall Chart — rebuilt with absolute positioning -->
+    <div class="cash-waterfall">
+      <div class="zero-line"></div>
+      <div class="zero-label">€0</div>
+
+      <!-- Positive bars grow UP from zero line (top:55%). Bar bottom = 55% - height. -->
+      <!-- Negative bars grow DOWN from zero line (top:55%). Bar top = 55%. -->
+      <!-- Max positive = €3.0M → 38% height. Scale: 1% ≈ €79K. Negative max = €477K → 5.4% -->
+      <!-- Columns spaced evenly across width: 10 bars, each ~56px, start at 24px -->
+
+      <!-- Q2'26: €3.0M — 100% of max positive = 38% height -->
+      <div class="bar-col" style="left:24px;">
+        <div class="bar positive" style="bottom:45%; height:38%;"><div class="bar-value above">€3.0M</div></div>
+        <div class="period-label" style="top:58%;">Q2'26</div>
+      </div>
+
+      <!-- Q4'26: €2.3M — 77% = 29% height -->
+      <div class="bar-col" style="left:88px;">
+        <div class="bar positive" style="bottom:45%; height:29%;"><div class="bar-value above">€2.3M</div></div>
+        <div class="period-label" style="top:58%;">Q4'26</div>
+      </div>
+
+      <!-- Q2'27: €1.5M — 50% = 19% height -->
+      <div class="bar-col" style="left:152px;">
+        <div class="bar positive" style="bottom:45%; height:19%;"><div class="bar-value above">€1.5M</div></div>
+        <div class="period-label" style="top:58%;">Q2'27</div>
+        <div class="alert-badge" style="top:71%;">START FUNDRAISING</div>
+      </div>
+
+      <!-- Q4'27: €607K — 20% = 7.7% height -->
+      <div class="bar-col" style="left:216px;">
+        <div class="bar positive" style="bottom:45%; height:7.7%;"><div class="bar-value above">€607K</div></div>
+        <div class="period-label" style="top:58%;">Q4'27</div>
+        <div class="alert-badge" style="top:71%;">RAISE NOW</div>
+      </div>
+
+      <!-- Q1'28: €227K — 8% = 2.9% height -->
+      <div class="bar-col" style="left:280px;">
+        <div class="bar positive" style="bottom:45%; height:2.9%;"><div class="bar-value above">€227K</div></div>
+        <div class="period-label" style="top:58%;">Q1'28</div>
+      </div>
+
+      <!-- Q2'28: -€139K — 29% of neg max = 1.6% height -->
+      <div class="bar-col" style="left:344px;">
+        <div class="bar negative" style="top:55%; height:1.6%;"><div class="bar-value below">-€139K</div></div>
+        <div class="period-label" style="top:58%; margin-top:18px;">Q2'28</div>
+      </div>
+
+      <!-- Q4'28: -€477K — 100% of neg max = 5.4% height -->
+      <div class="bar-col" style="left:408px;">
+        <div class="bar negative" style="top:55%; height:5.4%;"><div class="bar-value below">-€477K</div></div>
+        <div class="period-label" style="top:63%;">Q4'28</div>
+      </div>
+
+      <!-- Q2'29: €108K — 4% = 1.4% height -->
+      <div class="bar-col" style="left:472px;">
+        <div class="bar positive" style="bottom:45%; height:1.4%;"><div class="bar-value above">€108K</div></div>
+        <div class="period-label" style="top:58%;">Q2'29</div>
+      </div>
+
+      <!-- Q4'29: €1.6M — 53% = 20% height -->
+      <div class="bar-col" style="left:536px;">
+        <div class="bar positive" style="bottom:45%; height:20%;"><div class="bar-value above">€1.6M</div></div>
+        <div class="period-label" style="top:58%;">Q4'29</div>
+      </div>
+
+      <!-- Q4'30: €7.1M — capped at 100% = 38% height -->
+      <div class="bar-col" style="left:600px;">
+        <div class="bar positive" style="bottom:45%; height:38%;"><div class="bar-value above" style="font-weight:700;">€7.1M</div></div>
+        <div class="period-label" style="top:58%;">Q4'30</div>
       </div>
     </div>
+
     <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center;">
       <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
         <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Lowest Point</div>
@@ -877,7 +950,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     </thead>
     <tbody>
       <tr style="border-color:rgba(255,255,255,0.1);"><td class="bold" style="color:var(--white);">Lead VC</td><td class="right" style="color:var(--white);">€1.5-2.0M</td><td class="right" style="color:var(--white);">5-7%</td><td style="color:rgba(255,255,255,0.7);">Nauta / Inveready / Samaipata</td></tr>
-      <tr style="border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);"><td class="bold" style="color:var(--white);">Angels / SAFEs</td><td class="right" style="color:var(--white);">€0.3-0.5M</td><td class="right" style="color:var(--white);">1-2%</td><td style="color:rgba(255,255,255,0.7);">ESADE BAN, fashion execs</td></tr>
+      <tr style="border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);"><td class="bold" style="color:var(--white);">Angels / SAFEs</td><td class="right" style="color:var(--white);">€300-500K</td><td class="right" style="color:var(--white);">1-2%</td><td style="color:rgba(255,255,255,0.7);">ESADE BAN, fashion execs</td></tr>
       <tr style="border-color:rgba(255,255,255,0.1);"><td class="bold" style="color:var(--white);">ENISA</td><td class="right" style="color:var(--white);">€300K</td><td class="right" style="color:var(--white);">0%</td><td style="color:rgba(255,255,255,0.7);">Participative loan, no collateral</td></tr>
       <tr style="border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);"><td class="bold" style="color:var(--white);">CDTI / NEOTEC</td><td class="right" style="color:var(--white);">€250-400K</td><td class="right" style="color:var(--white);">0%</td><td style="color:rgba(255,255,255,0.7);">R&D grant, 70% co-funding</td></tr>
       <tr><td class="bold" style="color:var(--white);">ICF / ACCIO</td><td class="right" style="color:var(--white);">€200-300K</td><td class="right" style="color:var(--white);">0%</td><td style="color:rgba(255,255,255,0.7);">Catalan innovation grants</td></tr>
@@ -979,11 +1052,6 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
         <div class="vc-step-content"><h4>Implied Pre-Money</h4><p><strong>€90.3M</strong> — €27M is conservative</p></div>
       </div>
     </div>
-
-    <div style="margin-top:auto;">
-      <span class="framework" style="font-size:11px;color:var(--text-light);font-style:italic;">Session 04 — 5-Step VC Method + Valuation Triangulation</span>
-      <span style="float:right;font-size:12px;font-weight:600;color:var(--text-light);">9 / 12</span>
-    </div>
   </div>
   <div class="split-right" style="align-items:stretch;">
     <div style="text-align:center;margin-bottom:24px;">
@@ -1007,6 +1075,11 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
       <p style="font-size:14px;color:var(--text);">Range: €25.8M – €90.3M · <strong>€27M is at the conservative end</strong><br><span style="color:var(--text-muted);">Acceptable: €22-25M if it secures a strong lead</span></p>
     </div>
   </div>
+
+  <div class="slide-footer" style="left:0;right:0;padding:0 80px;">
+    <span class="framework" style="color:var(--text-light);">Session 04 — 5-Step VC Method + Valuation Triangulation</span>
+    <span class="slide-num" style="color:var(--text-light);">9 / 12</span>
+  </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -1026,6 +1099,8 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
       <tr><td>Cash Floor</td><td class="right" style="color:var(--negative);">-€477K</td><td class="right" style="color:var(--positive);">Positive</td><td class="right" style="color:var(--negative);">Much worse</td></tr>
       <tr><td>Series A Timing</td><td class="right">Q2 2027</td><td class="right">Earlier / larger</td><td class="right">Urgent — bridge needed</td></tr>
       <tr><td class="bold">Management Action</td><td class="right">Execute plan</td><td class="right">Accelerate GTM</td><td class="right">Cut burn + bridge</td></tr>
+      <tr><td class="bold">FY2028 Revenue</td><td class="right">€14.2M</td><td class="right">€18-20M</td><td class="right">€8-10M</td></tr>
+      <tr><td>EBITDA Breakeven</td><td class="right">Q4 2028</td><td class="right">Q2 2028</td><td class="right">H1 2030+</td></tr>
     </tbody>
   </table>
 
@@ -1037,17 +1112,17 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
       <p style="font-size:15px;color:var(--text-muted);margin-top:8px;">±20% swing on FY2030 ARR and cash:</p>
       <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
         <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:240px;height:24px;background:linear-gradient(90deg,var(--accent-light),var(--accent));border-radius:4px;"></div>
+          <div style="width:240px;height:28px;background:linear-gradient(90deg,var(--accent-light),var(--accent));border-radius:4px;"></div>
           <span style="font-size:14px;font-weight:600;">Enterprise NRR</span>
           <span style="font-size:13px;color:var(--text-muted);">Dominant lever</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:200px;height:24px;background:linear-gradient(90deg,var(--lavender),var(--purple-soft));border-radius:4px;"></div>
+          <div style="width:200px;height:28px;background:linear-gradient(90deg,var(--lavender),var(--purple-soft));border-radius:4px;"></div>
           <span style="font-size:14px;font-weight:600;">Lead Growth Rate</span>
           <span style="font-size:13px;color:var(--text-muted);">Second lever</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:80px;height:24px;background:linear-gradient(90deg,#e8e6f0,var(--lavender));border-radius:4px;"></div>
+          <div style="width:80px;height:28px;background:linear-gradient(90deg,#e8e6f0,var(--lavender));border-radius:4px;"></div>
           <span style="font-size:14px;">Credit Pricing · SME Churn</span>
           <span style="font-size:13px;color:var(--text-muted);">Minor</span>
         </div>
