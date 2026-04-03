@@ -288,76 +288,85 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 .reco-box strong { color: var(--purple-deep); }
 
 /* ── Cash Waterfall Chart (Slide 6) ── */
-.cash-waterfall {
-  position: relative;
-  height: 340px;
+/* Cash chart — simple flexbox approach */
+.cash-chart-grid {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 280px;
   flex: 2;
+  padding-bottom: 60px;
+  position: relative;
 }
-.cash-waterfall .zero-line {
+.cash-chart-grid::after {
+  content: '€0';
   position: absolute;
-  top: 55%;
-  left: 0;
-  right: 0;
-  border-top: 1.5px dashed #d1d5db;
-  z-index: 0;
-}
-.cash-waterfall .zero-label {
-  position: absolute;
-  top: 55%;
-  left: -4px;
-  transform: translateY(-50%);
-  font-size: 11px;
+  bottom: 55px;
+  left: -24px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--text-light);
 }
-.cash-waterfall .bar-col {
+.cash-chart-grid::before {
+  content: '';
   position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  border-top: 1.5px dashed #d1d5db;
+}
+.cc-col {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 56px;
+  position: relative;
 }
-.cash-waterfall .bar-col .bar {
-  width: 44px;
-  border-radius: 4px;
-  position: absolute;
+.cc-bar-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.cash-waterfall .bar-col .bar.positive {
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%);
+.cc-bar {
+  width: 36px;
+  min-height: 2px;
   border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%);
 }
-.cash-waterfall .bar-col .bar.negative {
-  background: linear-gradient(180deg, #fca5a5 0%, var(--negative) 100%);
+.cc-bar.neg {
   border-radius: 0 0 4px 4px;
+  background: linear-gradient(180deg, #fca5a5 0%, var(--negative) 100%);
+  margin-top: -2px;
 }
-.cash-waterfall .bar-col .bar-value {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.cc-val {
   font-size: 11px;
   font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
   white-space: nowrap;
 }
-.cash-waterfall .bar-col .bar-value.above { bottom: 100%; margin-bottom: 4px; color: var(--text); }
-.cash-waterfall .bar-col .bar-value.below { top: 100%; margin-top: 4px; color: var(--negative); }
-.cash-waterfall .bar-col .period-label {
-  position: absolute;
-  font-size: 11px;
+.cc-val.neg-val { color: var(--negative); margin-bottom: 0; margin-top: 3px; }
+.cc-label {
+  font-size: 10px;
   font-weight: 600;
   color: var(--text-muted);
+  position: absolute;
+  bottom: -20px;
   white-space: nowrap;
 }
-.cash-waterfall .bar-col .alert-badge {
-  position: absolute;
-  font-size: 9px;
+.cc-alert {
+  font-size: 8px;
   font-weight: 700;
   color: var(--warning);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+  letter-spacing: 0.03em;
   background: #fef3c7;
-  padding: 1px 6px;
-  border-radius: 3px;
+  padding: 1px 4px;
+  border-radius: 2px;
+  position: absolute;
+  bottom: -34px;
+  white-space: nowrap;
 }
 
 /* ── Resolution Cards ── */
@@ -833,77 +842,19 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   <h2>Funding Need & Timing</h2>
 
   <div style="display:flex;gap:24px;flex:1;align-items:stretch;margin-top:8px;">
-    <!-- Cash Waterfall Chart — rebuilt with absolute positioning -->
-    <div class="cash-waterfall">
-      <div class="zero-line"></div>
-      <div class="zero-label">€0</div>
-
-      <!-- Positive bars grow UP from zero line (top:55%). Bar bottom = 55% - height. -->
-      <!-- Negative bars grow DOWN from zero line (top:55%). Bar top = 55%. -->
-      <!-- Max positive = €3.0M → 38% height. Scale: 1% ≈ €79K. Negative max = €477K → 5.4% -->
-      <!-- Columns spaced evenly across width: 10 bars, each ~56px, start at 24px -->
-
-      <!-- Q2'26: €3.0M — 100% of max positive = 38% height -->
-      <div class="bar-col" style="left:24px;">
-        <div class="bar positive" style="bottom:45%; height:38%;"><div class="bar-value above">€3.0M</div></div>
-        <div class="period-label" style="top:58%;">Q2'26</div>
-      </div>
-
-      <!-- Q4'26: €2.3M — 77% = 29% height -->
-      <div class="bar-col" style="left:88px;">
-        <div class="bar positive" style="bottom:45%; height:29%;"><div class="bar-value above">€2.3M</div></div>
-        <div class="period-label" style="top:58%;">Q4'26</div>
-      </div>
-
-      <!-- Q2'27: €1.5M — 50% = 19% height -->
-      <div class="bar-col" style="left:152px;">
-        <div class="bar positive" style="bottom:45%; height:19%;"><div class="bar-value above">€1.5M</div></div>
-        <div class="period-label" style="top:58%;">Q2'27</div>
-        <div class="alert-badge" style="top:71%;">START FUNDRAISING</div>
-      </div>
-
-      <!-- Q4'27: €607K — 20% = 7.7% height -->
-      <div class="bar-col" style="left:216px;">
-        <div class="bar positive" style="bottom:45%; height:7.7%;"><div class="bar-value above">€607K</div></div>
-        <div class="period-label" style="top:58%;">Q4'27</div>
-        <div class="alert-badge" style="top:71%;">RAISE NOW</div>
-      </div>
-
-      <!-- Q1'28: €227K — 8% = 2.9% height -->
-      <div class="bar-col" style="left:280px;">
-        <div class="bar positive" style="bottom:45%; height:2.9%;"><div class="bar-value above">€227K</div></div>
-        <div class="period-label" style="top:58%;">Q1'28</div>
-      </div>
-
-      <!-- Q2'28: -€139K — 29% of neg max = 1.6% height -->
-      <div class="bar-col" style="left:344px;">
-        <div class="bar negative" style="top:55%; height:1.6%;"><div class="bar-value below">-€139K</div></div>
-        <div class="period-label" style="top:58%; margin-top:18px;">Q2'28</div>
-      </div>
-
-      <!-- Q4'28: -€477K — 100% of neg max = 5.4% height -->
-      <div class="bar-col" style="left:408px;">
-        <div class="bar negative" style="top:55%; height:5.4%;"><div class="bar-value below">-€477K</div></div>
-        <div class="period-label" style="top:63%;">Q4'28</div>
-      </div>
-
-      <!-- Q2'29: €108K — 4% = 1.4% height -->
-      <div class="bar-col" style="left:472px;">
-        <div class="bar positive" style="bottom:45%; height:1.4%;"><div class="bar-value above">€108K</div></div>
-        <div class="period-label" style="top:58%;">Q2'29</div>
-      </div>
-
-      <!-- Q4'29: €1.6M — 53% = 20% height -->
-      <div class="bar-col" style="left:536px;">
-        <div class="bar positive" style="bottom:45%; height:20%;"><div class="bar-value above">€1.6M</div></div>
-        <div class="period-label" style="top:58%;">Q4'29</div>
-      </div>
-
-      <!-- Q4'30: €7.1M — capped at 100% = 38% height -->
-      <div class="bar-col" style="left:600px;">
-        <div class="bar positive" style="bottom:45%; height:38%;"><div class="bar-value above" style="font-weight:700;">€7.1M</div></div>
-        <div class="period-label" style="top:58%;">Q4'30</div>
-      </div>
+    <!-- Cash Waterfall Chart — flexbox approach -->
+    <div class="cash-chart-grid">
+      <!-- Bar heights: max=€7.1M→180px. Scale: 1px ≈ €39.4K. Neg: €477K→12px -->
+      <div class="cc-col"><div class="cc-val">€3.0M</div><div class="cc-bar" style="height:76px;"></div><div class="cc-label">Q2'26</div></div>
+      <div class="cc-col"><div class="cc-val">€2.3M</div><div class="cc-bar" style="height:58px;"></div><div class="cc-label">Q4'26</div></div>
+      <div class="cc-col"><div class="cc-val">€1.5M</div><div class="cc-bar" style="height:38px;"></div><div class="cc-label">Q2'27</div><div class="cc-alert">FUNDRAISE</div></div>
+      <div class="cc-col"><div class="cc-val">€607K</div><div class="cc-bar" style="height:15px;"></div><div class="cc-label">Q4'27</div><div class="cc-alert">RAISE NOW</div></div>
+      <div class="cc-col"><div class="cc-val">€227K</div><div class="cc-bar" style="height:6px;"></div><div class="cc-label">Q1'28</div></div>
+      <div class="cc-col"><div class="cc-bar neg" style="height:4px;"></div><div class="cc-val neg-val">-€139K</div><div class="cc-label">Q2'28</div></div>
+      <div class="cc-col"><div class="cc-bar neg" style="height:12px;"></div><div class="cc-val neg-val">-€477K</div><div class="cc-label">Q4'28</div></div>
+      <div class="cc-col"><div class="cc-val">€108K</div><div class="cc-bar" style="height:3px;"></div><div class="cc-label">Q2'29</div></div>
+      <div class="cc-col"><div class="cc-val">€1.6M</div><div class="cc-bar" style="height:40px;"></div><div class="cc-label">Q4'29</div></div>
+      <div class="cc-col"><div class="cc-val" style="font-weight:700;">€7.1M</div><div class="cc-bar" style="height:180px;"></div><div class="cc-label">Q4'30</div></div>
     </div>
 
     <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center;">
