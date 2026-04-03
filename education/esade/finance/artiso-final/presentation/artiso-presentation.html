@@ -9,6 +9,12 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Force lining (modern) numerals in Cormorant Garamond — prevents "11" looking like Roman "II" */
+h1, h2, h3, .hero-number, .metric-value, .res-num, .compare-value,
+[style*="font-family:var(--font-display)"] {
+  font-feature-settings: 'lnum' 1;
+}
+
 :root {
   /* ARTISO Brand Palette — from pitch deck */
   --purple-deep: #3d3575;
@@ -235,7 +241,7 @@ p, li {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 17px;
+  font-size: 16px;
 }
 thead th {
   text-align: left;
@@ -295,12 +301,13 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 /* ── Recommendation Box ── */
 .reco-box {
   margin-top: auto;
-  background: var(--lavender-wash);
+  background: linear-gradient(135deg, var(--lavender-wash) 0%, rgba(196,201,232,0.25) 100%);
   border-left: 4px solid var(--purple-mid);
-  padding: 18px 24px;
-  border-radius: 0 8px 8px 0;
+  padding: 28px 36px;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 4px 16px rgba(91,106,191,0.08);
 }
-.reco-box p { font-size: 17px; color: var(--text); }
+.reco-box p { font-size: 19px; color: var(--text); line-height: 1.6; }
 .reco-box strong { color: var(--purple-deep); }
 
 /* ── Cash Waterfall Chart (Slide 6) — fixed-position zero line ── */
@@ -390,25 +397,25 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 16px;
-  padding: 36px 28px;
+  padding: 40px 32px;
   text-align: center;
 }
 .resolution-card .res-num {
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 700;
   opacity: 0.3;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .resolution-card h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--white);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .resolution-card p {
-  font-size: 15px;
+  font-size: 16px;
   color: rgba(255,255,255,0.8);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* ── Risk List ── */
@@ -613,7 +620,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 .spacer { flex: 1; }
 .gap-sm { height: 12px; }
 .gap-md { height: 20px; }
-.gap-lg { height: 32px; }
+.gap-lg { height: 36px; flex-shrink: 0; }
 
 /* ── Utilities ── */
 .flex-col { display: flex; flex-direction: column; }
@@ -676,28 +683,34 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 
 /* ── Risk Cards v3 (Slide 11) ── */
 .risk-card-v3 {
-  background: var(--white);
-  border-radius: 10px;
+  --sev-from: #9CA3AF; --sev-to: #d1d5db;
+  background: linear-gradient(#fff, #fafaff) padding-box,
+              linear-gradient(135deg, var(--sev-from), var(--sev-to)) border-box;
+  border-radius: 12px;
   padding: 18px 20px;
-  border: 1px solid #e8e6f0;
-  border-left: 4px solid var(--text-light);
+  border: 2px solid transparent;
+  box-shadow: 0 8px 20px rgba(61,53,117,0.06);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 .risk-card-v3:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
 }
-.risk-card-v3.sev-critical { border-left-color: #dc2626; }
-.risk-card-v3.sev-high { border-left-color: #ea580c; }
-.risk-card-v3.sev-medium { border-left-color: #d97706; }
-.risk-card-v3.sev-action { border-left-color: #059669; background: #f0fdf4; }
+.risk-card-v3.sev-critical { --sev-from: #dc2626; --sev-to: #f97316; }
+.risk-card-v3.sev-high { --sev-from: #f97316; --sev-to: #facc15; }
+.risk-card-v3.sev-medium { --sev-from: #facc15; --sev-to: #22c55e; }
+.risk-card-v3.sev-action {
+  --sev-from: #059669; --sev-to: #5B6ABF;
+  background: linear-gradient(135deg, rgba(5,150,105,0.08), rgba(91,106,191,0.08)) padding-box,
+              linear-gradient(135deg, var(--sev-from), var(--sev-to)) border-box;
+}
 .sev-pill {
   display: inline-block;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 100px;
   margin-left: 8px;
 }
@@ -708,13 +721,16 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 
 /* ── Metric Cards v3 (Slide 5) ── */
 .metric-card-v3 {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 24px 16px 20px;
-  text-align: center;
-  border: 1px solid #e8e6f0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), var(--card-tint, var(--lavender-wash)));
+  border-radius: 14px;
+  padding: 20px 16px 18px;
+  text-align: left;
+  border: 1px solid rgba(91,106,191,0.12);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 20px rgba(61,53,117,0.06);
+  display: flex;
+  flex-direction: column;
 }
 .metric-card-v3::before {
   content: '';
@@ -723,13 +739,34 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--card-accent, var(--purple-mid));
+  background: linear-gradient(90deg, var(--card-accent, var(--purple-mid)), transparent 85%);
 }
-.metric-card-v3:nth-child(1) { --card-accent: #667eea; }
-.metric-card-v3:nth-child(2) { --card-accent: #059669; }
-.metric-card-v3:nth-child(3) { --card-accent: #d97706; }
-.metric-card-v3:nth-child(4) { --card-accent: #8b5cf6; }
-.metric-card-v3:nth-child(5) { --card-accent: #06b6d4; }
+.metric-card-v3::after {
+  content: var(--card-icon, '');
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.6);
+  font-size: 15px;
+  color: var(--card-accent);
+}
+.metric-card-v3:nth-child(1) { --card-accent: #667eea; --card-tint: rgba(102,126,234,0.08); --card-icon: '↗'; }
+.metric-card-v3:nth-child(2) { --card-accent: #059669; --card-tint: rgba(5,150,105,0.07); --card-icon: '⚖'; }
+.metric-card-v3:nth-child(3) { --card-accent: #d97706; --card-tint: rgba(217,119,6,0.07); --card-icon: '◔'; }
+.metric-card-v3:nth-child(4) { --card-accent: #8b5cf6; --card-tint: rgba(139,92,246,0.07); --card-icon: '40'; }
+.metric-card-v3:nth-child(5) { --card-accent: #059669; --card-tint: rgba(5,150,105,0.07); --card-icon: '✓'; }
+.metric-card-v3 .metric-value { margin-top: 8px; }
+.metric-card-v3 .metric-target {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(91,106,191,0.1);
+}
 
 /* ── Print ── */
 @media print {
@@ -829,11 +866,12 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     </thead>
     <tbody>
       <tr><td class="bold">Total Revenue</td><td class="right">€0</td><td class="right">€15K</td><td class="right">€645K</td><td class="right">€5.4M</td><td class="right">€14.2M</td><td class="right">€26.0M</td><td class="right">€36.8M</td></tr>
+      <tr><td>COGS</td><td class="right">—</td><td class="right">(€2K)</td><td class="right">(€115K)</td><td class="right">(€966K)</td><td class="right">(€2.5M)</td><td class="right">(€4.6M)</td><td class="right">(€6.5M)</td></tr>
       <tr><td>Gross Margin</td><td class="right">—</td><td class="right">86.7%</td><td class="right">82.3%</td><td class="right">82.0%</td><td class="right">82.1%</td><td class="right">82.2%</td><td class="right">82.3%</td></tr>
+      <tr><td>Total OpEx</td><td class="right">(€120K)</td><td class="right">(€280K)</td><td class="right">(€1.1M)</td><td class="right">(€5.7M)</td><td class="right">(€12.0M)</td><td class="right">(€18.3M)</td><td class="right">(€22.0M)</td></tr>
       <tr class="highlight"><td class="bold">EBITDA</td><td class="right">(€120K)</td><td class="right">(€267K)</td><td class="right">(€565K)</td><td class="right">(€1.3M)</td><td class="right">(€351K)</td><td class="right">+€3.1M</td><td class="right">+€8.3M</td></tr>
-      <!-- v4 fact-checked: EBITDA FY2029=3.08M, FY2030=8.28M ✓ -->
       <tr><td>EBITDA Margin</td><td class="right">—</td><td class="right">—</td><td class="right">-87.5%</td><td class="right">-23.7%</td><td class="right">-2.5%</td><td class="right">+11.8%</td><td class="right">+22.5%</td></tr>
-      <tr><td>Installed Base</td><td class="right">0</td><td class="right">3</td><td class="right">27</td><td class="right">104</td><td class="right">182</td><td class="right">282</td><td class="right">363</td></tr>
+      <tr><td>Installed Base</td><td class="right">0</td><td class="right">3</td><td class="right">27</td><td class="right">86</td><td class="right">182</td><td class="right">282</td><td class="right">363</td></tr>
       <tr><td class="bold">ARR (End of Year)</td><td class="right">€0</td><td class="right">€0</td><td class="right">€1.3M</td><td class="right">€6.8M</td><td class="right">€16.1M</td><td class="right">€26.4M</td><td class="right">€35.8M</td></tr>
     </tbody>
   </table>
@@ -905,7 +943,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 </div>
   </div>
   <div class="split-right" style="padding:60px 80px 60px 40px;display:flex;flex-direction:column;background:linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%);">
-    <div class="slide-label" style="text-align:center;">Annual Contract Value by Tier</div>
+    <div class="slide-label" style="text-align:center;margin-top:72px;">Annual Contract Value by Tier</div>
     <div class="tier-grid" style="margin-top:20px;">
       <div class="tier-card">
         <div class="tier-name">SME</div>
@@ -1087,7 +1125,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     </svg>
     </div>
 
-    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center;">
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:flex-start;padding-top:8px;">
       <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
         <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Lowest Point</div>
         <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--negative);">-€477K</div>
@@ -1102,6 +1140,9 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
         <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Venture Debt Window</div>
         <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--purple-deep);">H2 2028</div>
         <div style="font-size:13px;color:var(--text-muted);">Near EBITDA breakeven — 9-10% + 1% warrants</div>
+      </div>
+      <div style="background:linear-gradient(135deg,rgba(91,106,191,0.08),rgba(196,201,232,0.2));border-radius:10px;padding:14px 18px;border:1px solid #e8e6f0;margin-top:auto;">
+        <div style="font-size:14px;color:var(--text);line-height:1.5;"><strong style="color:var(--purple-deep);">€3M seed</strong> funds 27 months of runway (Q2'26→Q2'28) at avg. €111K/mo burn.</div>
       </div>
     </div>
   </div>
@@ -1186,13 +1227,13 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   </table>
 
   <div style="display:flex;gap:24px;margin-top:auto;">
-    <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
-      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Price Per Share</div>
-      <div style="font-size:20px;font-weight:700;color:var(--purple-deep);">€2.40 → €19.33 <span style="font-size:14px;color:var(--positive);font-weight:500;">(8.1x step-up)</span></div>
+    <div style="background:linear-gradient(135deg,var(--lavender-wash),rgba(196,201,232,0.25));border-radius:12px;padding:20px 24px;flex:1;border:1px solid #e8e6f0;box-shadow:0 4px 16px rgba(91,106,191,0.06);">
+      <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Price Per Share</div>
+      <div style="font-size:24px;font-weight:700;color:var(--purple-deep);margin-top:4px;">€2.40 → €19.33 <span style="font-size:15px;color:var(--positive);font-weight:500;">(8.1x step-up)</span></div>
     </div>
-    <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
-      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">ESOP Method</div>
-      <div style="font-size:16px;font-weight:500;color:var(--text);">Pre-money carve-out (VC standard) — course teaches pro-rata is fairer</div>
+    <div style="background:linear-gradient(135deg,var(--lavender-wash),rgba(196,201,232,0.25));border-radius:12px;padding:20px 24px;flex:1;border:1px solid #e8e6f0;box-shadow:0 4px 16px rgba(91,106,191,0.06);">
+      <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">ESOP Method</div>
+      <div style="font-size:18px;font-weight:500;color:var(--text);margin-top:4px;">Pre-money carve-out (VC standard) — course teaches pro-rata is fairer</div>
     </div>
   </div>
 
@@ -1212,41 +1253,43 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     <div class="slide-label">Valuation</div>
     <h2>5-Step VC Method</h2>
 
-    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;flex:1;">
-      <div style="display:flex;align-items:center;gap:14px;background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:14px 18px;border-left:4px solid var(--purple-deep);">
-        <div style="min-width:36px;height:36px;border-radius:50%;background:var(--purple-deep);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;">1</div>
-        <div><div style="font-size:14px;font-weight:600;">EV at Exit</div><div style="font-size:13px;color:var(--text-muted);">FY2030 ARR €35.8M × 10x = <strong style="color:var(--purple-deep);">€358M</strong></div></div>
+    <div class="vc-flow" style="display:flex;flex-direction:column;gap:6px;margin-top:12px;flex:1;">
+      <div style="display:flex;align-items:center;gap:14px;background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:12px 16px;border-left:4px solid var(--purple-deep);">
+        <div style="min-width:34px;height:34px;border-radius:50%;background:var(--purple-deep);color:white;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">1</div>
+        <div><div style="font-size:13px;font-weight:600;">EV at Exit</div><div style="font-size:12px;color:var(--text-muted);">FY2030 ARR €35.8M × 10x = <strong style="color:var(--purple-deep);">€358M</strong></div></div>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:14px 18px;border-left:4px solid var(--purple-deep);">
-        <div style="min-width:36px;height:36px;border-radius:50%;background:var(--purple-deep);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;">2</div>
-        <div><div style="font-size:14px;font-weight:600;">Required Value at Exit</div><div style="font-size:13px;color:var(--text-muted);">€3M × (1.4)⁴ = <strong style="color:var(--purple-deep);">€11.5M</strong></div></div>
+      <div style="text-align:center;color:var(--lavender);font-size:14px;line-height:1;">↓</div>
+      <div style="display:flex;align-items:center;gap:14px;background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:12px 16px;border-left:4px solid var(--purple-deep);">
+        <div style="min-width:34px;height:34px;border-radius:50%;background:var(--purple-deep);color:white;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">2</div>
+        <div><div style="font-size:13px;font-weight:600;">Required Value at Exit</div><div style="font-size:12px;color:var(--text-muted);">€3M × (1.4)⁴ = <strong style="color:var(--purple-deep);">€11.5M</strong></div></div>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:14px 18px;border-left:4px solid var(--purple-mid);">
-        <div style="min-width:36px;height:36px;border-radius:50%;background:var(--purple-mid);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;">3</div>
-        <div><div style="font-size:14px;font-weight:600;">Required Ownership</div><div style="font-size:13px;color:var(--text-muted);">€11.5M / €358M = <strong style="color:var(--purple-deep);">3.2%</strong></div></div>
+      <div style="text-align:center;color:var(--lavender);font-size:14px;line-height:1;">↓</div>
+      <div style="display:flex;align-items:center;gap:14px;background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:12px 16px;border-left:4px solid var(--purple-mid);">
+        <div style="min-width:34px;height:34px;border-radius:50%;background:var(--purple-mid);color:white;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">3</div>
+        <div><div style="font-size:13px;font-weight:600;">Required Ownership</div><div style="font-size:12px;color:var(--text-muted);">€11.5M / €358M = <strong style="color:var(--purple-deep);">3.2%</strong></div></div>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:14px 18px;border-left:4px solid var(--purple-soft);">
-        <div style="min-width:36px;height:36px;border-radius:50%;background:var(--purple-soft);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;">4</div>
-        <div><div style="font-size:14px;font-weight:600;">Shares Issued</div><div style="font-size:13px;color:var(--text-muted);">~415K on 12.5M FD base</div></div>
+      <div style="text-align:center;color:var(--lavender);font-size:14px;line-height:1;">↓</div>
+      <div style="display:flex;align-items:center;gap:14px;background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:12px 16px;border-left:4px solid var(--purple-soft);">
+        <div style="min-width:34px;height:34px;border-radius:50%;background:var(--purple-soft);color:white;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">4</div>
+        <div><div style="font-size:13px;font-weight:600;">Shares Issued</div><div style="font-size:12px;color:var(--text-muted);">~415K on 12.5M FD base</div></div>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(102,126,234,0.12),rgba(165,180,252,0.2));border:1px solid var(--accent-light);border-radius:10px;padding:14px 18px;border-left:4px solid var(--accent);">
-        <div style="min-width:36px;height:36px;border-radius:50%;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;">5</div>
-        <div><div style="font-size:14px;font-weight:600;">Implied Pre-Money</div><div style="font-size:13px;color:var(--text-muted);"><strong style="color:var(--purple-deep);font-size:16px;">€90.3M</strong> — €27M is conservative</div></div>
+      <div style="text-align:center;color:var(--accent);font-size:14px;line-height:1;">↓</div>
+      <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(102,126,234,0.15),rgba(165,180,252,0.22));border:2px solid var(--accent-light);border-radius:12px;padding:14px 18px;box-shadow:0 6px 18px rgba(102,126,234,0.12);">
+        <div style="min-width:40px;height:40px;border-radius:50%;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;">5</div>
+        <div><div style="font-size:14px;font-weight:700;color:var(--purple-deep);">Implied Pre-Money</div><div style="font-size:13px;color:var(--text-muted);"><strong style="color:var(--purple-deep);font-size:18px;">€90.3M</strong> — €27M is conservative</div></div>
       </div>
-      <div style="background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:14px 18px;margin-top:auto;">
-        <div style="font-size:14px;color:var(--text);line-height:1.5;">Investors enter at <strong style="color:var(--purple-deep);">70% discount</strong> to terminal valuation — reflecting execution risk at pre-seed stage.</div>
-      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:auto;text-align:center;">Investors enter at <strong style="color:var(--purple-deep);">70% discount</strong> to terminal valuation (execution risk at pre-seed)</div>
     </div>
   </div>
-  <div class="split-right" style="padding:60px 80px 60px 40px;display:flex;flex-direction:column;background:linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%);">
-    <div style="text-align:center;margin-bottom:24px;">
-      <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:8px;">Seed Investor IRR</div>
-      <div style="font-family:var(--font-display);font-size:72px;font-weight:700;color:var(--purple-deep);line-height:1;">85.9%</div>
-      <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">Far exceeds 40% hurdle · 11.9x return</div>
+  <div class="split-right" style="padding:50px 80px 50px 40px;display:flex;flex-direction:column;background:linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%);">
+    <div style="text-align:center;margin-bottom:16px;">
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:6px;">Seed Investor IRR</div>
+      <div style="font-family:var(--font-display);font-size:60px;font-weight:700;color:var(--purple-deep);line-height:1;">85.9%</div>
+      <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Far exceeds 40% hurdle · 11.9x return</div>
     </div>
 
-    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:8px;">Valuation Triangulation</div>
-    <table style="font-size:15px;">
+    <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:6px;">Valuation Triangulation</div>
+    <table style="font-size:14px;">
       <thead><tr><th>Method</th><th class="right">Implied Pre-Money</th></tr></thead>
       <tbody>
         <tr><td>FY2026 Revenue × 40x</td><td class="right">€25.8M</td></tr>
@@ -1256,29 +1299,29 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
         <tr class="highlight"><td class="bold">Comparable Transactions</td><td class="right bold">€27.0M</td></tr>
       </tbody>
     </table>
-    <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:12px 16px;margin-top:auto;text-align:center;">
-      <p style="font-size:14px;color:var(--text);">Range: €25.8M – €90.3M · <strong>€27M is at the conservative end</strong><br><span style="color:var(--text-muted);">Acceptable: €22-25M if it secures a strong lead</span></p>
+    <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:10px 14px;margin-top:12px;text-align:center;">
+      <p style="font-size:13px;color:var(--text);line-height:1.5;">Range: €25.8M – €90.3M · <strong>€27M is at the conservative end</strong><br><span style="color:var(--text-muted);">Acceptable: €22-25M if it secures a strong lead</span></p>
     </div>
-<div style="margin-top:16px;">
-  <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:8px;">Comparable Pre-Seed Deals</div>
-  <div style="display:flex;gap:8px;">
-    <div style="flex:1;background:rgba(255,255,255,0.5);border-radius:8px;padding:10px;text-align:center;">
-      <div style="font-size:12px;font-weight:600;color:var(--text);">Heuritech</div>
-      <div style="font-size:11px;color:var(--text-muted);">€5M at ~€25M pre</div>
+    <div style="margin-top:12px;">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:6px;">Comparable Pre-Seed Deals</div>
+      <div style="display:flex;gap:8px;">
+        <div style="flex:1;background:rgba(255,255,255,0.5);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--text);">Heuritech</div>
+          <div style="font-size:11px;color:var(--text-muted);">€5M at ~€25M pre</div>
+        </div>
+        <div style="flex:1;background:rgba(255,255,255,0.5);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--text);">CALA</div>
+          <div style="font-size:11px;color:var(--text-muted);">$7M at ~$30M pre</div>
+        </div>
+        <div style="flex:1;background:rgba(255,255,255,0.5);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--text);">Vue.ai</div>
+          <div style="font-size:11px;color:var(--text-muted);">$47M+ (later stage)</div>
+        </div>
+      </div>
     </div>
-    <div style="flex:1;background:rgba(255,255,255,0.5);border-radius:8px;padding:10px;text-align:center;">
-      <div style="font-size:12px;font-weight:600;color:var(--text);">CALA</div>
-      <div style="font-size:11px;color:var(--text-muted);">$7M at ~$30M pre</div>
+    <div style="margin-top:auto;background:rgba(255,255,255,0.4);border-radius:8px;padding:8px 14px;text-align:center;">
+      <div style="font-size:11px;color:var(--text-muted);">At 10x ARR exit (€358M): each founder's 26.7% = <strong style="color:var(--purple-deep);">€96M</strong></div>
     </div>
-    <div style="flex:1;background:rgba(255,255,255,0.5);border-radius:8px;padding:10px;text-align:center;">
-      <div style="font-size:12px;font-weight:600;color:var(--text);">Vue.ai</div>
-      <div style="font-size:11px;color:var(--text-muted);">$47M+ (later stage)</div>
-    </div>
-  </div>
-</div>
-<div style="margin-top:12px;background:rgba(255,255,255,0.4);border-radius:8px;padding:10px 14px;text-align:center;">
-  <div style="font-size:11px;color:var(--text-muted);">At 10x ARR exit (€358M): each founder's 26.7% = <strong style="color:var(--purple-deep);">€96M</strong></div>
-</div>
   </div>
   </div><!-- end inner grid -->
 
@@ -1416,6 +1459,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 
   <div style="margin-top:auto;text-align:center;padding-bottom:8px;">
     <p style="font-size:20px;color:rgba(255,255,255,0.85);font-style:italic;max-width:700px;margin:0 auto;line-height:1.5;">"The discipline is not just raising this round. It is ensuring the company reaches the next round with evidence, optionality, and negotiating leverage."</p>
+    <p style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:10px;">— CFO Advisory Team: Roxane, Christian, Martí, Leonor, Tamás</p>
   </div>
 
   <div class="slide-footer">
