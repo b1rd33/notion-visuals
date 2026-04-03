@@ -622,115 +622,6 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 .items-center { align-items: center; }
 .text-center { text-align: center; }
 
-/* ── VC Timeline (Slide 9) ── */
-.vc-timeline {
-  position: relative;
-  padding-left: 56px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.vc-timeline::before {
-  content: '';
-  position: absolute;
-  left: 20px;
-  top: 22px;
-  bottom: 22px;
-  width: 3px;
-  background: linear-gradient(180deg, var(--purple-deep) 0%, var(--purple-mid) 50%, var(--accent-light) 100%);
-  border-radius: 2px;
-}
-.vc-timeline .vt-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  position: relative;
-}
-.vc-timeline .vt-num {
-  min-width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--purple-deep);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 700;
-  z-index: 1;
-  box-shadow: 0 0 0 5px var(--lavender-wash), 0 3px 10px rgba(61,53,117,0.2);
-  position: absolute;
-  left: -56px;
-}
-.vc-timeline .vt-step:last-child .vt-num {
-  min-width: 48px;
-  height: 48px;
-  font-size: 20px;
-  background: var(--accent);
-  box-shadow: 0 0 0 5px var(--lavender-wash), 0 4px 14px rgba(102,126,234,0.3);
-  left: -58px;
-}
-.vt-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 1px; }
-.vt-content p { font-size: 13px; color: var(--text-muted); line-height: 1.3; }
-.vt-content strong { color: var(--purple-deep); }
-
-/* ── Risk Cards v3 (Slide 11) ── */
-.risk-card-v3 {
-  background: var(--white);
-  border-radius: 10px;
-  padding: 18px 20px;
-  border: 1px solid #e8e6f0;
-  border-left: 4px solid var(--text-light);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-.risk-card-v3:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transform: translateY(-1px);
-}
-.risk-card-v3.sev-critical { border-left-color: #dc2626; }
-.risk-card-v3.sev-high { border-left-color: #ea580c; }
-.risk-card-v3.sev-medium { border-left-color: #d97706; }
-.risk-card-v3.sev-action { border-left-color: #059669; background: #f0fdf4; }
-.sev-pill {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 2px 8px;
-  border-radius: 100px;
-  margin-left: 8px;
-}
-.sev-pill.critical { background: #fef2f2; color: #dc2626; }
-.sev-pill.high { background: #fff7ed; color: #ea580c; }
-.sev-pill.medium { background: #fef3c7; color: #92400e; }
-.sev-pill.action { background: #ecfdf5; color: #065f46; }
-
-/* ── Metric Cards v3 (Slide 5) ── */
-.metric-card-v3 {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 24px 16px 20px;
-  text-align: center;
-  border: 1px solid #e8e6f0;
-  position: relative;
-  overflow: hidden;
-}
-.metric-card-v3::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--card-accent, var(--purple-mid));
-}
-.metric-card-v3:nth-child(1) { --card-accent: #667eea; }
-.metric-card-v3:nth-child(2) { --card-accent: #059669; }
-.metric-card-v3:nth-child(3) { --card-accent: #d97706; }
-.metric-card-v3:nth-child(4) { --card-accent: #8b5cf6; }
-.metric-card-v3:nth-child(5) { --card-accent: #06b6d4; }
-
 /* ── Print ── */
 @media print {
   body { overflow: visible; background: white; height: auto; }
@@ -974,27 +865,27 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   <h2>Key Metrics — FY2030 Base Case</h2>
 
   <div class="metric-grid" style="margin-top:16px;">
-    <div class="metric-card metric-card-v3">
+    <div class="metric-card">
       <div class="metric-value">€74K</div>
       <div class="metric-label">Blended CAC</div>
       <div class="metric-target">↑ from €17K — rises with scale</div>
     </div>
-    <div class="metric-card metric-card-v3">
+    <div class="metric-card">
       <div class="metric-value">5.3x</div>
       <div class="metric-label">LTV / CAC</div>
       <div class="metric-target">Target: 3-5x</div>
     </div>
-    <div class="metric-card metric-card-v3">
+    <div class="metric-card">
       <div class="metric-value">11 mo</div>
       <div class="metric-label">CAC Payback</div>
       <div class="metric-target">Target: &lt; 18 months</div>
     </div>
-    <div class="metric-card metric-card-v3">
+    <div class="metric-card">
       <div class="metric-value">64%</div>
       <div class="metric-label">Rule of 40</div>
       <div class="metric-target">Rev Growth 41.5% + Margin 22.5%</div>
     </div>
-    <div class="metric-card metric-card-v3">
+    <div class="metric-card">
       <div class="metric-value" style="color:var(--positive);">0.0x</div>
       <div class="metric-label">Burn Multiple</div>
       <div class="metric-target">Cash-flow positive by FY2030</div>
@@ -1027,36 +918,35 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
       <defs>
         <linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#667eea"/><stop offset="100%" stop-color="#a5b4fc"/></linearGradient>
         <linearGradient id="gn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fca5a5"/><stop offset="100%" stop-color="#dc2626"/></linearGradient>
-        <filter id="bar-shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#667eea" flood-opacity="0.12"/></filter>
       </defs>
       <!-- Zero line at y=340. Max positive = 290px (€7.1M). Scale: 1px = €24.5K -->
       <line x1="10" y1="340" x2="650" y2="340" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="6,4"/>
       <text x="4" y="336" font-size="9" fill="#9CA3AF" font-weight="600" font-family="DM Sans,sans-serif">€0</text>
 
       <!-- Q2'26: €3.0M → 122px -->
-      <rect x="22" y="218" width="44" height="122" rx="3" fill="url(#gp)" filter="url(#bar-shadow)"/>
+      <rect x="22" y="218" width="44" height="122" rx="3" fill="url(#gp)"/>
       <text x="44" y="210" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€3.0M</text>
       <text x="44" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'26</text>
 
       <!-- Q4'26: €2.3M → 94px -->
-      <rect x="88" y="246" width="44" height="94" rx="3" fill="url(#gp)" filter="url(#bar-shadow)"/>
+      <rect x="88" y="246" width="44" height="94" rx="3" fill="url(#gp)"/>
       <text x="110" y="238" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€2.3M</text>
       <text x="110" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'26</text>
 
       <!-- Q2'27: €1.5M → 61px -->
-      <rect x="154" y="279" width="44" height="61" rx="3" fill="url(#gp)" filter="url(#bar-shadow)"/>
+      <rect x="154" y="279" width="44" height="61" rx="3" fill="url(#gp)"/>
       <text x="176" y="271" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€1.5M</text>
       <text x="176" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'27</text>
       <text x="176" y="372" text-anchor="middle" font-size="8" fill="#d97706" font-weight="700" font-family="DM Sans,sans-serif">FUNDRAISE</text>
 
       <!-- Q4'27: €607K → 25px -->
-      <rect x="220" y="315" width="44" height="25" rx="3" fill="url(#gp)" filter="url(#bar-shadow)"/>
+      <rect x="220" y="315" width="44" height="25" rx="3" fill="url(#gp)"/>
       <text x="242" y="307" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€607K</text>
       <text x="242" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'27</text>
       <text x="242" y="372" text-anchor="middle" font-size="8" fill="#dc2626" font-weight="700" font-family="DM Sans,sans-serif">RAISE NOW</text>
 
       <!-- Q1'28: €227K → 9px -->
-      <rect x="286" y="331" width="44" height="9" rx="2" fill="url(#gp)" filter="url(#bar-shadow)"/>
+      <rect x="286" y="331" width="44" height="9" rx="2" fill="url(#gp)"/>
       <text x="308" y="323" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€227K</text>
       <text x="308" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q1'28</text>
 
@@ -1071,17 +961,17 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
       <text x="440" y="388" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'28</text>
 
       <!-- Q2'29: €108K → 4px -->
-      <rect x="484" y="336" width="44" height="4" rx="2" fill="url(#gp)" filter="url(#bar-shadow)"/>
+      <rect x="484" y="336" width="44" height="4" rx="2" fill="url(#gp)"/>
       <text x="506" y="328" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€108K</text>
       <text x="506" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'29</text>
 
       <!-- Q4'29: €1.6M → 65px -->
-      <rect x="550" y="275" width="44" height="65" rx="3" fill="url(#gp)" filter="url(#bar-shadow)"/>
+      <rect x="550" y="275" width="44" height="65" rx="3" fill="url(#gp)"/>
       <text x="572" y="267" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€1.6M</text>
       <text x="572" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'29</text>
 
       <!-- Q4'30: €7.1M → 290px (full height) -->
-      <rect x="616" y="50" width="44" height="290" rx="3" fill="url(#gp)" filter="url(#bar-shadow)"/>
+      <rect x="616" y="50" width="44" height="290" rx="3" fill="url(#gp)"/>
       <text x="638" y="42" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="700" font-family="DM Sans,sans-serif">€7.1M</text>
       <text x="638" y="358" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'30</text>
     </svg>
@@ -1212,12 +1102,27 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     <div class="slide-label">Valuation</div>
     <h2>5-Step VC Method</h2>
 
-    <div class="vc-timeline" style="margin-top:12px;">
-      <div class="vt-step"><div class="vt-num">1</div><div class="vt-content"><h4>EV at Exit</h4><p>FY2030 ARR €35.8M × 10x = <strong>€358M</strong></p></div></div>
-      <div class="vt-step"><div class="vt-num">2</div><div class="vt-content"><h4>Required Value at Exit</h4><p>€3M × (1.4)⁴ = <strong>€11.5M</strong></p></div></div>
-      <div class="vt-step"><div class="vt-num">3</div><div class="vt-content"><h4>Required Ownership</h4><p>€11.5M / €358M = <strong>3.2%</strong></p></div></div>
-      <div class="vt-step"><div class="vt-num">4</div><div class="vt-content"><h4>Shares Issued</h4><p>~415K on 12.5M FD base</p></div></div>
-      <div class="vt-step"><div class="vt-num">5</div><div class="vt-content"><h4>Implied Pre-Money</h4><p><strong>€90.3M</strong> — €27M is conservative</p></div></div>
+    <div class="vc-steps" style="margin-top:16px;">
+      <div class="vc-step">
+        <div class="vc-step-num">1</div>
+        <div class="vc-step-content"><h4>EV at Exit</h4><p>FY2030 ARR €35.8M × 10x = <strong>€358M</strong></p></div>
+      </div>
+      <div class="vc-step">
+        <div class="vc-step-num">2</div>
+        <div class="vc-step-content"><h4>Required Value at Exit</h4><p>€3M × (1.4)⁴ = <strong>€11.5M</strong></p></div>
+      </div>
+      <div class="vc-step">
+        <div class="vc-step-num">3</div>
+        <div class="vc-step-content"><h4>Required Ownership</h4><p>€11.5M / €358M = <strong>3.2%</strong></p></div>
+      </div>
+      <div class="vc-step">
+        <div class="vc-step-num">4</div>
+        <div class="vc-step-content"><h4>Shares Issued</h4><p>~415K on 12.5M FD base</p></div>
+      </div>
+      <div class="vc-step">
+        <div class="vc-step-num">5</div>
+        <div class="vc-step-content"><h4>Implied Pre-Money</h4><p><strong>€90.3M</strong> — €27M is conservative</p></div>
+      </div>
     </div>
   </div>
   <div class="split-right" style="padding:60px 80px 60px 40px;display:flex;flex-direction:column;background:linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%);">
@@ -1337,30 +1242,54 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   <div class="slide-label">Risk Analysis</div>
   <h2>Key Risks & Mitigation</h2>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;align-content:start;margin-top:16px;">
-  <div class="risk-card-v3 sev-critical">
-    <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Customer Concentration <span class="sev-pill critical">Critical</span></div>
-    <div style="font-size:13px;color:var(--text-muted);line-height:1.45;">7 logos, top 3 = 60%+ of Y1 ARR. <em>Mitigate:</em> Diversify across tiers, cluster GTM via MODACC.</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;align-content:start;margin-top:16px;">
+  <!-- Risk 1 -->
+  <div style="background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:18px 20px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <div style="width:10px;height:10px;border-radius:50%;background:#dc2626;"></div>
+      <div style="font-size:15px;font-weight:600;">Customer Concentration</div>
+    </div>
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">7 logos, top 3 = 60%+ of Y1 ARR.<br><em>Mitigate:</em> Diversify across tiers, cluster GTM via MODACC.</div>
   </div>
-  <div class="risk-card-v3 sev-critical">
-    <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Technology Moat Erosion <span class="sev-pill critical">Critical</span></div>
-    <div style="font-size:13px;color:var(--text-muted);line-height:1.45;">Adobe/OpenAI entering vertical AI. <em>Mitigate:</em> Deepen proprietary fashion ontology + PLM integrations.</div>
+  <!-- Risk 2 -->
+  <div style="background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:18px 20px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <div style="width:10px;height:10px;border-radius:50%;background:#dc2626;"></div>
+      <div style="font-size:15px;font-weight:600;">Technology Moat Erosion</div>
+    </div>
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Adobe/OpenAI entering vertical AI.<br><em>Mitigate:</em> Deepen proprietary fashion ontology + PLM integrations.</div>
   </div>
-  <div class="risk-card-v3 sev-high">
-    <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Extended Sales Cycles <span class="sev-pill high">High</span></div>
-    <div style="font-size:13px;color:var(--text-muted);line-height:1.45;">Enterprise brands: 6-9 months. <em>Mitigate:</em> Parallel SME pipeline (1mo cycle), founder-led first 15 logos.</div>
+  <!-- Risk 3 -->
+  <div style="background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:18px 20px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <div style="width:10px;height:10px;border-radius:50%;background:#d97706;"></div>
+      <div style="font-size:15px;font-weight:600;">Extended Sales Cycles</div>
+    </div>
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Enterprise brands: 6-9 months.<br><em>Mitigate:</em> Parallel SME pipeline (1-month cycle), founder-led first 15 logos.</div>
   </div>
-  <div class="risk-card-v3 sev-high">
-    <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Cash Runway Timing <span class="sev-pill high">High</span></div>
-    <div style="font-size:13px;color:var(--text-muted);line-height:1.45;">Series A must close by Q1 2028. <em>Mitigate:</em> Begin process Q2 2027, €500K internal trigger.</div>
+  <!-- Risk 4 -->
+  <div style="background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:18px 20px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <div style="width:10px;height:10px;border-radius:50%;background:#d97706;"></div>
+      <div style="font-size:15px;font-weight:600;">Cash Runway Timing</div>
+    </div>
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Series A must close by Q1 2028.<br><em>Mitigate:</em> Begin process Q2 2027, €500K internal trigger.</div>
   </div>
-  <div class="risk-card-v3 sev-medium">
-    <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Model Sensitivity <span class="sev-pill medium">Medium</span></div>
-    <div style="font-size:13px;color:var(--text-muted);line-height:1.45;">Enterprise NRR + lead growth dominate. <em>Mitigate:</em> Monthly recalibration vs actuals.</div>
+  <!-- Risk 5 -->
+  <div style="background:var(--lavender-wash);border:1px solid #e8e6f0;border-radius:10px;padding:18px 20px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <div style="width:10px;height:10px;border-radius:50%;background:#eab308;"></div>
+      <div style="font-size:15px;font-weight:600;">Model Sensitivity</div>
+    </div>
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Enterprise NRR + lead growth dominate.<br><em>Mitigate:</em> Monthly recalibration vs actuals.</div>
   </div>
-  <div class="risk-card-v3 sev-action">
-    <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Contingency Plan <span class="sev-pill action">Ready</span></div>
-    <div style="font-size:13px;color:var(--text-muted);line-height:1.45;">Defer 3 hires + cut S&M 30% → burn €120K→€80K/mo → +5mo runway. <strong>Venture debt:</strong> €1-2M at H2 2028.</div>
+  <!-- Card 6: Contingency -->
+  <div style="background:#fef3c7;border:1px solid #fbbf24;border-radius:10px;padding:18px 20px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <div style="width:10px;height:10px;border-radius:50%;background:#059669;"></div>
+      <div style="font-size:15px;font-weight:600;">Contingency Plan</div>
+    </div>
+    <div style="font-size:13px;color:#92400e;line-height:1.5;">Defer 3 hires + cut S&M 30% → burn €120K→€80K/mo → +5 months runway.<br><strong>Venture debt:</strong> €1-2M at H2 2028 (9-10% + 1% warrants).</div>
   </div>
 </div>
 
