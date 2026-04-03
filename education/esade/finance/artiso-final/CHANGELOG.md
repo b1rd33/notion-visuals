@@ -1,5 +1,23 @@
 # ARTISO Financial Model — Version Control
 
+## v4 — Apr 3, 2026 (Artiso_Financial_Model_v4_Apr3.xlsx)
+
+**Base:** v3 (all fixes + CapTable + Valuation + Tax Carry-Forward)
+**Change:** Addressed Martí's feedback — first year of operation labeling
+**Formula check:** 4,282 formulas, 0 errors
+
+### Changes
+- FY2026 relabeled as "FY2026* (Apr-Dec)" in annual summary
+- Footnote added: "Q1 2026 was pre-investment (€0 revenue, €0 opex). Full calendar year = 12 months."
+- Pre-Investment column D added with "Q1 2026" label and €3M opening cash
+- README updated to v4.0 with timeline description
+- All v3 formulas preserved — no structural changes
+
+### Why not 12 monthly columns?
+Inserting 3 columns (Jan-Mar) before April would break 4,282+ formula references across 9 sheets. The operational model correctly starts in April when the seed arrives. Adding 3 zero-activity months would be pure padding. Instead, we explicitly label and footnote the pre-investment period.
+
+---
+
 ## v3 — Apr 2, 2026 10:30 PM (Artiso_Financial_Model_v3_Apr2.xlsx)
 
 **Base:** v2 (all 11 bug fixes + UE rebuild)
