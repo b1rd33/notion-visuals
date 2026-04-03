@@ -9,11 +9,8 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Force lining (modern) numerals in Cormorant Garamond — prevents "11" looking like Roman "II" */
-h1, h2, h3, .hero-number, .metric-value, .res-num, .compare-value,
-[style*="font-family:var(--font-display)"] {
-  font-feature-settings: 'lnum' 1;
-}
+/* Force lining (modern) numerals everywhere — prevents Cormorant "11" looking like Roman "II" */
+* { font-feature-settings: 'lnum' 1; }
 
 :root {
   /* ARTISO Brand Palette — from pitch deck */
@@ -184,8 +181,7 @@ p, li {
 
 /* ── Hero Numbers ── */
 .hero-number {
-  font-family: var(--font-display);
-  font-size: 84px;
+  font-size: 80px;
   font-weight: 700;
   line-height: 1;
   color: var(--purple-deep);
@@ -217,8 +213,7 @@ p, li {
   border: 1px solid #e8e6f0;
 }
 .metric-card .metric-value {
-  font-family: var(--font-display);
-  font-size: 42px;
+  font-size: 38px;
   font-weight: 700;
   color: var(--purple-deep);
   line-height: 1.1;
@@ -494,8 +489,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   margin-bottom: 6px;
 }
 .tier-card .tier-acv {
-  font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--black);
 }
@@ -516,8 +510,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 }
 .compare-item { text-align: center; }
 .compare-value {
-  font-family: var(--font-display);
-  font-size: 56px;
+  font-size: 52px;
   font-weight: 700;
 }
 .compare-label {
@@ -918,15 +911,15 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   <div style="display:flex;gap:40px;margin-top:auto;padding-top:16px;">
     <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
       <div style="font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">EBITDA Breakeven</div>
-      <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--purple-deep);">Q4 2028</div>
+      <div style="font-size:26px;font-weight:700;color:var(--purple-deep);">Q4 2028</div>
     </div>
     <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
       <div style="font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">Revenue CAGR (FY26-30)</div>
-      <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--purple-deep);">175%</div>
+      <div style="font-size:26px;font-weight:700;color:var(--purple-deep);">175%</div>
     </div>
     <div style="background:var(--lavender-wash);border-radius:8px;padding:14px 20px;flex:1;border:1px solid #e8e6f0;">
       <div style="font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">Tax Loss Carry-Forward</div>
-      <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--purple-deep);">€2.2M shielded</div>
+      <div style="font-size:26px;font-weight:700;color:var(--purple-deep);">€2.2M shielded</div>
     </div>
   </div>
 
@@ -1167,17 +1160,17 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:flex-start;padding-top:8px;">
       <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
         <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Lowest Point</div>
-        <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--negative);">-€477K</div>
+        <div style="font-size:30px;font-weight:700;color:var(--negative);">-€477K</div>
         <div style="font-size:13px;color:var(--text-muted);">Q4 2028 — pre-Series A gap</div>
       </div>
       <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
         <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Series A Prep</div>
-        <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--purple-deep);">Q2 2027</div>
+        <div style="font-size:30px;font-weight:700;color:var(--purple-deep);">Q2 2027</div>
         <div style="font-size:13px;color:var(--text-muted);">15 months after pre-seed close</div>
       </div>
       <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
         <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);">Venture Debt Window</div>
-        <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--purple-deep);">H2 2028</div>
+        <div style="font-size:30px;font-weight:700;color:var(--purple-deep);">H2 2028</div>
         <div style="font-size:13px;color:var(--text-muted);">Near EBITDA breakeven — 9-10% + 1% warrants</div>
       </div>
       <div style="background:linear-gradient(135deg,rgba(91,106,191,0.08),rgba(196,201,232,0.2));border-radius:10px;padding:14px 18px;border:1px solid #e8e6f0;margin-top:auto;">
@@ -1323,7 +1316,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   <div class="split-right" style="padding:50px 80px 50px 40px;display:flex;flex-direction:column;background:linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%);">
     <div style="text-align:center;margin-bottom:16px;">
       <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-deep);margin-bottom:6px;">Seed Investor IRR</div>
-      <div style="font-family:var(--font-display);font-size:60px;font-weight:700;color:var(--purple-deep);line-height:1;">85.9%</div>
+      <div style="font-size:58px;font-weight:700;color:var(--purple-deep);line-height:1;">85.9%</div>
       <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Far exceeds 40% hurdle · 11.9x return</div>
     </div>
 
