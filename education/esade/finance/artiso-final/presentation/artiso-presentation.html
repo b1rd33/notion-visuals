@@ -94,10 +94,26 @@ body {
   color: var(--white);
 }
 .slide--split {
-  display: grid;
+  display: grid !important;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   padding: 0;
   position: relative;
+  flex-direction: unset !important;
+  align-items: stretch;
+}
+.slide--split > .slide-footer {
+  position: absolute;
+  bottom: 16px;
+  left: 80px;
+  right: 80px;
+  grid-column: 1 / -1;
+}
+.slide--split .split-left,
+.slide--split .split-right {
+  min-height: 0;
+  height: var(--slide-h);
+  overflow: hidden;
 }
 .slide--split .split-left {
   padding: var(--pad-y) 40px var(--pad-y) var(--pad-x);
@@ -287,73 +303,66 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 .reco-box p { font-size: 17px; color: var(--text); }
 .reco-box strong { color: var(--purple-deep); }
 
-/* ── Cash Waterfall Chart (Slide 6) ── */
-/* Cash chart — simple flexbox approach */
+/* ── Cash Waterfall Chart (Slide 6) — fixed-position zero line ── */
 .cash-chart-grid {
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
   gap: 4px;
-  height: 280px;
   flex: 2;
-  padding-bottom: 60px;
-  position: relative;
-}
-.cash-chart-grid::after {
-  content: '€0';
-  position: absolute;
-  bottom: 55px;
-  left: -24px;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--text-light);
-}
-.cash-chart-grid::before {
-  content: '';
-  position: absolute;
-  bottom: 60px;
-  left: 0;
-  right: 0;
-  border-top: 1.5px dashed #d1d5db;
+  align-self: stretch;
 }
 .cc-col {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  gap: 0;
 }
-.cc-bar-area {
-  width: 100%;
+/* Top zone: positive value + bar, pushed to bottom of this zone */
+.cc-pos-zone {
+  height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.cc-bar {
-  width: 36px;
-  min-height: 2px;
-  border-radius: 4px 4px 0 0;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%);
-}
-.cc-bar.neg {
-  border-radius: 0 0 4px 4px;
-  background: linear-gradient(180deg, #fca5a5 0%, var(--negative) 100%);
-  margin-top: -2px;
+  justify-content: flex-end;
 }
 .cc-val {
   font-size: 11px;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 3px;
   white-space: nowrap;
+  margin-bottom: 3px;
 }
 .cc-val.neg-val { color: var(--negative); margin-bottom: 0; margin-top: 3px; }
+.cc-bar-pos {
+  width: 36px;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%);
+}
+/* Zero line — always at the same vertical position */
+.cc-zero {
+  width: 100%;
+  border-top: 1.5px dashed #d1d5db;
+  flex-shrink: 0;
+}
+/* Bottom zone: negative bar + value, pushed to top of this zone */
+.cc-neg-zone {
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.cc-bar-neg {
+  width: 36px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(180deg, #fca5a5 0%, var(--negative) 100%);
+}
 .cc-label {
   font-size: 10px;
   font-weight: 600;
   color: var(--text-muted);
-  position: absolute;
-  bottom: -20px;
   white-space: nowrap;
+  margin-top: 6px;
 }
 .cc-alert {
   font-size: 8px;
@@ -364,9 +373,8 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   background: #fef3c7;
   padding: 1px 4px;
   border-radius: 2px;
-  position: absolute;
-  bottom: -34px;
   white-space: nowrap;
+  margin-top: 3px;
 }
 
 /* ── Resolution Cards ── */
@@ -713,10 +721,10 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
     <tbody>
       <tr><td class="bold">Total Revenue</td><td class="right">€0</td><td class="right">€15K</td><td class="right">€645K</td><td class="right">€5.4M</td><td class="right">€14.2M</td><td class="right">€26.0M</td><td class="right">€36.8M</td></tr>
       <tr><td>Gross Margin</td><td class="right">—</td><td class="right">86.7%</td><td class="right">82.3%</td><td class="right">82.0%</td><td class="right">82.1%</td><td class="right">82.2%</td><td class="right">82.3%</td></tr>
-      <tr class="highlight"><td class="bold">EBITDA</td><td class="right">(€120K)</td><td class="right">(€267K)</td><td class="right">(€565K)</td><td class="right">(€1.3M)</td><td class="right">(€351K)</td><td class="right">+€2.9M</td><td class="right">+€6.2M</td></tr>
-      <tr><td>EBITDA Margin</td><td class="right">—</td><td class="right">—</td><td class="right">-87.5%</td><td class="right">-23.7%</td><td class="right">-2.5%</td><td class="right">+11.0%</td><td class="right">+16.9%</td></tr>
-      <tr><td>Installed Base</td><td class="right">0</td><td class="right">3</td><td class="right">27</td><td class="right">104</td><td class="right">209</td><td class="right">304</td><td class="right">363</td></tr>
-      <tr><td class="bold">ARR (End of Year)</td><td class="right">€0</td><td class="right">€0</td><td class="right">€1.3M</td><td class="right">€6.8M</td><td class="right">€16.2M</td><td class="right">€27.7M</td><td class="right">€35.8M</td></tr>
+      <tr class="highlight"><td class="bold">EBITDA</td><td class="right">(€120K)</td><td class="right">(€267K)</td><td class="right">(€565K)</td><td class="right">(€1.3M)</td><td class="right">(€351K)</td><td class="right">+€3.1M</td><td class="right">+€8.3M</td></tr>
+      <tr><td>EBITDA Margin</td><td class="right">—</td><td class="right">—</td><td class="right">-87.5%</td><td class="right">-23.7%</td><td class="right">-2.5%</td><td class="right">+11.8%</td><td class="right">+22.5%</td></tr>
+      <tr><td>Installed Base</td><td class="right">0</td><td class="right">3</td><td class="right">27</td><td class="right">104</td><td class="right">182</td><td class="right">282</td><td class="right">363</td></tr>
+      <tr><td class="bold">ARR (End of Year)</td><td class="right">€0</td><td class="right">€0</td><td class="right">€1.3M</td><td class="right">€6.8M</td><td class="right">€16.1M</td><td class="right">€26.4M</td><td class="right">€35.8M</td></tr>
     </tbody>
   </table>
 
@@ -812,9 +820,9 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
       <div class="metric-target">Target: &lt; 18 months</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value">53%</div>
+      <div class="metric-value">64%</div>
       <div class="metric-label">Rule of 40</div>
-      <div class="metric-target">Rev Growth + EBITDA Margin</div>
+      <div class="metric-target">Rev Growth 41.5% + Margin 22.5%</div>
     </div>
     <div class="metric-card">
       <div class="metric-value" style="color:var(--positive);">0.0x</div>
@@ -842,20 +850,180 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   <h2>Funding Need & Timing</h2>
 
   <div style="display:flex;gap:24px;flex:1;align-items:stretch;margin-top:8px;">
-    <!-- Cash Waterfall Chart — flexbox approach -->
-    <div class="cash-chart-grid">
-      <!-- Bar heights: max=€7.1M→180px. Scale: 1px ≈ €39.4K. Neg: €477K→12px -->
-      <div class="cc-col"><div class="cc-val">€3.0M</div><div class="cc-bar" style="height:76px;"></div><div class="cc-label">Q2'26</div></div>
-      <div class="cc-col"><div class="cc-val">€2.3M</div><div class="cc-bar" style="height:58px;"></div><div class="cc-label">Q4'26</div></div>
-      <div class="cc-col"><div class="cc-val">€1.5M</div><div class="cc-bar" style="height:38px;"></div><div class="cc-label">Q2'27</div><div class="cc-alert">FUNDRAISE</div></div>
-      <div class="cc-col"><div class="cc-val">€607K</div><div class="cc-bar" style="height:15px;"></div><div class="cc-label">Q4'27</div><div class="cc-alert">RAISE NOW</div></div>
-      <div class="cc-col"><div class="cc-val">€227K</div><div class="cc-bar" style="height:6px;"></div><div class="cc-label">Q1'28</div></div>
-      <div class="cc-col"><div class="cc-bar neg" style="height:4px;"></div><div class="cc-val neg-val">-€139K</div><div class="cc-label">Q2'28</div></div>
-      <div class="cc-col"><div class="cc-bar neg" style="height:12px;"></div><div class="cc-val neg-val">-€477K</div><div class="cc-label">Q4'28</div></div>
-      <div class="cc-col"><div class="cc-val">€108K</div><div class="cc-bar" style="height:3px;"></div><div class="cc-label">Q2'29</div></div>
-      <div class="cc-col"><div class="cc-val">€1.6M</div><div class="cc-bar" style="height:40px;"></div><div class="cc-label">Q4'29</div></div>
-      <div class="cc-col"><div class="cc-val" style="font-weight:700;">€7.1M</div><div class="cc-bar" style="height:180px;"></div><div class="cc-label">Q4'30</div></div>
+    <!-- Cash Waterfall — inline SVG for pixel-perfect rendering -->
+    <!-- Zero line at y=280. Positive bars UP, negative DOWN. Max=€7.1M→230px. 10 bars, 60px each + 6px gap -->
+    <div style="flex:2;display:flex;align-items:center;justify-content:center;">
+    <svg viewBox="0 0 660 380" width="660" height="380" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+      <defs>
+        <linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#667eea"/><stop offset="100%" stop-color="#a5b4fc"/></linearGradient>
+        <linearGradient id="gn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fca5a5"/><stop offset="100%" stop-color="#dc2626"/></linearGradient>
+      </defs>
+      <!-- Zero line at y=270 -->
+      <line x1="10" y1="270" x2="650" y2="270" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="4" y="266" font-size="9" fill="#9CA3AF" font-weight="600" font-family="DM Sans,sans-serif">€0</text>
+
+      <!-- Scale: €7.1M = 230px above zero. 1px = €30.9K. Bar width=44, gap between centers=66 -->
+      <!-- Pos bars: y = 270 - height. Neg bars: y = 270 -->
+
+      <!-- Q2'26: €3.0M → 97px -->
+      <rect x="22" y="173" width="44" height="97" rx="3" fill="url(#gp)"/>
+      <text x="44" y="165" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€3.0M</text>
+      <text x="44" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'26</text>
+
+      <!-- Q4'26: €2.3M → 74px -->
+      <rect x="88" y="196" width="44" height="74" rx="3" fill="url(#gp)"/>
+      <text x="110" y="188" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€2.3M</text>
+      <text x="110" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'26</text>
+
+      <!-- Q2'27: €1.5M → 49px -->
+      <rect x="154" y="221" width="44" height="49" rx="3" fill="url(#gp)"/>
+      <text x="176" y="213" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€1.5M</text>
+      <text x="176" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'27</text>
+      <text x="176" y="302" text-anchor="middle" font-size="8" fill="#d97706" font-weight="700" font-family="DM Sans,sans-serif">FUNDRAISE</text>
+
+      <!-- Q4'27: €607K → 20px -->
+      <rect x="220" y="250" width="44" height="20" rx="3" fill="url(#gp)"/>
+      <text x="242" y="243" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€607K</text>
+      <text x="242" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'27</text>
+      <text x="242" y="302" text-anchor="middle" font-size="8" fill="#dc2626" font-weight="700" font-family="DM Sans,sans-serif">RAISE NOW</text>
+
+      <!-- Q1'28: €227K → 7px -->
+      <rect x="286" y="263" width="44" height="7" rx="2" fill="url(#gp)"/>
+      <text x="308" y="256" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€227K</text>
+      <text x="308" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q1'28</text>
+
+      <!-- Q2'28: -€139K → 5px BELOW zero -->
+      <rect x="352" y="270" width="44" height="5" rx="2" fill="url(#gn)"/>
+      <text x="374" y="290" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="600" font-family="DM Sans,sans-serif">-€139K</text>
+      <text x="374" y="304" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'28</text>
+
+      <!-- Q4'28: -€477K → 15px BELOW zero -->
+      <rect x="418" y="270" width="44" height="15" rx="2" fill="url(#gn)"/>
+      <text x="440" y="300" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="600" font-family="DM Sans,sans-serif">-€477K</text>
+      <text x="440" y="314" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'28</text>
+
+      <!-- Q2'29: €108K → 4px -->
+      <rect x="484" y="266" width="44" height="4" rx="2" fill="url(#gp)"/>
+      <text x="506" y="258" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€108K</text>
+      <text x="506" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q2'29</text>
+
+      <!-- Q4'29: €1.6M → 52px -->
+      <rect x="550" y="218" width="44" height="52" rx="3" fill="url(#gp)"/>
+      <text x="572" y="210" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="600" font-family="DM Sans,sans-serif">€1.6M</text>
+      <text x="572" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'29</text>
+
+      <!-- Q4'30: €7.1M → 230px (full height) -->
+      <rect x="616" y="40" width="44" height="230" rx="3" fill="url(#gp)"/>
+      <text x="638" y="32" text-anchor="middle" font-size="11" fill="#2c2c3a" font-weight="700" font-family="DM Sans,sans-serif">€7.1M</text>
+      <text x="638" y="288" text-anchor="middle" font-size="10" fill="#6B7280" font-weight="600" font-family="DM Sans,sans-serif">Q4'30</text>
+    </svg>
     </div>
+    <!-- Old CSS chart hidden -->
+    <div style="display:none !important;">
+      <!-- Q2'26: €3.0M -->
+      <div class="cc-col">
+        <div class="cc-pos-zone">
+          <div class="cc-val">€3.0M</div>
+          <div class="cc-bar-pos" style="height:59px;"></div>
+        </div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone"></div>
+        <div class="cc-label">Q2'26</div>
+      </div>
+      <!-- Q4'26: €2.3M -->
+      <div class="cc-col">
+        <div class="cc-pos-zone">
+          <div class="cc-val">€2.3M</div>
+          <div class="cc-bar-pos" style="height:45px;"></div>
+        </div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone"></div>
+        <div class="cc-label">Q4'26</div>
+      </div>
+      <!-- Q2'27: €1.5M -->
+      <div class="cc-col">
+        <div class="cc-pos-zone">
+          <div class="cc-val">€1.5M</div>
+          <div class="cc-bar-pos" style="height:30px;"></div>
+        </div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone"></div>
+        <div class="cc-label">Q2'27</div>
+        <div class="cc-alert">FUNDRAISE</div>
+      </div>
+      <!-- Q4'27: €607K -->
+      <div class="cc-col">
+        <div class="cc-pos-zone">
+          <div class="cc-val">€607K</div>
+          <div class="cc-bar-pos" style="height:12px;"></div>
+        </div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone"></div>
+        <div class="cc-label">Q4'27</div>
+        <div class="cc-alert">RAISE NOW</div>
+      </div>
+      <!-- Q1'28: €227K -->
+      <div class="cc-col">
+        <div class="cc-pos-zone">
+          <div class="cc-val">€227K</div>
+          <div class="cc-bar-pos" style="height:4px;"></div>
+        </div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone"></div>
+        <div class="cc-label">Q1'28</div>
+      </div>
+      <!-- Q2'28: -€139K -->
+      <div class="cc-col">
+        <div class="cc-pos-zone"></div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone">
+          <div class="cc-bar-neg" style="height:4px;"></div>
+          <div class="cc-val neg-val">-€139K</div>
+        </div>
+        <div class="cc-label">Q2'28</div>
+      </div>
+      <!-- Q4'28: -€477K -->
+      <div class="cc-col">
+        <div class="cc-pos-zone"></div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone">
+          <div class="cc-bar-neg" style="height:14px;"></div>
+          <div class="cc-val neg-val">-€477K</div>
+        </div>
+        <div class="cc-label">Q4'28</div>
+      </div>
+      <!-- Q2'29: €108K -->
+      <div class="cc-col">
+        <div class="cc-pos-zone">
+          <div class="cc-val">€108K</div>
+          <div class="cc-bar-pos" style="height:2px;"></div>
+        </div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone"></div>
+        <div class="cc-label">Q2'29</div>
+      </div>
+      <!-- Q4'29: €1.6M -->
+      <div class="cc-col">
+        <div class="cc-pos-zone">
+          <div class="cc-val">€1.6M</div>
+          <div class="cc-bar-pos" style="height:32px;"></div>
+        </div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone"></div>
+        <div class="cc-label">Q4'29</div>
+      </div>
+      <!-- Q4'30: €7.1M -->
+      <div class="cc-col">
+        <div class="cc-pos-zone">
+          <div class="cc-val" style="font-weight:700;">€7.1M</div>
+          <div class="cc-bar-pos" style="height:140px;"></div>
+        </div>
+        <div class="cc-zero"></div>
+        <div class="cc-neg-zone"></div>
+        <div class="cc-label">Q4'30</div>
+      </div>
+    </div>
+    </div><!-- end hidden old chart -->
 
     <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center;">
       <div style="background:var(--lavender-wash);border-radius:10px;padding:18px;border:1px solid #e8e6f0;">
