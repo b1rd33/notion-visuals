@@ -12,6 +12,12 @@ export function useCountUp(target: number, active: boolean, duration = 1000): nu
     if (!active || hasTriggered.current) return
     hasTriggered.current = true
 
+    // Skip animation during PDF export
+    if (document.body.classList.contains('exporting')) {
+      setValue(target)
+      return
+    }
+
     const start = performance.now()
     let raf: number
 
