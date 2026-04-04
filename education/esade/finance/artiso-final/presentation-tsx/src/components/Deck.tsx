@@ -11,6 +11,7 @@ export function Deck({ slides }: DeckProps) {
   const [direction, setDirection] = useState<'forward' | 'back'>('forward')
   const [showHint, setShowHint] = useState(true)
   const [exporting, setExporting] = useState(false)
+  const [exportScale, setExportScale] = useState(3)
 
   useEffect(() => {
     const timer = setTimeout(() => setShowHint(false), 4000)
@@ -88,12 +89,13 @@ export function Deck({ slides }: DeckProps) {
       const canvas = await html2canvas(deck, {
         width: 1280,
         height: 720,
-        scale: 2,
+        scale: exportScale,
         useCORS: true,
         backgroundColor: null,
       })
 
-      const imgData = canvas.toDataURL('image/jpeg', 0.92)
+      const quality = exportScale >= 3 ? 0.95 : 0.92
+      const imgData = canvas.toDataURL('image/jpeg', quality)
       if (i > 0) pdf.addPage([1280, 720], 'landscape')
       pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720)
     }
@@ -127,9 +129,23 @@ export function Deck({ slides }: DeckProps) {
               />
             ))}
           </div>
-          <button className="deck-nav-pdf" onClick={(e) => { e.stopPropagation(); exportPDF() }} disabled={exporting}>
-            {exporting ? `Exporting ${current + 1}/${slides.length}...` : '⬇ Export PDF'}
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <select
+              className="deck-nav-select"
+              value={exportScale}
+              onChange={(e) => setExportScale(Number(e.target.value))}
+              onClick={(e) => e.stopPropagation()}
+              disabled={exporting}
+            >
+              <option value={1}>1x Draft</option>
+              <option value={2}>2x Good</option>
+              <option value={3}>3x High</option>
+              <option value={4}>4x Ultra</option>
+            </select>
+            <button className="deck-nav-pdf" onClick={(e) => { e.stopPropagation(); exportPDF() }} disabled={exporting}>
+              {exporting ? `${current + 1}/${slides.length}...` : '⬇ PDF'}
+            </button>
+          </div>
         </div>
       </div>
 

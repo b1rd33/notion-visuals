@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 16px;
+  padding: 12px 20px;
   background: rgba(255,255,255,0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -65,6 +65,20 @@
   opacity: 0.6;
   cursor: wait;
 }
+.deck-nav-select {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--purple-deep);
+  background: var(--lavender-wash);
+  border: 1px solid var(--lavender);
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  outline: none;
+}
+.deck-nav-select:hover { border-color: var(--purple-mid); }
+.deck-nav-select:disabled { opacity: 0.6; cursor: wait; }
 
 /* ── Slide System ── */
 .deck {
