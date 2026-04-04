@@ -1,15 +1,5 @@
 import { SlideFooter } from '../components/SlideFooter'
 
-const Sparkline = () => {
-  const data = [0, 15, 645, 5400, 14200, 26000, 36800];
-  const max = 36800, w = 60, h = 16;
-  const points = data.map((v, i) => `${(i / 6) * w},${h - (v / max) * h}`).join(' ');
-  return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ marginLeft: 8, verticalAlign: 'middle', display: 'inline' }}>
-      <polyline points={points} fill="none" stroke="#667eea" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-};
 
 export function S03FinancialPlan({ active }: { active: boolean }) {
   return (
@@ -31,7 +21,7 @@ export function S03FinancialPlan({ active }: { active: boolean }) {
           </tr>
         </thead>
         <tbody>
-          <tr><td className="bold">Total Revenue <Sparkline /></td><td className="right">€0</td><td className="right">€15K</td><td className="right">€645K</td><td className="right">€5.4M</td><td className="right">€14.2M</td><td className="right">€26.0M</td><td className="right">€36.8M</td></tr>
+          <tr><td className="bold">Total Revenue</td><td className="right">€0</td><td className="right">€15K</td><td className="right">€645K</td><td className="right">€5.4M</td><td className="right">€14.2M</td><td className="right">€26.0M</td><td className="right">€36.8M</td></tr>
           <tr><td>COGS</td><td className="right">—</td><td className="right">(€2K)</td><td className="right">(€115K)</td><td className="right">(€966K)</td><td className="right">(€2.5M)</td><td className="right">(€4.6M)</td><td className="right">(€6.5M)</td></tr>
           <tr><td>Gross Margin</td><td className="right">—</td><td className="right">86.7%</td><td className="right">82.3%</td><td className="right">82.0%</td><td className="right">82.1%</td><td className="right">82.2%</td><td className="right">82.3%</td></tr>
           <tr><td>Total OpEx</td><td className="right">(€120K)</td><td className="right">(€280K)</td><td className="right">(€1.1M)</td><td className="right">(€5.7M)</td><td className="right">(€12.0M)</td><td className="right">(€18.3M)</td><td className="right">(€22.0M)</td></tr>

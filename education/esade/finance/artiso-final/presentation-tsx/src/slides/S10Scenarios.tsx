@@ -38,7 +38,7 @@ export function S10Scenarios({ active }: { active: boolean }) {
               <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Second lever</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div style={{ width: '80px', height: '28px', background: 'linear-gradient(90deg,#e8e6f0,var(--lavender))', borderRadius: '4px' }}></div>
+              <div style={{ width: '60px', height: '24px', background: 'linear-gradient(90deg,#e8e6f0,var(--lavender))', borderRadius: '4px' }}></div>
               <span style={{ fontSize: '14px' }}>Credit Pricing · SME Churn</span>
               <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Minor</span>
             </div>

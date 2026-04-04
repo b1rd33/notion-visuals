@@ -19,25 +19,25 @@ export function S04RevenueEngine({ active }: { active: boolean }) {
 
           <div style={{ marginTop: 'auto', paddingTop: '16px' }}>
             <div style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--purple-mid)', marginBottom: '12px' }}>ARR Milestones</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto 1fr auto 1fr auto', alignItems: 'center', gap: 0 }}>
               <div style={{ textAlign: 'center' as const }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--lavender-wash)', border: '2px solid var(--lavender)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--purple-deep)' }}>€100K</div>
+                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--lavender-wash)', border: '2px solid var(--lavender)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, color: 'var(--purple-deep)', margin: '0 auto' }}>€100K</div>
                 <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>Q3'26</div>
               </div>
-              <div style={{ flex: 1, height: '2px', background: 'var(--lavender)' }}></div>
+              <div style={{ height: '2px', background: 'linear-gradient(90deg,var(--lavender),var(--purple-mid))' }}></div>
               <div style={{ textAlign: 'center' as const }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--lavender-wash)', border: '2px solid var(--purple-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--purple-deep)' }}>€1M</div>
+                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--lavender-wash)', border: '2px solid var(--purple-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--purple-deep)', margin: '0 auto' }}>€1M</div>
                 <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>Q3'27</div>
                 <div style={{ fontSize: '9px', color: 'var(--purple-mid)', fontWeight: 600 }}>Series A gate</div>
               </div>
-              <div style={{ flex: 1, height: '2px', background: 'var(--lavender)' }}></div>
+              <div style={{ height: '2px', background: 'linear-gradient(90deg,var(--purple-mid),var(--purple-deep))' }}></div>
               <div style={{ textAlign: 'center' as const }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--lavender-wash)', border: '2px solid var(--purple-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'var(--purple-deep)' }}>€10M</div>
+                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--lavender-wash)', border: '2px solid var(--purple-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, color: 'var(--purple-deep)', margin: '0 auto' }}>€10M</div>
                 <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>Q1'29</div>
               </div>
-              <div style={{ flex: 1, height: '2px', background: 'var(--lavender)' }}></div>
+              <div style={{ height: '2px', background: 'linear-gradient(90deg,var(--purple-deep),var(--purple-deep))' }}></div>
               <div style={{ textAlign: 'center' as const }}>
-                <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: 'var(--purple-deep)', border: '2px solid var(--purple-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, color: 'white' }}>€35.8M</div>
+                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--purple-deep)', border: '2px solid var(--purple-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 700, color: 'white', margin: '0 auto' }}>€35.8M</div>
                 <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>Q4'30</div>
               </div>
             </div>
