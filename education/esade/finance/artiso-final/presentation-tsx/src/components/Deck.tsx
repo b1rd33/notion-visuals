@@ -76,24 +76,31 @@ export function Deck({ slides }: DeckProps) {
     // Landscape 16:9 PDF
     const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1280, 720] })
 
+    // Disable animations during export
+    deck.style.setProperty('--anim-duration', '0s')
+    document.body.classList.add('exporting')
+
     for (let i = 0; i < slides.length; i++) {
-      // Activate the slide
       setCurrent(i)
-      // Wait for React to render + animations to settle
-      await new Promise(r => setTimeout(r, 300))
+      // Wait for render + fonts to load (animations are disabled)
+      await new Promise(r => setTimeout(r, 600))
 
       const canvas = await html2canvas(deck, {
         width: 1280,
         height: 720,
-        scale: 2,
+        scale: 1.5,
         useCORS: true,
         backgroundColor: '#ffffff',
       })
 
-      const imgData = canvas.toDataURL('image/png')
+      const imgData = canvas.toDataURL('image/jpeg', 0.92)
       if (i > 0) pdf.addPage([1280, 720], 'landscape')
-      pdf.addImage(imgData, 'PNG', 0, 0, 1280, 720)
+      pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720)
     }
+
+    // Restore animations
+    deck.style.removeProperty('--anim-duration')
+    document.body.classList.remove('exporting')
 
     pdf.save('ARTISO-CFO-Presentation.pdf')
     setExporting(false)
