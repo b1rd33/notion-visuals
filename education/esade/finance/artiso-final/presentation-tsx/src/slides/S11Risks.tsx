@@ -1,7 +1,7 @@
 import { SlideFooter } from '../components/SlideFooter'
 
 const SeverityDots = ({ level }: { level: number }) => (
-  <svg width="28" height="10" viewBox="0 0 28 10" style={{ marginLeft: 6, verticalAlign: 'middle' }}>
+  <svg width="32" height="10" viewBox="0 0 32 10" style={{ marginLeft: 6, verticalAlign: 'middle' }}>
     {[0, 1, 2].map(i => (
       <rect key={i} x={i * 10} y={2} width={6} height={6} rx={1.5}
         fill={i < level ? 'currentColor' : '#e5e7eb'} />
