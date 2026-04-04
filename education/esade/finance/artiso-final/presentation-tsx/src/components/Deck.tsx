@@ -88,9 +88,9 @@ export function Deck({ slides }: DeckProps) {
       const canvas = await html2canvas(deck, {
         width: 1280,
         height: 720,
-        scale: 1.5,
+        scale: 2,
         useCORS: true,
-        backgroundColor: '#ffffff',
+        backgroundColor: null,
       })
 
       const imgData = canvas.toDataURL('image/jpeg', 0.92)
