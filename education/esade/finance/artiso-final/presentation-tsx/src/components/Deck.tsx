@@ -6,11 +6,19 @@ interface DeckProps {
 
 export function Deck({ slides }: DeckProps) {
   const [current, setCurrent] = useState(0)
+  const [direction, setDirection] = useState<'forward' | 'back'>('forward')
+  const [showHint, setShowHint] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowHint(false), 4000)
+    return () => clearTimeout(timer)
+  }, [])
 
   const navigate = useCallback(
-    (direction: 'next' | 'prev' | 'home' | 'end') => {
+    (nav: 'next' | 'prev' | 'home' | 'end') => {
+      setDirection(nav === 'prev' || nav === 'home' ? 'back' : 'forward')
       setCurrent((c) => {
-        switch (direction) {
+        switch (nav) {
           case 'next':
             return Math.min(c + 1, slides.length - 1)
           case 'prev':
@@ -56,10 +64,12 @@ export function Deck({ slides }: DeckProps) {
   }
 
   return (
-    <div className="deck" id="deck" onClick={handleClick}>
+    <div className="deck" id="deck" data-direction={direction} onClick={handleClick}>
+      <div className="progress-bar" style={{ width: `${(current / (slides.length - 1)) * 100}%` }} />
       {slides.map((SlideComponent, i) => (
         <SlideComponent key={i} active={i === current} />
       ))}
+      {showHint && <div className="nav-hint">&larr; &rarr; to navigate</div>}
     </div>
   )
 }

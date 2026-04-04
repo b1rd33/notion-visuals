@@ -1,6 +1,29 @@
+import { useState, useEffect } from 'react'
 import { SlideFooter } from '../components/SlideFooter'
 
 export function S06FundingNeed({ active }: { active: boolean }) {
+  const [animate, setAnimate] = useState(false)
+
+  useEffect(() => {
+    if (!active) return
+    const timer = setTimeout(() => setAnimate(true), 100)
+    return () => clearTimeout(timer)
+  }, [active])
+
+  // Bar data: [x, targetY, targetH, isNegative, delayIndex]
+  const bars: { x: number; y: number; h: number; neg: boolean; idx: number }[] = [
+    { x: 22, y: 218, h: 122, neg: false, idx: 0 },  // Q2'26
+    { x: 88, y: 246, h: 94, neg: false, idx: 1 },   // Q4'26
+    { x: 154, y: 279, h: 61, neg: false, idx: 2 },  // Q2'27
+    { x: 220, y: 315, h: 25, neg: false, idx: 3 },  // Q4'27
+    { x: 286, y: 331, h: 9, neg: false, idx: 4 },   // Q1'28
+    { x: 352, y: 340, h: 6, neg: true, idx: 5 },    // Q2'28
+    { x: 418, y: 340, h: 19, neg: true, idx: 6 },   // Q4'28
+    { x: 484, y: 336, h: 4, neg: false, idx: 7 },   // Q2'29
+    { x: 550, y: 275, h: 65, neg: false, idx: 8 },  // Q4'29
+    { x: 616, y: 50, h: 290, neg: false, idx: 9 },  // Q4'30
+  ]
+
   return (
     <section className={`slide slide--white${active ? ' active' : ''}`} id="s6">
       <div className="slide-label">Cash Runway</div>
@@ -20,54 +43,54 @@ export function S06FundingNeed({ active }: { active: boolean }) {
             <text x="4" y="336" fontSize="9" fill="#9CA3AF" fontWeight="600" fontFamily="DM Sans,sans-serif">€0</text>
 
             {/* Q2'26: €3.0M → 122px */}
-            <rect x="22" y="218" width="44" height="122" rx="3" fill="url(#gp)" filter="url(#bar-shadow)" />
+            <rect x={bars[0].x} y={animate ? bars[0].y : 340} width="44" height={animate ? bars[0].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.1s' }} />
             <text x="44" y="210" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€3.0M</text>
             <text x="44" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q2'26</text>
 
             {/* Q4'26: €2.3M → 94px */}
-            <rect x="88" y="246" width="44" height="94" rx="3" fill="url(#gp)" filter="url(#bar-shadow)" />
+            <rect x={bars[1].x} y={animate ? bars[1].y : 340} width="44" height={animate ? bars[1].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.2s' }} />
             <text x="110" y="238" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€2.3M</text>
             <text x="110" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'26</text>
 
             {/* Q2'27: €1.5M → 61px */}
-            <rect x="154" y="279" width="44" height="61" rx="3" fill="url(#gp)" filter="url(#bar-shadow)" />
+            <rect x={bars[2].x} y={animate ? bars[2].y : 340} width="44" height={animate ? bars[2].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.3s' }} />
             <text x="176" y="271" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€1.5M</text>
             <text x="176" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q2'27</text>
             <text x="176" y="372" textAnchor="middle" fontSize="8" fill="#d97706" fontWeight="700" fontFamily="DM Sans,sans-serif">FUNDRAISE</text>
 
             {/* Q4'27: €607K → 25px */}
-            <rect x="220" y="315" width="44" height="25" rx="3" fill="url(#gp)" filter="url(#bar-shadow)" />
+            <rect x={bars[3].x} y={animate ? bars[3].y : 340} width="44" height={animate ? bars[3].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.4s' }} />
             <text x="242" y="307" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€607K</text>
             <text x="242" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'27</text>
             <text x="242" y="372" textAnchor="middle" fontSize="8" fill="#dc2626" fontWeight="700" fontFamily="DM Sans,sans-serif">RAISE NOW</text>
 
             {/* Q1'28: €227K → 9px */}
-            <rect x="286" y="331" width="44" height="9" rx="2" fill="url(#gp)" filter="url(#bar-shadow)" />
+            <rect x={bars[4].x} y={animate ? bars[4].y : 340} width="44" height={animate ? bars[4].h : 0} rx="2" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.5s' }} />
             <text x="308" y="323" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€227K</text>
             <text x="308" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q1'28</text>
 
             {/* Q2'28: -€139K → 6px BELOW zero */}
-            <rect x="352" y="340" width="44" height="6" rx="2" fill="url(#gn)" />
+            <rect x={bars[5].x} y="340" width="44" height={animate ? bars[5].h : 0} rx="2" fill="url(#gn)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.6s' }} />
             <text x="374" y="360" textAnchor="middle" fontSize="10" fill="#dc2626" fontWeight="600" fontFamily="DM Sans,sans-serif">-€139K</text>
             <text x="374" y="374" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q2'28</text>
 
             {/* Q4'28: -€477K → 19px BELOW zero */}
-            <rect x="418" y="340" width="44" height="19" rx="2" fill="url(#gn)" />
+            <rect x={bars[6].x} y="340" width="44" height={animate ? bars[6].h : 0} rx="2" fill="url(#gn)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.7s' }} />
             <text x="440" y="374" textAnchor="middle" fontSize="10" fill="#dc2626" fontWeight="600" fontFamily="DM Sans,sans-serif">-€477K</text>
             <text x="440" y="388" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'28</text>
 
             {/* Q2'29: €108K → 4px */}
-            <rect x="484" y="336" width="44" height="4" rx="2" fill="url(#gp)" filter="url(#bar-shadow)" />
+            <rect x={bars[7].x} y={animate ? bars[7].y : 340} width="44" height={animate ? bars[7].h : 0} rx="2" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.8s' }} />
             <text x="506" y="328" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€108K</text>
             <text x="506" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q2'29</text>
 
             {/* Q4'29: €1.6M → 65px */}
-            <rect x="550" y="275" width="44" height="65" rx="3" fill="url(#gp)" filter="url(#bar-shadow)" />
+            <rect x={bars[8].x} y={animate ? bars[8].y : 340} width="44" height={animate ? bars[8].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.9s' }} />
             <text x="572" y="267" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€1.6M</text>
             <text x="572" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'29</text>
 
             {/* Q4'30: €7.1M → 290px (full height) */}
-            <rect x="616" y="50" width="44" height="290" rx="3" fill="url(#gp)" filter="url(#bar-shadow)" />
+            <rect x={bars[9].x} y={animate ? bars[9].y : 340} width="44" height={animate ? bars[9].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '1.0s' }} />
             <text x="638" y="42" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="700" fontFamily="DM Sans,sans-serif">€7.1M</text>
             <text x="638" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'30</text>
           </svg>

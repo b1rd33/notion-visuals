@@ -1,33 +1,39 @@
 import { SlideFooter } from '../components/SlideFooter'
+import { useCountUp } from '../hooks/useCountUp'
 
 export function S05UnitEconomics({ active }: { active: boolean }) {
+  const cac = useCountUp(74, active)
+  const ltv = useCountUp(5.3, active)
+  const payback = useCountUp(11, active)
+  const rule40 = useCountUp(64, active)
+
   return (
     <section className={`slide slide--white${active ? ' active' : ''}`} id="s5">
       <div className="slide-label">Unit Economics</div>
       <h2>Key Metrics — FY2030 Base Case</h2>
 
       <div className="metric-grid" style={{ marginTop: '16px' }}>
-        <div className="metric-card metric-card-v3">
-          <div className="metric-value">€74K</div>
+        <div className="metric-card metric-card-v3 anim-fade-up anim-stagger-1">
+          <div className="metric-value">{`€${Math.round(cac)}K`}</div>
           <div className="metric-label">Blended CAC</div>
           <div className="metric-target">↑ from €17K — rises with scale</div>
         </div>
-        <div className="metric-card metric-card-v3">
-          <div className="metric-value">5.3x</div>
+        <div className="metric-card metric-card-v3 anim-fade-up anim-stagger-2">
+          <div className="metric-value">{`${ltv.toFixed(1)}x`}</div>
           <div className="metric-label">LTV / CAC</div>
           <div className="metric-target">Target: 3-5x</div>
         </div>
-        <div className="metric-card metric-card-v3">
-          <div className="metric-value">11 mo</div>
+        <div className="metric-card metric-card-v3 anim-fade-up anim-stagger-3">
+          <div className="metric-value">{`${Math.round(payback)} mo`}</div>
           <div className="metric-label">CAC Payback</div>
           <div className="metric-target">Target: &lt; 18 months</div>
         </div>
-        <div className="metric-card metric-card-v3">
-          <div className="metric-value">64%</div>
+        <div className="metric-card metric-card-v3 anim-fade-up anim-stagger-4">
+          <div className="metric-value">{`${Math.round(rule40)}%`}</div>
           <div className="metric-label">Rule of 40</div>
           <div className="metric-target">Rev Growth 41.5% + Margin 22.5%</div>
         </div>
-        <div className="metric-card metric-card-v3">
+        <div className="metric-card metric-card-v3 anim-fade-up anim-stagger-5">
           <div className="metric-value" style={{ color: 'var(--positive)' }}>0.0x</div>
           <div className="metric-label">Burn Multiple</div>
           <div className="metric-target">Cash-flow positive by FY2030</div>

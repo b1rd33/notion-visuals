@@ -10,44 +10,44 @@ export function S09Valuation({ active }: { active: boolean }) {
 
           <div className="vc-flow" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '12px', flex: 1 }}>
             {/* Step 1 */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--lavender-wash)', border: '1px solid #e8e6f0', borderRadius: '10px', padding: '12px 16px', borderLeft: '4px solid var(--purple-deep)' }}>
+            <div className="anim-fade-left anim-stagger-1" style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--lavender-wash)', border: '1px solid #e8e6f0', borderRadius: '10px', padding: '12px 16px', borderLeft: '4px solid var(--purple-deep)' }}>
               <div style={{ minWidth: '34px', height: '34px', borderRadius: '50%', background: 'var(--purple-deep)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 700 }}>1</div>
               <div><div style={{ fontSize: '13px', fontWeight: 600 }}>EV at Exit</div><div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>FY2030 ARR €35.8M × 10x = <strong style={{ color: 'var(--purple-deep)' }}>€358M</strong></div></div>
             </div>
-            <div style={{ textAlign: 'center' as const, color: 'var(--lavender)', fontSize: '14px', lineHeight: 1 }}>↓</div>
+            <div className="anim-fade-in anim-stagger-1" style={{ textAlign: 'center' as const, color: 'var(--lavender)', fontSize: '14px', lineHeight: 1 }}>↓</div>
 
             {/* Step 2 */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--lavender-wash)', border: '1px solid #e8e6f0', borderRadius: '10px', padding: '12px 16px', borderLeft: '4px solid var(--purple-deep)' }}>
+            <div className="anim-fade-left anim-stagger-2" style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--lavender-wash)', border: '1px solid #e8e6f0', borderRadius: '10px', padding: '12px 16px', borderLeft: '4px solid var(--purple-deep)' }}>
               <div style={{ minWidth: '34px', height: '34px', borderRadius: '50%', background: 'var(--purple-deep)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 700 }}>2</div>
               <div><div style={{ fontSize: '13px', fontWeight: 600 }}>Required Value at Exit</div><div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>€3M × (1.4)⁴ = <strong style={{ color: 'var(--purple-deep)' }}>€11.5M</strong></div></div>
             </div>
-            <div style={{ textAlign: 'center' as const, color: 'var(--lavender)', fontSize: '14px', lineHeight: 1 }}>↓</div>
+            <div className="anim-fade-in anim-stagger-2" style={{ textAlign: 'center' as const, color: 'var(--lavender)', fontSize: '14px', lineHeight: 1 }}>↓</div>
 
             {/* Step 3 */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--lavender-wash)', border: '1px solid #e8e6f0', borderRadius: '10px', padding: '12px 16px', borderLeft: '4px solid var(--purple-mid)' }}>
+            <div className="anim-fade-left anim-stagger-3" style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--lavender-wash)', border: '1px solid #e8e6f0', borderRadius: '10px', padding: '12px 16px', borderLeft: '4px solid var(--purple-mid)' }}>
               <div style={{ minWidth: '34px', height: '34px', borderRadius: '50%', background: 'var(--purple-mid)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 700 }}>3</div>
               <div><div style={{ fontSize: '13px', fontWeight: 600 }}>Required Ownership</div><div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>€11.5M / €358M = <strong style={{ color: 'var(--purple-deep)' }}>3.2%</strong></div></div>
             </div>
-            <div style={{ textAlign: 'center' as const, color: 'var(--lavender)', fontSize: '14px', lineHeight: 1 }}>↓</div>
+            <div className="anim-fade-in anim-stagger-3" style={{ textAlign: 'center' as const, color: 'var(--lavender)', fontSize: '14px', lineHeight: 1 }}>↓</div>
 
             {/* Step 4 */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--lavender-wash)', border: '1px solid #e8e6f0', borderRadius: '10px', padding: '12px 16px', borderLeft: '4px solid var(--purple-soft)' }}>
+            <div className="anim-fade-left anim-stagger-4" style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--lavender-wash)', border: '1px solid #e8e6f0', borderRadius: '10px', padding: '12px 16px', borderLeft: '4px solid var(--purple-soft)' }}>
               <div style={{ minWidth: '34px', height: '34px', borderRadius: '50%', background: 'var(--purple-soft)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 700 }}>4</div>
               <div><div style={{ fontSize: '13px', fontWeight: 600 }}>Shares Issued</div><div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>~415K on 12.5M FD base</div></div>
             </div>
-            <div style={{ textAlign: 'center' as const, color: 'var(--accent)', fontSize: '14px', lineHeight: 1 }}>↓</div>
+            <div className="anim-fade-in anim-stagger-4" style={{ textAlign: 'center' as const, color: 'var(--accent)', fontSize: '14px', lineHeight: 1 }}>↓</div>
 
             {/* Step 5 */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'linear-gradient(135deg,rgba(102,126,234,0.15),rgba(165,180,252,0.22))', border: '2px solid var(--accent-light)', borderRadius: '12px', padding: '14px 18px', boxShadow: '0 6px 18px rgba(102,126,234,0.12)' }}>
+            <div className="anim-fade-left anim-stagger-5 anim-pulse" style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'linear-gradient(135deg,rgba(102,126,234,0.15),rgba(165,180,252,0.22))', border: '2px solid var(--accent-light)', borderRadius: '12px', padding: '14px 18px', boxShadow: '0 6px 18px rgba(102,126,234,0.12)' }}>
               <div style={{ minWidth: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '17px', fontWeight: 700 }}>5</div>
               <div><div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--purple-deep)' }}>Implied Pre-Money</div><div style={{ fontSize: '13px', color: 'var(--text-muted)' }}><strong style={{ color: 'var(--purple-deep)', fontSize: '18px' }}>€90.3M</strong> — €27M is conservative</div></div>
             </div>
 
-            <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 'auto', textAlign: 'center' as const }}>Investors enter at <strong style={{ color: 'var(--purple-deep)' }}>70% discount</strong> to terminal valuation (execution risk at pre-seed)</div>
+            <div className="anim-fade-up" style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 'auto', textAlign: 'center' as const, animationDelay: '0.7s' }}>Investors enter at <strong style={{ color: 'var(--purple-deep)' }}>70% discount</strong> to terminal valuation (execution risk at pre-seed)</div>
           </div>
         </div>
 
-        <div className="split-right" style={{ padding: '50px 80px 50px 40px', display: 'flex', flexDirection: 'column', background: 'linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%)' }}>
+        <div className="split-right anim-fade-in" style={{ padding: '50px 80px 50px 40px', display: 'flex', flexDirection: 'column', background: 'linear-gradient(135deg, #e8e4f0 0%, #c7cce8 50%, #a5b0d8 100%)', animationDelay: '1.2s' }}>
           <div style={{ textAlign: 'center' as const, marginBottom: '16px' }}>
             <div style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--purple-deep)', marginBottom: '6px' }}>Seed Investor IRR</div>
             <div style={{ fontSize: '58px', fontWeight: 700, color: 'var(--purple-deep)', lineHeight: 1 }}>85.9%</div>
