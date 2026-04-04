@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback, type FC } from 'react'
+import html2canvas from 'html2canvas-pro'
+import { jsPDF } from 'jspdf'
 
 interface DeckProps {
   slides: FC<{ active: boolean }>[]
@@ -8,6 +10,7 @@ export function Deck({ slides }: DeckProps) {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState<'forward' | 'back'>('forward')
   const [showHint, setShowHint] = useState(true)
+  const [exporting, setExporting] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setShowHint(false), 4000)
@@ -35,6 +38,7 @@ export function Deck({ slides }: DeckProps) {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (exporting) return
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault()
         navigate('next')
@@ -51,9 +55,10 @@ export function Deck({ slides }: DeckProps) {
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [navigate])
+  }, [navigate, exporting])
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (exporting) return
     const rect = e.currentTarget.getBoundingClientRect()
     const x = e.clientX - rect.left
     if (x < e.currentTarget.offsetWidth * 0.33) {
@@ -63,13 +68,94 @@ export function Deck({ slides }: DeckProps) {
     }
   }
 
+  const exportPDF = async () => {
+    setExporting(true)
+    const deck = document.getElementById('deck')
+    if (!deck) return
+
+    // Landscape 16:9 PDF
+    const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1280, 720] })
+
+    for (let i = 0; i < slides.length; i++) {
+      // Activate the slide
+      setCurrent(i)
+      // Wait for React to render + animations to settle
+      await new Promise(r => setTimeout(r, 300))
+
+      const canvas = await html2canvas(deck, {
+        width: 1280,
+        height: 720,
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+      })
+
+      const imgData = canvas.toDataURL('image/png')
+      if (i > 0) pdf.addPage([1280, 720], 'landscape')
+      pdf.addImage(imgData, 'PNG', 0, 0, 1280, 720)
+    }
+
+    pdf.save('ARTISO-CFO-Presentation.pdf')
+    setExporting(false)
+  }
+
+  const goToSlide = (i: number) => {
+    setDirection(i > current ? 'forward' : 'back')
+    setCurrent(i)
+  }
+
   return (
-    <div className="deck" id="deck" data-direction={direction} onClick={handleClick}>
-      <div className="progress-bar" style={{ width: `${(current / (slides.length - 1)) * 100}%` }} />
-      {slides.map((SlideComponent, i) => (
-        <SlideComponent key={i} active={i === current} />
-      ))}
-      {showHint && <div className="nav-hint">&larr; &rarr; to navigate</div>}
-    </div>
+    <>
+      {/* Top navigation bar */}
+      <div className="deck-nav">
+        <div className="deck-nav-inner">
+          <span className="deck-nav-title">ARTISO — CFO Board Presentation</span>
+          <div className="deck-nav-dots">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                className={`deck-nav-dot${i === current ? ' active' : ''}`}
+                onClick={(e) => { e.stopPropagation(); goToSlide(i) }}
+                title={`Slide ${i + 1}`}
+              />
+            ))}
+          </div>
+          <button className="deck-nav-pdf" onClick={(e) => { e.stopPropagation(); exportPDF() }} disabled={exporting}>
+            {exporting ? `Exporting ${current + 1}/${slides.length}...` : '⬇ Export PDF'}
+          </button>
+        </div>
+      </div>
+
+      <div className="deck" id="deck" data-direction={direction} onClick={handleClick}>
+        <div className="progress-bar" style={{ width: `${(current / (slides.length - 1)) * 100}%` }} />
+        {slides.map((SlideComponent, i) => (
+          <SlideComponent key={i} active={i === current} />
+        ))}
+        {showHint && <div className="nav-hint">&larr; &rarr; to navigate</div>}
+
+        {/* Export overlay */}
+        {exporting && (
+          <div style={{
+            position: 'absolute', inset: 0, zIndex: 200,
+            background: 'rgba(255,255,255,0.85)', display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            flexDirection: 'column', gap: '12px',
+          }}>
+            <div style={{ fontSize: '18px', fontWeight: 600, color: '#3d3575' }}>
+              Exporting slide {current + 1} of {slides.length}...
+            </div>
+            <div style={{
+              width: '200px', height: '4px', background: '#e8e6f0', borderRadius: '2px', overflow: 'hidden'
+            }}>
+              <div style={{
+                width: `${((current + 1) / slides.length) * 100}%`,
+                height: '100%', background: 'linear-gradient(90deg, #667eea, #a5b4fc)',
+                transition: 'width 0.3s ease',
+              }} />
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   )
 }

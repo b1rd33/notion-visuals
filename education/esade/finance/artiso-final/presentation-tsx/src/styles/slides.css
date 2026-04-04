@@ -1,3 +1,71 @@
+/* ── Top Navigation Bar ── */
+.deck-nav {
+  width: var(--slide-w);
+  margin-bottom: 10px;
+}
+.deck-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 10px;
+  border: 1px solid rgba(91,106,191,0.1);
+  box-shadow: 0 2px 8px rgba(61,53,117,0.06);
+}
+.deck-nav-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--purple-deep);
+  letter-spacing: 0.02em;
+}
+.deck-nav-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.deck-nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--lavender);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+.deck-nav-dot:hover {
+  border-color: var(--purple-mid);
+  background: var(--lavender-wash);
+}
+.deck-nav-dot.active {
+  background: var(--purple-deep);
+  border-color: var(--purple-deep);
+  transform: scale(1.2);
+}
+.deck-nav-pdf {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--purple-deep);
+  background: var(--lavender-wash);
+  border: 1px solid var(--lavender);
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+.deck-nav-pdf:hover {
+  background: var(--lavender);
+  border-color: var(--purple-mid);
+}
+.deck-nav-pdf:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 /* ── Slide System ── */
 .deck {
   position: relative;
