@@ -885,8 +885,7 @@ body.exporting .nav-hint,
 body.exporting .deck-nav { display: none !important; }
 body.exporting rect { transition: none !important; }
 /* Fix html2canvas over-saturating low-opacity tints */
-body.exporting .risk-card,
-body.exporting .risk-card *,
+body.exporting .risk-card { background: #fff !important; overflow: visible !important; }
 body.exporting .risk-card-head,
-body.exporting .risk-card-idx { background: #fff !important; overflow: visible !important; }
+body.exporting .risk-card-idx { overflow: visible !important; flex-shrink: 0 !important; }
 body.exporting .metric-card-v3 { background: #fff !important; }
