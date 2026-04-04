@@ -784,3 +784,8 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 
 /* ── Risk Card Hover ── */
 .risk-card:hover { transform: scale(1.02); transition: transform 0.2s ease; }
+
+/* Enhanced card depth */
+.metric-card-v3 { box-shadow: 0 1px 3px rgba(61,53,117,0.04), 0 8px 20px rgba(61,53,117,0.06); }
+.risk-card { box-shadow: 0 1px 3px rgba(61,53,117,0.04), 0 6px 18px rgba(61,53,117,0.06); }
+.resolution-card { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }

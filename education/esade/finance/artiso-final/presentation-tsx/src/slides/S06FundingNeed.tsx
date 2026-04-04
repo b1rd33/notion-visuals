@@ -42,6 +42,14 @@ export function S06FundingNeed({ active }: { active: boolean }) {
             <line x1="10" y1="340" x2="650" y2="340" stroke="#d1d5db" strokeWidth="1.5" strokeDasharray="6,4" />
             <text x="4" y="336" fontSize="9" fill="#9CA3AF" fontWeight="600" fontFamily="DM Sans,sans-serif">€0</text>
 
+            {/* Grid lines */}
+            <line x1="10" y1="258" x2="650" y2="258" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="4,4" />
+            <text x="4" y="254" fontSize="8" fill="#d1d5db" fontFamily="DM Sans,sans-serif">€2M</text>
+            <line x1="10" y1="177" x2="650" y2="177" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="4,4" />
+            <text x="4" y="173" fontSize="8" fill="#d1d5db" fontFamily="DM Sans,sans-serif">€4M</text>
+            <line x1="10" y1="95" x2="650" y2="95" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="4,4" />
+            <text x="4" y="91" fontSize="8" fill="#d1d5db" fontFamily="DM Sans,sans-serif">€6M</text>
+
             {/* Q2'26: €3.0M → 122px */}
             <rect x={bars[0].x} y={animate ? bars[0].y : 340} width="44" height={animate ? bars[0].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.1s' }} />
             <text x="44" y="210" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€3.0M</text>
