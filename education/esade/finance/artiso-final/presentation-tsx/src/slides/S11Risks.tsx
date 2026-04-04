@@ -1,13 +1,22 @@
 import { SlideFooter } from '../components/SlideFooter'
 
 const SeverityDots = ({ level }: { level: number }) => (
-  <svg width="32" height="10" viewBox="0 0 32 10" style={{ marginLeft: 6, verticalAlign: 'middle' }}>
-    {[0, 1, 2].map(i => (
-      <rect key={i} x={i * 10} y={2} width={6} height={6} rx={1.5}
-        fill={i < level ? 'currentColor' : '#e5e7eb'} />
-    ))}
-  </svg>
-);
+  <span className="risk-card-idx-icon risk-card-idx-dots" aria-hidden>
+    <svg viewBox="0 0 32 10" preserveAspectRatio="xMidYMid meet">
+      {[0, 1, 2].map((i) => (
+        <rect
+          key={i}
+          x={i * 10}
+          y={2}
+          width={6}
+          height={6}
+          rx={1.5}
+          fill={i < level ? 'currentColor' : '#e5e7eb'}
+        />
+      ))}
+    </svg>
+  </span>
+)
 
 export function S11Risks({ active }: { active: boolean }) {
   return (
@@ -42,7 +51,12 @@ export function S11Risks({ active }: { active: boolean }) {
           <div className="risk-card-foot"><strong>Mitigate:</strong> Monthly recalibration vs actuals.</div>
         </div>
         <div className="risk-card sev-action anim-fade-up anim-stagger-6">
-          <div className="risk-card-head"><h3>Contingency Plan <span className="sev-pill action">Ready</span></h3><span className="risk-card-idx">06<svg width="14" height="14" viewBox="0 0 16 16" style={{ marginLeft: 6, verticalAlign: 'middle', display: 'inline-block' }}><path d="M3 8l4 4 6-6" fill="none" stroke="#047857" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></span></div>
+          <div className="risk-card-head"><h3>Contingency Plan <span className="sev-pill action">Ready</span></h3><span className="risk-card-idx">
+            06
+            <span className="risk-card-idx-icon risk-card-idx-check" aria-hidden>
+              ✓
+            </span>
+          </span></div>
           <div className="risk-card-body">Defer 3 hires + cut S&amp;M 30% → burn €120K→€80K/mo → +5mo runway.</div>
           <div className="risk-card-foot"><strong>Venture debt:</strong> €1-2M facility at H2 2028 (9-10% + 1% warrants).</div>
         </div>

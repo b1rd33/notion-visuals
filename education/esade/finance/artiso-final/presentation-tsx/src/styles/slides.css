@@ -681,7 +681,7 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   border-radius: 14px;
   padding: 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 6px 18px rgba(61,53,117,0.06);
   display: flex;
   flex-direction: column;
@@ -695,28 +695,29 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
 }
 .risk-card-head {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  padding: 18px 22px 0;
+  padding: 18px 26px 0;
 }
 .risk-card-head h3 {
   flex: 1;
   min-width: 0;
   font-size: 16px;
   font-weight: 600;
+  line-height: 1.25;
   color: var(--purple-deep);
   margin: 0;
 }
 .risk-card-body {
-  padding: 8px 22px 0;
+  padding: 8px 26px 0;
   font-size: 14px;
   color: var(--text-muted);
   line-height: 1.5;
   flex: 1;
 }
 .risk-card-foot {
-  padding: 0 22px 16px;
+  padding: 0 26px 16px;
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid rgba(91,106,191,0.08);
@@ -732,8 +733,36 @@ tr.highlight td { background: #ede9fe; font-weight: 600; }
   white-space: nowrap;
   font-size: 11px;
   font-weight: 700;
+  line-height: 1.25;
   color: var(--text-light);
   letter-spacing: 0.04em;
+  padding-right: 4px;
+}
+/* Same vertical slot for dots + check so 01–06 line up */
+.risk-card-idx-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  margin-left: 6px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+.risk-card-idx-dots {
+  width: 32px;
+}
+.risk-card-idx-dots svg {
+  width: 32px;
+  height: 10px;
+  display: block;
+  color: inherit;
+}
+.risk-card-idx-check {
+  width: 16px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  color: #047857;
 }
 .sev-pill {
   display: inline-block;
