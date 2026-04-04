@@ -134,35 +134,36 @@ export function Deck({ slides }: DeckProps) {
       </div>
 
       <div className="deck" id="deck" data-direction={direction} onClick={handleClick}>
-        <div className="progress-bar" style={{ width: `${(current / (slides.length - 1)) * 100}%` }} />
+        {!exporting && <div className="progress-bar" style={{ width: `${(current / (slides.length - 1)) * 100}%` }} />}
         {slides.map((SlideComponent, i) => (
           <SlideComponent key={i} active={i === current} />
         ))}
-        {showHint && <div className="nav-hint">&larr; &rarr; to navigate</div>}
-
-        {/* Export overlay */}
-        {exporting && (
-          <div style={{
-            position: 'absolute', inset: 0, zIndex: 200,
-            background: 'rgba(255,255,255,0.85)', display: 'flex',
-            alignItems: 'center', justifyContent: 'center',
-            flexDirection: 'column', gap: '12px',
-          }}>
-            <div style={{ fontSize: '18px', fontWeight: 600, color: '#3d3575' }}>
-              Exporting slide {current + 1} of {slides.length}...
-            </div>
-            <div style={{
-              width: '200px', height: '4px', background: '#e8e6f0', borderRadius: '2px', overflow: 'hidden'
-            }}>
-              <div style={{
-                width: `${((current + 1) / slides.length) * 100}%`,
-                height: '100%', background: 'linear-gradient(90deg, #667eea, #a5b4fc)',
-                transition: 'width 0.3s ease',
-              }} />
-            </div>
-          </div>
-        )}
+        {showHint && !exporting && <div className="nav-hint">&larr; &rarr; to navigate</div>}
       </div>
+
+      {/* Export overlay — OUTSIDE the deck so it's not captured */}
+      {exporting && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 9999,
+          background: 'rgba(240,238,245,0.92)', display: 'flex',
+          alignItems: 'center', justifyContent: 'center',
+          flexDirection: 'column', gap: '12px',
+          pointerEvents: 'none',
+        }}>
+          <div style={{ fontSize: '18px', fontWeight: 600, color: '#3d3575' }}>
+            Exporting slide {current + 1} of {slides.length}...
+          </div>
+          <div style={{
+            width: '200px', height: '4px', background: '#e8e6f0', borderRadius: '2px', overflow: 'hidden'
+          }}>
+            <div style={{
+              width: `${((current + 1) / slides.length) * 100}%`,
+              height: '100%', background: 'linear-gradient(90deg, #667eea, #a5b4fc)',
+              transition: 'width 0.3s ease',
+            }} />
+          </div>
+        </div>
+      )}
     </>
   )
 }
