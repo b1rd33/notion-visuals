@@ -134,7 +134,7 @@ export function Deck({ slides }: DeckProps) {
       </div>
 
       <div className="deck" id="deck" data-direction={direction} onClick={handleClick}>
-        {!exporting && <div className="progress-bar" style={{ width: `${(current / (slides.length - 1)) * 100}%` }} />}
+        <div className="progress-bar" style={{ width: `${(current / (slides.length - 1)) * 100}%` }} />
         {slides.map((SlideComponent, i) => (
           <SlideComponent key={i} active={i === current} />
         ))}

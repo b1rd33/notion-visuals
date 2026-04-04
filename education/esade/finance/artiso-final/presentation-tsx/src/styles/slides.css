@@ -868,6 +868,5 @@ body.exporting .slide.active .anim-pulse {
   transform: none !important;
 }
 body.exporting .nav-hint,
-body.exporting .progress-bar,
 body.exporting .deck-nav { display: none !important; }
 body.exporting rect { transition: none !important; }
