@@ -26,7 +26,7 @@ export function S10Scenarios({ active }: { active: boolean }) {
         <div style={{ flex: 1 }}>
           <h3>Top Sensitivity Levers</h3>
           <p style={{ fontSize: '15px', color: 'var(--text-muted)', marginTop: '8px' }}>±20% swing on FY2030 ARR and cash:</p>
-          <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div style={{ width: '240px', height: '28px', background: 'linear-gradient(90deg,var(--accent-light),var(--accent))', borderRadius: '4px' }}></div>
               <span style={{ fontSize: '14px', fontWeight: 600 }}>Enterprise NRR</span>
