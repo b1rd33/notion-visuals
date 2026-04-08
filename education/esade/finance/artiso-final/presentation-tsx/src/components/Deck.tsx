@@ -104,8 +104,8 @@ export function Deck({ slides }: DeckProps) {
     if (!deck) return
 
     // Landscape 16:9 PDF
-    const slideW = 1440
-    const slideH = 810
+    const slideW = 1280
+    const slideH = 720
     const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [slideW, slideH] })
 
     // Disable animations during export
