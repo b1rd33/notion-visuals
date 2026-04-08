@@ -36,7 +36,7 @@ export function S04RevenueEngine({ active }: { active: boolean }) {
                 <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>Q1'29</div>
               </div>
               <div style={{ textAlign: 'center' as const, position: 'relative', zIndex: 1 }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--purple-deep)', border: '2px solid var(--purple-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 700, color: 'white', margin: '0 auto' }}>€35.8M</div>
+                <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--purple-deep)', border: '2px solid var(--purple-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 700, color: 'white', margin: '0 auto' }}>€35.7M</div>
                 <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>Q4'30</div>
               </div>
             </div>
@@ -99,7 +99,7 @@ export function S04RevenueEngine({ active }: { active: boolean }) {
         </div>
       </div>
 
-      <SlideFooter framework={'Session 03 — Adria Roca: "Biggest mistake = top-down. Correct = bottom-up"'} slideNum="4 / 12" />
+      <SlideFooter framework="" slideNum="4 / 12" />
     </section>
   )
 }

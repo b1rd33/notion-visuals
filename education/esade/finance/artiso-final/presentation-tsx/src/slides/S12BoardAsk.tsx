@@ -20,7 +20,7 @@ export function S12BoardAsk({ active }: { active: boolean }) {
         <div className="resolution-card anim-fade-up anim-stagger-6">
           <div className="res-num">3</div>
           <h3>Approve Series A Prep</h3>
-          <p>Begin investor relationship building Q2 2027 — 15 months before needed</p>
+          <p>Begin investor relationship building Q4 2027 — 15 months before needed</p>
         </div>
       </div>
 

@@ -43,12 +43,12 @@ export function S11Risks({ active }: { active: boolean }) {
         <div className="risk-card sev-high anim-fade-up anim-stagger-4">
           <div className="risk-card-head"><h3>Cash Runway Timing <span className="sev-pill high">High</span></h3><span className="risk-card-idx">04<SeverityDots level={2} /></span></div>
           <div className="risk-card-body">Series A must close by Q1 2028.</div>
-          <div className="risk-card-foot"><strong>Mitigate:</strong> Begin process Q2 2027, €500K internal trigger.</div>
+          <div className="risk-card-foot"><strong>Mitigate:</strong> Begin process Q4 2027, €500K internal trigger.</div>
         </div>
         <div className="risk-card sev-medium anim-fade-up anim-stagger-5">
-          <div className="risk-card-head"><h3>Model Sensitivity <span className="sev-pill medium">Medium</span></h3><span className="risk-card-idx">05<SeverityDots level={1} /></span></div>
-          <div className="risk-card-body">Enterprise NRR + lead growth dominate.</div>
-          <div className="risk-card-foot"><strong>Mitigate:</strong> Monthly recalibration vs actuals.</div>
+          <div className="risk-card-head"><h3>Fashion Cycle Exposure <span className="sev-pill medium">Medium</span></h3><span className="risk-card-idx">05<SeverityDots level={1} /></span></div>
+          <div className="risk-card-body">Recession freezes design budgets → pilot starts stall.</div>
+          <div className="risk-card-foot"><strong>Mitigate:</strong> Position as cost-savings tool (70% dev time cut), not discretionary spend.</div>
         </div>
         <div className="risk-card sev-action anim-fade-up anim-stagger-6">
           <div className="risk-card-head"><h3>Contingency Plan <span className="sev-pill action">Ready</span></h3><span className="risk-card-idx">
@@ -62,7 +62,7 @@ export function S11Risks({ active }: { active: boolean }) {
         </div>
       </div>
 
-      <SlideFooter framework={'Session 01 — Jose Antonio Gonzalez (Business Angel): "Know your worst case scenario"'} slideNum="11 / 12" />
+      <SlideFooter framework="" slideNum="11 / 12" />
     </section>
   )
 }

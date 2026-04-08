@@ -58,10 +58,10 @@ export function S05UnitEconomics({ active }: { active: boolean }) {
       </div>
 
       <div className="reco-box" style={{ marginTop: '20px' }}>
-        <p style={{ fontSize: '15px' }}><strong>Note:</strong> CAC increases from €17K to €74K as the company scales — exactly as taught in Session 03. This is realistic, not the $2,887 LTV/CAC from the Skilfill case.</p>
+        <p style={{ fontSize: '15px' }}><strong>Note:</strong> CAC increases from €17K to €74K as the company scales into enterprise — this is realistic, not fantasy metrics.</p>
       </div>
 
-      <SlideFooter framework="Session 02 — Skilfill Case: Realistic unit economics, validated assumptions, no fantasy metrics" slideNum="5 / 12" />
+      <SlideFooter framework="" slideNum="5 / 12" />
     </section>
   )
 }

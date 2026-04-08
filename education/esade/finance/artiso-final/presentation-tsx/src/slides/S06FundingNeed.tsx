@@ -12,16 +12,16 @@ export function S06FundingNeed({ active }: { active: boolean }) {
 
   // Bar data: [x, targetY, targetH, isNegative, delayIndex]
   const bars: { x: number; y: number; h: number; neg: boolean; idx: number }[] = [
-    { x: 22, y: 218, h: 122, neg: false, idx: 0 },  // Q2'26
-    { x: 88, y: 246, h: 94, neg: false, idx: 1 },   // Q4'26
-    { x: 154, y: 279, h: 61, neg: false, idx: 2 },  // Q2'27
-    { x: 220, y: 315, h: 25, neg: false, idx: 3 },  // Q4'27
-    { x: 286, y: 331, h: 9, neg: false, idx: 4 },   // Q1'28
-    { x: 352, y: 340, h: 6, neg: true, idx: 5 },    // Q2'28
-    { x: 418, y: 340, h: 19, neg: true, idx: 6 },   // Q4'28
-    { x: 484, y: 336, h: 4, neg: false, idx: 7 },   // Q2'29
-    { x: 550, y: 275, h: 65, neg: false, idx: 8 },  // Q4'29
-    { x: 616, y: 50, h: 290, neg: false, idx: 9 },  // Q4'30
+    { x: 22, y: 225, h: 115, neg: false, idx: 0 },  // Q2'26 €2.8M
+    { x: 88, y: 245, h: 95, neg: false, idx: 1 },   // Q4'26 €2.3M
+    { x: 154, y: 272, h: 68, neg: false, idx: 2 },  // Q2'27 €1.7M
+    { x: 220, y: 310, h: 30, neg: false, idx: 3 },  // Q4'27 €743K
+    { x: 286, y: 326, h: 14, neg: false, idx: 4 },  // Q1'28 €345K
+    { x: 352, y: 340, h: 2, neg: true, idx: 5 },    // Q2'28 -€32K
+    { x: 418, y: 340, h: 15, neg: true, idx: 6 },   // Q4'28 -€379K
+    { x: 484, y: 332, h: 8, neg: false, idx: 7 },   // Q2'29 €195K
+    { x: 550, y: 272, h: 68, neg: false, idx: 8 },  // Q4'29 €1.7M
+    { x: 616, y: 50, h: 290, neg: false, idx: 9 },  // Q4'30 €7.1M
   ]
 
   return (
@@ -50,51 +50,51 @@ export function S06FundingNeed({ active }: { active: boolean }) {
             <line x1="10" y1="95" x2="650" y2="95" stroke="#e5e7eb" strokeWidth="0.5" strokeDasharray="4,4" />
             <text x="4" y="91" fontSize="8" fill="#d1d5db" fontFamily="DM Sans,sans-serif">€6M</text>
 
-            {/* Q2'26: €3.0M → 122px */}
+            {/* Q2'26: €2.8M */}
             <rect x={bars[0].x} y={animate ? bars[0].y : 340} width="44" height={animate ? bars[0].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.1s' }} />
-            <text x="44" y="210" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€3.0M</text>
+            <text x="44" y="215" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€2.8M</text>
             <text x="44" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q2'26</text>
 
-            {/* Q4'26: €2.3M → 94px */}
+            {/* Q4'26: €2.3M */}
             <rect x={bars[1].x} y={animate ? bars[1].y : 340} width="44" height={animate ? bars[1].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.2s' }} />
-            <text x="110" y="238" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€2.3M</text>
+            <text x="110" y="235" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€2.3M</text>
             <text x="110" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'26</text>
 
-            {/* Q2'27: €1.5M → 61px */}
+            {/* Q2'27: €1.7M */}
             <rect x={bars[2].x} y={animate ? bars[2].y : 340} width="44" height={animate ? bars[2].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.3s' }} />
-            <text x="176" y="271" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€1.5M</text>
+            <text x="176" y="262" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€1.7M</text>
             <text x="176" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q2'27</text>
             <text x="176" y="372" textAnchor="middle" fontSize="8" fill="#d97706" fontWeight="700" fontFamily="DM Sans,sans-serif">FUNDRAISE</text>
 
-            {/* Q4'27: €607K → 25px */}
+            {/* Q4'27: €743K */}
             <rect x={bars[3].x} y={animate ? bars[3].y : 340} width="44" height={animate ? bars[3].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.4s' }} />
-            <text x="242" y="307" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€607K</text>
+            <text x="242" y="300" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€743K</text>
             <text x="242" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'27</text>
             <text x="242" y="372" textAnchor="middle" fontSize="8" fill="#dc2626" fontWeight="700" fontFamily="DM Sans,sans-serif">RAISE NOW</text>
 
-            {/* Q1'28: €227K → 9px */}
+            {/* Q1'28: €345K */}
             <rect x={bars[4].x} y={animate ? bars[4].y : 340} width="44" height={animate ? bars[4].h : 0} rx="2" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.5s' }} />
-            <text x="308" y="323" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€227K</text>
+            <text x="308" y="316" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€345K</text>
             <text x="308" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q1'28</text>
 
-            {/* Q2'28: -€139K → 6px BELOW zero */}
-            <rect x={bars[5].x} y="340" width="44" height={animate ? bars[5].h : 0} rx="2" fill="url(#gn)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.6s' }} />
-            <text x="374" y="360" textAnchor="middle" fontSize="10" fill="#dc2626" fontWeight="600" fontFamily="DM Sans,sans-serif">-€139K</text>
+            {/* Q2'28: -€32K */}
+            <rect x={bars[5].x} y="340" width="44" height={animate ? bars[5].h : 0} rx="1" fill="url(#gn)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.6s' }} />
+            <text x="374" y="358" textAnchor="middle" fontSize="10" fill="#dc2626" fontWeight="600" fontFamily="DM Sans,sans-serif">-€32K</text>
             <text x="374" y="374" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q2'28</text>
 
-            {/* Q4'28: -€477K → 19px BELOW zero */}
+            {/* Q4'28: -€379K */}
             <rect x={bars[6].x} y="340" width="44" height={animate ? bars[6].h : 0} rx="2" fill="url(#gn)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.7s' }} />
-            <text x="440" y="374" textAnchor="middle" fontSize="10" fill="#dc2626" fontWeight="600" fontFamily="DM Sans,sans-serif">-€477K</text>
+            <text x="440" y="372" textAnchor="middle" fontSize="10" fill="#dc2626" fontWeight="600" fontFamily="DM Sans,sans-serif">-€379K</text>
             <text x="440" y="388" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'28</text>
 
-            {/* Q2'29: €108K → 4px */}
+            {/* Q2'29: €195K */}
             <rect x={bars[7].x} y={animate ? bars[7].y : 340} width="44" height={animate ? bars[7].h : 0} rx="2" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.8s' }} />
-            <text x="506" y="328" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€108K</text>
+            <text x="506" y="322" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€195K</text>
             <text x="506" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q2'29</text>
 
-            {/* Q4'29: €1.6M → 65px */}
+            {/* Q4'29: €1.7M */}
             <rect x={bars[8].x} y={animate ? bars[8].y : 340} width="44" height={animate ? bars[8].h : 0} rx="3" fill="url(#gp)" filter="url(#bar-shadow)" style={{ transition: 'all 0.6s ease', transitionDelay: '0.9s' }} />
-            <text x="572" y="267" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€1.6M</text>
+            <text x="572" y="262" textAnchor="middle" fontSize="11" fill="#2c2c3a" fontWeight="600" fontFamily="DM Sans,sans-serif">€1.7M</text>
             <text x="572" y="358" textAnchor="middle" fontSize="10" fill="#6B7280" fontWeight="600" fontFamily="DM Sans,sans-serif">Q4'29</text>
 
             {/* Q4'30: €7.1M → 290px (full height) */}
@@ -107,12 +107,12 @@ export function S06FundingNeed({ active }: { active: boolean }) {
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '14px', justifyContent: 'flex-start', paddingTop: '8px' }}>
           <div style={{ background: 'var(--lavender-wash)', borderRadius: '10px', padding: '18px', border: '1px solid #e8e6f0' }}>
             <div style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.06em', color: 'var(--text-muted)' }}>Lowest Point</div>
-            <div style={{ fontSize: '30px', fontWeight: 700, color: 'var(--negative)' }}>-€477K</div>
+            <div style={{ fontSize: '30px', fontWeight: 700, color: 'var(--negative)' }}>-€379K</div>
             <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Q4 2028 — pre-Series A gap</div>
           </div>
           <div style={{ background: 'var(--lavender-wash)', borderRadius: '10px', padding: '18px', border: '1px solid #e8e6f0' }}>
             <div style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.06em', color: 'var(--text-muted)' }}>Series A Prep</div>
-            <div style={{ fontSize: '30px', fontWeight: 700, color: 'var(--purple-deep)' }}>Q2 2027</div>
+            <div style={{ fontSize: '30px', fontWeight: 700, color: 'var(--purple-deep)' }}>Q4 2027</div>
             <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>15 months after pre-seed close</div>
           </div>
           <div style={{ background: 'var(--lavender-wash)', borderRadius: '10px', padding: '18px', border: '1px solid #e8e6f0' }}>
@@ -121,12 +121,12 @@ export function S06FundingNeed({ active }: { active: boolean }) {
             <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Near EBITDA breakeven — 9-10% + 1% warrants</div>
           </div>
           <div style={{ background: 'linear-gradient(135deg,rgba(91,106,191,0.08),rgba(196,201,232,0.2))', borderRadius: '10px', padding: '14px 18px', border: '1px solid #e8e6f0', marginTop: 'auto' }}>
-            <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}><strong style={{ color: 'var(--purple-deep)' }}>€3M seed</strong> funds 27 months of runway (Q2'26→Q2'28) at avg. €111K/mo burn.</div>
+            <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}><strong style={{ color: 'var(--purple-deep)' }}>€3M pre-seed</strong> funds 24 months of runway (Q2'26→Q2'28) at avg. €125K/mo burn.</div>
           </div>
         </div>
       </div>
 
-      <SlideFooter framework={'Session 03 — "Dying of Success": Cash consumed by growth before profitability'} slideNum="6 / 12" />
+      <SlideFooter framework="" slideNum="6 / 12" />
     </section>
   )
 }

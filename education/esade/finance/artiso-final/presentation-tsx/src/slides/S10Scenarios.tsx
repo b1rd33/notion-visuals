@@ -11,11 +11,11 @@ export function S10Scenarios({ active }: { active: boolean }) {
           <tr><th style={{ width: '28%' }}>Metric</th><th className="right">Base</th><th className="right">Upside</th><th className="right">Downside</th></tr>
         </thead>
         <tbody>
-          <tr><td className="bold">FY2030 Revenue</td><td className="right">€36.8M</td><td className="right">Higher</td><td className="right">Significantly lower</td></tr>
-          <tr><td>Cash Floor</td><td className="right" style={{ color: 'var(--negative)' }}>-€477K</td><td className="right" style={{ color: 'var(--positive)' }}>Positive</td><td className="right" style={{ color: 'var(--negative)' }}>Much worse</td></tr>
-          <tr><td>Series A Timing</td><td className="right">Q2 2027</td><td className="right">Earlier / larger</td><td className="right">Urgent — bridge needed</td></tr>
+          <tr><td className="bold">FY2030 Revenue</td><td className="right">€36.5M</td><td className="right">€148.5M</td><td className="right">€3.8M</td></tr>
+          <tr><td>Cash Floor</td><td className="right" style={{ color: 'var(--negative)' }}>-€379K</td><td className="right" style={{ color: 'var(--negative)' }}>-€82K</td><td className="right" style={{ color: 'var(--negative)' }}>-€6.9M</td></tr>
+          <tr><td>Series A Timing</td><td className="right">Q4 2027</td><td className="right">Earlier / larger</td><td className="right">Urgent — bridge needed</td></tr>
           <tr><td className="bold">Management Action</td><td className="right">Execute plan</td><td className="right">Accelerate GTM</td><td className="right">Cut burn + bridge</td></tr>
-          <tr><td className="bold">FY2028 Revenue</td><td className="right">€14.2M</td><td className="right">€18-20M</td><td className="right">€8-10M</td></tr>
+          <tr><td className="bold">FY2028 Revenue</td><td className="right">€14.1M</td><td className="right">€18-20M</td><td className="right">€8-10M</td></tr>
           <tr><td>EBITDA Breakeven</td><td className="right">Q4 2028</td><td className="right">Q2 2028</td><td className="right">H1 2030+</td></tr>
         </tbody>
       </table>
@@ -51,7 +51,7 @@ export function S10Scenarios({ active }: { active: boolean }) {
         </div>
       </div>
 
-      <SlideFooter framework={'Session 00 — "Sensitivity analysis identifies critical variables"'} slideNum="10 / 12" />
+      <SlideFooter framework="" slideNum="10 / 12" />
     </section>
   )
 }

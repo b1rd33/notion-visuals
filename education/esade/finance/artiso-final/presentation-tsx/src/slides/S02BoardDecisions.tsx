@@ -25,7 +25,7 @@ export function S02BoardDecisions({ active }: { active: boolean }) {
         <p><strong>Recommendation:</strong> Raise €3M now using a blended equity + non-dilutive stack at ~4.5% blended cost of capital — 60% cheaper than pure equity.</p>
       </div>
 
-      <SlideFooter framework="Session 02 — Pitch Framework: Signal legitimacy, reduce uncertainty, compelling narrative" slideNum="2 / 12" />
+      <SlideFooter framework="" slideNum="2 / 12" />
     </section>
   )
 }

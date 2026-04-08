@@ -37,7 +37,7 @@ export function S07BlendedFinancing({ active }: { active: boolean }) {
         </div>
       </div>
 
-      <SlideFooter framework={'Session 01 — Ramiro (Keon): "Use public grants. Delay equity. Combine sources."'} slideNum="7 / 12" />
+      <SlideFooter framework="" slideNum="7 / 12" />
     </section>
   )
 }
