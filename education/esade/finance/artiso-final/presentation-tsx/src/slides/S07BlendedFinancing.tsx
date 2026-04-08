@@ -21,19 +21,19 @@ export function S07BlendedFinancing({ active }: { active: boolean }) {
           <tr style={{ borderColor: 'rgba(255,255,255,0.1)' }}><td className="bold" style={{ color: 'var(--white)' }}>ENISA</td><td className="right" style={{ color: 'var(--white)' }}>€300K</td><td className="right" style={{ color: 'var(--white)' }}>0%</td><td style={{ color: 'rgba(255,255,255,0.7)' }}>Participative loan, no collateral</td></tr>
           <tr style={{ borderColor: 'rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)' }}><td className="bold" style={{ color: 'var(--white)' }}>CDTI / NEOTEC</td><td className="right" style={{ color: 'var(--white)' }}>€250-400K</td><td className="right" style={{ color: 'var(--white)' }}>0%</td><td style={{ color: 'rgba(255,255,255,0.7)' }}>R&amp;D grant, 70% co-funding</td></tr>
           <tr><td className="bold" style={{ color: 'var(--white)' }}>ICF / ACCIO</td><td className="right" style={{ color: 'var(--white)' }}>€200-300K</td><td className="right" style={{ color: 'var(--white)' }}>0%</td><td style={{ color: 'rgba(255,255,255,0.7)' }}>Catalan innovation grants</td></tr>
-          <tr style={{ borderTop: '2px solid rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.12)' }}><td className="bold" style={{ color: 'var(--white)', fontSize: '20px' }}>Total</td><td className="right bold" style={{ color: 'var(--white)', fontSize: '20px' }}>~€3.0M</td><td className="right bold" style={{ color: 'var(--white)', fontSize: '20px' }}>8-12%</td><td style={{ color: 'rgba(255,255,255,0.7)', fontSize: '16px' }}>Blended CoC ~4.5%</td></tr>
+          <tr style={{ borderTop: '2px solid rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.12)' }}><td className="bold" style={{ color: 'var(--white)', fontSize: '20px' }}>Total</td><td className="right bold" style={{ color: 'var(--white)', fontSize: '20px' }}>~€3.0M</td><td className="right bold" style={{ color: 'var(--white)', fontSize: '20px' }}>8-12%</td><td style={{ color: 'rgba(255,255,255,0.7)', fontSize: '16px' }}>40%+ non-dilutive · founders keep 2-4pp more</td></tr>
         </tbody>
       </table>
 
       <div className="compare-box" style={{ paddingBottom: 0 }}>
         <div className="compare-item">
-          <div className="compare-value" style={{ color: 'var(--white)' }}>~4.5%</div>
-          <div className="compare-label" style={{ color: 'rgba(255,255,255,0.6)' }}>Blended Cost of Capital</div>
+          <div className="compare-value" style={{ color: 'var(--white)' }}>6-8%</div>
+          <div className="compare-label" style={{ color: 'rgba(255,255,255,0.6)' }}>Blended Dilution</div>
         </div>
         <div className="compare-vs" style={{ color: 'rgba(255,255,255,0.4)' }}>vs</div>
         <div className="compare-item">
-          <div className="compare-value" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'line-through' }}>~11%</div>
-          <div className="compare-label" style={{ color: 'rgba(255,255,255,0.4)' }}>Pure Equity Alternative</div>
+          <div className="compare-value" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'line-through' }}>10%</div>
+          <div className="compare-label" style={{ color: 'rgba(255,255,255,0.4)' }}>Pure Equity Dilution</div>
         </div>
       </div>
 
