@@ -104,7 +104,9 @@ export function Deck({ slides }: DeckProps) {
     if (!deck) return
 
     // Landscape 16:9 PDF
-    const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1280, 720] })
+    const slideW = 1440
+    const slideH = 810
+    const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [slideW, slideH] })
 
     // Disable animations during export
     deck.style.setProperty('--anim-duration', '0s')
@@ -112,12 +114,12 @@ export function Deck({ slides }: DeckProps) {
 
     for (let i = 0; i < slides.length; i++) {
       setCurrent(i)
-      // Wait for render + fonts to load (animations are disabled)
-      await new Promise(r => setTimeout(r, 600))
+      // Wait for render + fonts + SVG transitions to complete
+      await new Promise(r => setTimeout(r, 1500))
 
       const canvas = await html2canvas(deck, {
-        width: 1280,
-        height: 720,
+        width: slideW,
+        height: slideH,
         scale: exportScale,
         useCORS: true,
         backgroundColor: null,
@@ -125,8 +127,8 @@ export function Deck({ slides }: DeckProps) {
 
       const quality = exportScale >= 3 ? 0.95 : 0.92
       const imgData = canvas.toDataURL('image/jpeg', quality)
-      if (i > 0) pdf.addPage([1280, 720], 'landscape')
-      pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720)
+      if (i > 0) pdf.addPage([slideW, slideH], 'landscape')
+      pdf.addImage(imgData, 'JPEG', 0, 0, slideW, slideH)
     }
 
     // Restore animations
