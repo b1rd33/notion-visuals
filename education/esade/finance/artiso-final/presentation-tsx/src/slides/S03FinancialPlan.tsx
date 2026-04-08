@@ -39,7 +39,7 @@ export function S03FinancialPlan({ active }: { active: boolean }) {
         </div>
         <div style={{ background: 'var(--lavender-wash)', borderRadius: '8px', padding: '14px 20px', flex: 1, border: '1px solid #e8e6f0' }}>
           <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Revenue CAGR (FY26-30)</div>
-          <div style={{ fontSize: '26px', fontWeight: 700, color: 'var(--purple-deep)' }}>131%</div>
+          <div style={{ fontSize: '26px', fontWeight: 700, color: 'var(--purple-deep)' }}>134%</div>
         </div>
         <div style={{ background: 'var(--lavender-wash)', borderRadius: '8px', padding: '14px 20px', flex: 1, border: '1px solid #e8e6f0' }}>
           <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Tax Loss Carry-Forward</div>
