@@ -12,6 +12,7 @@ export function Deck({ slides }: DeckProps) {
   const [showHint, setShowHint] = useState(true)
   const [exporting, setExporting] = useState(false)
   const [exportScale, setExportScale] = useState(3)
+  const [presenting, setPresenting] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setShowHint(false), 4000)
@@ -53,10 +54,38 @@ export function Deck({ slides }: DeckProps) {
       if (e.key === 'End') {
         navigate('end')
       }
+      if (e.key === 'f' || e.key === 'F' || e.key === 'F11') {
+        e.preventDefault()
+        togglePresenting()
+      }
+      if (e.key === 'Escape' && presenting) {
+        setPresenting(false)
+        if (document.fullscreenElement) document.exitFullscreen()
+      }
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [navigate, exporting])
+  }, [navigate, exporting, presenting])
+
+  const togglePresenting = useCallback(() => {
+    setPresenting(p => {
+      const next = !p
+      if (next) {
+        document.documentElement.requestFullscreen?.()
+      } else {
+        if (document.fullscreenElement) document.exitFullscreen?.()
+      }
+      return next
+    })
+  }, [])
+
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      if (!document.fullscreenElement) setPresenting(false)
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [])
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (exporting) return
@@ -114,9 +143,9 @@ export function Deck({ slides }: DeckProps) {
   }
 
   return (
-    <>
+    <div className={presenting ? 'presentation-mode' : ''}>
       {/* Top navigation bar */}
-      <div className="deck-nav">
+      <div className="deck-nav" style={presenting ? { display: 'none' } : undefined}>
         <div className="deck-nav-inner">
           <span className="deck-nav-title">ARTISO — CFO Board Presentation</span>
           <div className="deck-nav-dots">
@@ -145,6 +174,9 @@ export function Deck({ slides }: DeckProps) {
             <button className="deck-nav-pdf" onClick={(e) => { e.stopPropagation(); exportPDF() }} disabled={exporting}>
               {exporting ? `${current + 1}/${slides.length}...` : '⬇ PDF'}
             </button>
+            <button className="deck-nav-pdf" onClick={(e) => { e.stopPropagation(); togglePresenting() }} style={{ background: 'var(--purple-deep)', color: 'white' }}>
+              ▶ Present
+            </button>
           </div>
         </div>
       </div>
@@ -156,6 +188,19 @@ export function Deck({ slides }: DeckProps) {
         ))}
         {showHint && !exporting && <div className="nav-hint">&larr; &rarr; to navigate</div>}
       </div>
+
+      {/* Presentation mode slide counter */}
+      {presenting && !exporting && (
+        <div style={{
+          position: 'fixed', bottom: '16px', right: '24px', zIndex: 100,
+          fontSize: '14px', color: 'rgba(255,255,255,0.5)',
+          fontFamily: 'var(--font-body)', fontWeight: 500,
+          textShadow: '0 1px 4px rgba(0,0,0,0.3)',
+          pointerEvents: 'none',
+        }}>
+          {current + 1} / {slides.length}
+        </div>
+      )}
 
       {/* Export overlay — OUTSIDE the deck so it's not captured */}
       {exporting && (
@@ -180,6 +225,6 @@ export function Deck({ slides }: DeckProps) {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }

@@ -89,6 +89,30 @@
   box-shadow: 0 25px 80px rgba(59,53,117,0.15), 0 8px 24px rgba(0,0,0,0.08);
   border-radius: 2px;
 }
+
+/* Presentation mode — fullscreen, no chrome */
+.presentation-mode {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.presentation-mode .deck {
+  width: 100vw;
+  height: 100vh;
+  box-shadow: none;
+  border-radius: 0;
+}
+.presentation-mode .slide {
+  width: 100vw;
+  height: 100vh;
+}
+.presentation-mode .progress-bar { display: none; }
+.presentation-mode .nav-hint { display: none; }
+.presentation-mode .slide-footer { opacity: 0.5; }
 .slide {
   position: absolute;
   top: 0; left: 0;
