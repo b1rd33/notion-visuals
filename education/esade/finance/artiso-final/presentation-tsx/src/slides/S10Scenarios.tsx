@@ -15,7 +15,7 @@ export function S10Scenarios({ active }: { active: boolean }) {
           <tr><td>Cash Floor</td><td className="right" style={{ color: 'var(--negative)' }}>-€379K</td><td className="right" style={{ color: 'var(--negative)' }}>-€82K</td><td className="right" style={{ color: 'var(--negative)' }}>-€6.9M</td></tr>
           <tr><td>Series A Timing</td><td className="right">Q4 2027</td><td className="right">Earlier / larger</td><td className="right">Urgent — bridge needed</td></tr>
           <tr><td className="bold">Management Action</td><td className="right">Execute plan</td><td className="right">Accelerate GTM</td><td className="right">Cut burn + bridge</td></tr>
-          <tr><td className="bold">FY2028 Revenue</td><td className="right">€14.1M</td><td className="right">€18-20M</td><td className="right">€8-10M</td></tr>
+          <tr><td className="bold">FY2028 Revenue</td><td className="right">€14.1M</td><td className="right">€56.0M</td><td className="right">€1.4M</td></tr>
           <tr><td>EBITDA Breakeven</td><td className="right">Q4 2028</td><td className="right">Q2 2028</td><td className="right">Never within horizon</td></tr>
         </tbody>
       </table>
